@@ -1,0 +1,10 @@
+<sidebar-layout ng-switch="showSidebar">
+
+    <sidebar-button ng-if="!isAuthenticated" icon="'locker'" toggler="false" ui-sref="authentication.signin"></sidebar-button>
+
+    <sidebar-main ng-switch-when="main"></sidebar-main>
+    <sidebar-search ng-switch-when="search"></sidebar-search>
+    <sidebar-game ng-switch-when="game"></sidebar-game>
+
+</sidebar-layout>
+

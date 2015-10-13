@@ -1,8 +1,8 @@
 describe("uiMask", function () {
   "use strict";
 
-  var formHtml  = "<form name='test'><input name='input' ng-model='x' ui-mask='{{mask}}'></form>";
-  var inputHtml = "<input name='input' ng-model='x' ui-mask='{{mask}}'>";
+  var formHtml  = "<form name='test'><input name='input' ng-models='x' ui-mask='{{mask}}'></form>";
+  var inputHtml = "<input name='input' ng-models='x' ui-mask='{{mask}}'>";
   var compileElement, scope, config;
 
   beforeEach(module("ui.mask"));
@@ -42,7 +42,7 @@ describe("uiMask", function () {
       expect(input.hasClass("ng-pristine ng-valid")).toBeTruthy();
     });
 
-    it("should not change the model value", function() {
+    it("should not change the models value", function() {
       scope.$apply("x = 'abc123'");
       scope.$apply("mask = '(A) * 9'");
       expect(scope.x).toBe("abc123");
@@ -85,7 +85,7 @@ describe("uiMask", function () {
       expect(scope.test.input.$viewValue).toBe("(a) _ _");
     });
 
-    it("should parse unmasked value to model", function() {
+    it("should parse unmasked value to models", function() {
       var form  = compileElement(formHtml);
       var input = form.find("input");
       scope.$apply("x = ''");
@@ -95,7 +95,7 @@ describe("uiMask", function () {
       expect(scope.x).toBe("ab1");
     });
 
-    it("should set model to undefined if masked value is invalid", function() {
+    it("should set models to undefined if masked value is invalid", function() {
       var form  = compileElement(formHtml);
       var input = form.find("input");
       scope.$apply("x = ''");
@@ -105,7 +105,7 @@ describe("uiMask", function () {
       expect(scope.x).toBeUndefined();
     });
 
-    it("should not set model to an empty mask", function() {
+    it("should not set models to an empty mask", function() {
       var form  = compileElement(formHtml);
       var input = form.find("input");
       scope.$apply("x = ''");
@@ -115,7 +115,7 @@ describe("uiMask", function () {
     });
 
     it("should not setValidity on required to false on a control that isn't required", function() {
-      var input = compileElement("<input name='input' ng-model='x' ui-mask='{{mask}}'>");
+      var input = compileElement("<input name='input' ng-models='x' ui-mask='{{mask}}'>");
       scope.$apply("x = ''");
       scope.$apply("mask = '(A) * 9'");
       scope.$apply("required = true");
@@ -124,7 +124,7 @@ describe("uiMask", function () {
       expect(scope.x).toBe("");
       expect(input.data("$ngModelController").$error.required).toBeUndefined();
 
-      input = compileElement("<input name='input' ng-model='x' ui-mask='{{mask}}' required>");
+      input = compileElement("<input name='input' ng-models='x' ui-mask='{{mask}}' required>");
       expect(input.data("$ngModelController").$error.required).toBeUndefined();
       input.triggerHandler("input");
       expect(input.data("$ngModelController").$error.required).toBe(true);
@@ -132,7 +132,7 @@ describe("uiMask", function () {
       expect(scope.x).toBe("ab1");
       expect(input.data("$ngModelController").$error.required).toBe(false);
 
-      input = compileElement("<input name='input' ng-model='x' ui-mask='{{mask}}' ng-required='required'>");
+      input = compileElement("<input name='input' ng-models='x' ui-mask='{{mask}}' ng-required='required'>");
       expect(input.data("$ngModelController").$error.required).toBeUndefined();
       input.triggerHandler("input");
       expect(input.data("$ngModelController").$error.required).toBe(true);
@@ -148,7 +148,7 @@ describe("uiMask", function () {
     });
   });
 
-  describe("changes from the model", function () {
+  describe("changes from the models", function () {
     it("should set the correct ngModelController.$viewValue", function() {
       compileElement(formHtml);
       scope.$apply("mask = '(A) * 9'");
@@ -194,7 +194,7 @@ describe("uiMask", function () {
 
     it("should allow mask substitutions via the placeholder attribute", function() {
 
-      var placeholderHtml = "<input name='input' ng-model='x' ui-mask='{{mask}}' placeholder='MM/DD/YYYY'>",
+      var placeholderHtml = "<input name='input' ng-models='x' ui-mask='{{mask}}' placeholder='MM/DD/YYYY'>",
           input           = compileElement(placeholderHtml);
 
       scope.$apply("x = ''");
@@ -209,7 +209,7 @@ describe("uiMask", function () {
 
     it("should update mask substitutions via the placeholder attribute", function() {
 
-      var placeholderHtml = "<input name='input' ng-model='x' ui-mask='{{mask}}' placeholder='{{placeholder}}'>",
+      var placeholderHtml = "<input name='input' ng-models='x' ui-mask='{{mask}}' placeholder='{{placeholder}}'>",
           input           = compileElement(placeholderHtml);
 
       scope.$apply("x = ''");
@@ -228,7 +228,7 @@ describe("uiMask", function () {
     });
 
     it("should ignore the '?' character", function() {
-      var placeholderHtml = "<input type=\"text\" ui-mask=\"99/99/9999 ?99:99\" placeholder=\"DD/MM/YYYY HH:mm\" ng-model=\"myDate\">",
+      var placeholderHtml = "<input type=\"text\" ui-mask=\"99/99/9999 ?99:99\" placeholder=\"DD/MM/YYYY HH:mm\" ng-models=\"myDate\">",
         input = compileElement(placeholderHtml);
 
       scope.$apply("myDate = ''");
@@ -257,7 +257,7 @@ describe("uiMask", function () {
         options: {maskDefinitions: {"@": /[fz]/}}
       };
 
-      var input = compileElement("<input type=\"text\" ng-model=\"x\" ui-mask=\"{{mask}}\" ui-options=\"input.options\">");
+      var input = compileElement("<input type=\"text\" ng-models=\"x\" ui-mask=\"{{mask}}\" ui-options=\"input.options\">");
       scope.$apply("x = ''");
       scope.$apply("mask = '@999'");
       input.val("f111").triggerHandler("input");
@@ -286,7 +286,7 @@ describe("uiMask", function () {
       expect(scope.test.input.$viewValue).toBe("");
     });
 
-    var inputHtmlClearOnBlur = "<input name='input' ng-model='x' ui-mask='{{mask}}' ui-options=\"input.options\">";
+    var inputHtmlClearOnBlur = "<input name='input' ng-models='x' ui-mask='{{mask}}' ui-options=\"input.options\">";
 
     it("should not clear an invalid value if clearOnBlur is false", function() {
       scope.input = {

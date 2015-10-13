@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html class="mainTheme" lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 	<title>{{title}}</title>
@@ -47,13 +47,15 @@
 	<![endif]-->
 </head>
 
-<body class="ng-cloak">
-	<header data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>
-	<section class="content">
-		<section class="container">
+<body class="ng-cloak mainTheme">
+
+	<div id="wrapper">
+		<nav id="sidebar" data-ng-include="'modules/sidebars/views/sidebar-layout.client.view.html'"></nav>
+		<section class="mainTheme" id="content-page">
 			{% block content %}{% endblock %}
 		</section>
-	</section>
+	</div>
+
 
 	<!--Embedding The User Object-->
 	<script type="text/javascript">

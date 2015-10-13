@@ -1,0 +1,54 @@
+$darkBackground : rgb(50,50,50);
+$normalBackground: rgb(80,80,80);
+$lightBackground : rgb(120,120,120);
+$fontColor :rgb(30,30,30);
+$lightFondColor : rgb(150,150,150);
+$mainColor :#11dfb1;
+$secondColor: #f77269;
+$buttonColor:#5e6a7a;
+
+$lightMetal:#bdc0c5;
+$normalMetal:#808080;
+$darkMetal:#242626;
+
+$backgroundImage : url('../img/background/lightBlue.jpg');
+
+@mixin linear-gradient($direction, $c1,$c2, $c3){
+  background : -webkit-linear-gradient($direction, $c1, $c2, $c3);
+  background : -o-linear-gradient($direction, $c1, $c2, $c3);
+  background : -ms-linear-gradient($direction, $c1, $c2, $c3);
+  background : -moz-linear-gradient($direction, $c1, $c2, $c3);
+  background : linear-gradient($direction, $c1, $c2, $c3);
+}
+
+@mixin box-shadow($horizontal, $vertical, $blur, $spread, $color){
+  -webkit-box-shadow: $horizontal $vertical $blur $spread $color;
+  -o-box-shadow: $horizontal $vertical $blur $spread $color;
+  -ms-box-shadow: $horizontal $vertical $blur $spread $color;
+  -moz-box-shadow: $horizontal $vertical $blur $spread $color;
+  box-shadow: $horizontal $vertical $blur $spread $color;
+}
+
+@mixin box-shadow-inset($horizontal, $vertical, $blur, $spread, $color){
+  -webkit-box-shadow: inset $horizontal $vertical $blur $spread $color;
+  -o-box-shadow: inset $horizontal $vertical $blur $spread $color;
+  -ms-box-shadow: inset $horizontal $vertical $blur $spread $color;
+  -moz-box-shadow: inset $horizontal $vertical $blur $spread $color;
+  box-shadow: inset $horizontal $vertical $blur $spread $color;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+//Gradient for border
+@mixin border-image($direction, $c1,$c2){
+  -webkit-border-image:-webkit-linear-gradient($direction, $c1, $c2);
+  -o-border-image:-o-linear-gradient($direction, $c1, $c2);
+  -ms-border-image:-ms-linear-gradient($direction, $c1, $c2);
+  -moz-border-image:-ms-linear-gradient($direction, $c1, $c2);
+  border-image:linear-gradient($direction, $c1, $c2);
+}

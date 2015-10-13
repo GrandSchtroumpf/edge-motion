@@ -5,7 +5,7 @@ var ApplicationConfiguration = (function() {
 	// Init module configuration options
 	var applicationModuleName = 'Gathering';
 
-	var applicationModuleVendorDependencies = ['ngResource', 'ui.router', 'ui.bootstrap', 'angularFileUpload'];
+	var applicationModuleVendorDependencies = ['ngResource', 'ui.router', 'ui.bootstrap', 'angularFileUpload', 'ngMaterial', 'ngSanitize', 'ui.tinymce'];
 
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {

@@ -1,0 +1,115 @@
+@import 'mainTheme';
+
+profile-page{
+  height:100%;
+  width:100%;
+  background-color: #f1f1f1;  //To be changed by an image
+
+  profile-head{
+    position: fixed;
+      top:0;
+    background-color: rgba($lightMetal,0.5);
+    color:$darkMetal;
+    height: 10%;
+    width: 100%;
+
+    .headContent{
+      border-bottom: solid 3px $darkMetal;
+    }
+
+    [tab-button]{
+      color: $darkMetal;
+    }
+    [tab-button].active{
+      color:$mainColor;
+    }
+  }
+
+  profile-content{
+    position: fixed;
+      top:10%;
+    height:80%;
+    width:100%;
+
+
+    profile-resume{
+      position: absolute;
+      width:100%;
+      height: 100%;
+
+      .profile-competencies{
+        height:100%;
+        vertical-align: middle;
+
+        ul{
+          padding:0;
+          list-style:none;
+
+          width:100%;
+        }
+
+        li{
+          border-top : solid 1px $lightMetal;
+          border-bottom : solid 1px $lightMetal;
+          height:30px;
+          padding-left : 30px;
+          //@include linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0.5), rgba(0,0,0,0));
+          font-size:1.3em;
+          text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
+
+        li:hover{
+          cursor:pointer;
+          //@include linear-gradient(to right, rgba($mainColor,0.5), rgba($mainColor,0.2), rgba($mainColor,0));
+        }
+      }
+
+      .profile-competencies-content{
+        ul{
+          padding:0;
+          list-style: none;
+          width:100%;
+        }
+        li{
+          background-color: $lightBackground;
+          display: block;
+          width:80%;
+          height : 60px;
+          margin:20px auto;
+          padding:10px;
+          @include border-radius(10px);
+          @include box-shadow-inset(0px, 0px, 15px, 0px, white);
+        }
+      }
+
+
+
+      profile-avatar img{
+        padding : 10px;
+        @include box-shadow(2px, 2px, 7px, 0, $darkBackground);
+        margin:20px;
+      }
+    }
+
+    profile-games{
+      height:80%;
+    }
+  }
+
+  profile-footer{
+    position: fixed;
+      top:90%;
+    background-color: $lightMetal;
+    height:10%;
+    width:100%;
+    opacity : 0.3;
+    border-top : solid 3px $fontColor;
+  }
+}
+
+
+
+
+
+
+

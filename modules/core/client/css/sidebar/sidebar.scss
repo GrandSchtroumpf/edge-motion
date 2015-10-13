@@ -1,0 +1,162 @@
+@import '../mainTheme';
+
+html{
+  height:100%;
+}
+
+body{
+  min-height:100%
+}
+
+#wrapper{
+  #sidebar {
+    z-index:10;
+    position : fixed;
+    background-color : $darkBackground;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+
+    sidebar-layout {
+      container : flex;
+
+      sidebar-toggler{
+        cursor : pointer;
+        path{
+          fill : $lightFondColor;
+        }
+      }
+      sidebar-toggler:hover{
+
+      }
+
+      sidebar-button {
+        cursor : pointer;
+        svg {
+          position : relative;
+          path {
+            fill : $lightFondColor;
+          }
+          polygon {
+            fill : $lightFondColor;
+          }
+          rect {
+            fill : $lightFondColor;
+          }
+        }
+      }
+
+      sidebar-button:hover,
+      sidebar-button.active{
+        background-color: $lightBackground;
+
+        svg {
+          path {
+            fill : $mainColor;
+          }
+          polygon {
+            fill : $mainColor;
+          }
+          rect {
+            fill : $mainColor;
+          }
+        }
+      }
+    }
+
+
+  }
+
+  #content-page{
+    position : absolute;
+    z-index:1;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+/*
+#wrapper {
+  padding-left: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+
+#wrapper.toggled {
+  padding-left: 175px;
+}
+
+#sidebar-wrapper {
+  z-index: 1000;
+  background-color: #2d2e32;
+  position: fixed;
+  //width:80px;
+  //left:0;
+  //height: 100%;
+  //margin : 0 auto -100px;
+  //overflow-y: auto;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  width: 175px;
+}
+
+#page-content-wrapper {
+  width: 100%;
+  position: absolute;
+}
+
+#wrapper.toggled #page-content-wrapper {
+  position: absolute;
+  margin-right: -200px;
+}
+
+
+
+@media(min-width:768px) {
+  #wrapper {
+    margin-left: 200px;
+  }
+
+  #wrapper.toggled {
+    margin-left: -100px;
+  }
+
+  #sidebar-wrapper {
+    width : 200px;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    width:80px;
+  }
+
+  #page-content-wrapper {
+    position: relative;
+  }
+
+  #wrapper.toggled #page-content-wrapper {
+    position: relative;
+    margin-right: 0;
+  }
+}
+*/

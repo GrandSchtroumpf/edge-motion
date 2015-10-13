@@ -1,0 +1,43 @@
+@import 'mainTheme';
+
+tab-list{
+  display:flex;
+  flex-direction: row;
+  justify-content:flex-start;
+  align-items: flex-end;
+  align-content: center;
+
+  .underline{
+    position:absolute;
+      left:0;
+      top : 60px;
+    width:100px;
+    height:3px;
+    background:$mainColor;
+  }
+
+  [tab-button]{
+    position:relative;
+    width : 100px;
+    height: 60px;
+    text-align:center;
+    color: $fontColor;
+    font-size:1.5em;
+    user-select: none;
+    vertical-align: middle;
+
+    span{
+      position: absolute;
+      top:50%;
+    }
+  }
+  [tab-button]:hover{
+    cursor : pointer;
+  }
+
+  [tab-button].active{
+    color:$mainColor;
+  }
+
+}
+

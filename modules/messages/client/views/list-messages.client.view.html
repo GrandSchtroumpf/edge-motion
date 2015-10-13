@@ -1,0 +1,30 @@
+<md-toolbar class="mainTheme" layout="row" flex>
+    <md-button data-ui-sref="messages.create" flex="15">New</md-button>
+    <md-button data-ng-click="mainCtrl.answer(false)" flex="15">Reply</md-button>
+    <md-button data-ng-click="mainCtrl.answer(true)" flex="15">Reply to all</md-button>
+    <md-button flex="15">Delete</md-button>
+</md-toolbar>
+
+
+<md-content layout="row" flex>
+    <md-list layout="column" flex="30">
+        <md-input-container>
+            <label>From</label>
+            <input data-ng-model="mainCtrl.nameFilter">
+        </md-input-container>
+
+        <md-subheader class="md-primary">From</md-subheader>
+        <md-list-item ng-click="showMessage(message)"  data-ng-repeat="message in mainCtrl.messages">
+            <p>{{message.sendedOn | date:format:'shortDate'}} - {{message.userSender.displayName}}</p>
+            <p>{{message.subject}}</p>
+        </md-list-item>
+    </md-list>
+
+
+
+    <ui-view flex="70"></ui-view>
+</md-content>
+
+
+
+

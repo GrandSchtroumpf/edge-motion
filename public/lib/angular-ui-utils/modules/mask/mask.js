@@ -158,7 +158,7 @@ angular.module('ui.mask', [])
             iElement.attr('placeholder', maskPlaceholder);
             iElement.val(viewValue);
             controller.$viewValue = viewValue;
-            // Not using $setViewValue so we don't clobber the model value and dirty the form
+            // Not using $setViewValue so we don't clobber the models value and dirty the form
             // without any kind of user interaction.
           }
 

@@ -1,0 +1,9 @@
+<md-content class="mainTheme">
+    <h2>{{thisMessage.subject}}</h2>
+    <md-chip-template>{{thisMessage.userSender.displayName}}</md-chip-template></br>
+    <span>For	: <span ng-repeat="recipient in thisMessage.userRecipient">{{recipient.displayName}} - </span></span></br>
+
+    <md-content data-ng-bind-html="thisMessage.content">
+    </md-content>
+
+</md-content>

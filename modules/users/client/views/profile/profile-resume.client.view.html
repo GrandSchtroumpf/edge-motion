@@ -1,0 +1,23 @@
+<div data-ng-if="contentMode === 'viewMode'" layout="row">
+    <div class="profile-competencies" flex="20" layout="column" layout-align="center start">
+        <ul>
+            <li competence-name>Competence one</li>
+            <li competence-name>Competence two</li>
+            <li competence-name>Competence three</li>
+            <li competence-name>Competence four</li>
+        </ul>
+    </div>
+
+    <div flex="60" class="profile-competencies-content" layout="column" layout-align="space-around center">
+        <ul>
+            <li>Competence example 1</li>
+            <li>Competence example 2</li>
+        </ul>
+    </div>
+
+    <div flex="20">
+        <profile-avatar image="{{user.profileImageURL}}"></profile-avatar>
+    </div>
+
+</div>
+

@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.4.1
+ * @license AngularJS v1.4.2
  * (c) 2010-2015 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -201,7 +201,7 @@ function shallowClearAndCopy(src, dst) {
  *   It is important to realize that invoking a $resource object method immediately returns an
  *   empty reference (object or array depending on `isArray`). Once the data is returned from the
  *   server the existing reference is populated with the actual data. This is a useful trick since
- *   usually the resource is assigned to a model which is then rendered by the view. Having an empty
+ *   usually the resource is assigned to a models which is then rendered by the view. Having an empty
  *   object results in no rendering, once the data arrives from the server then the object is
  *   populated with the data and the view automatically re-renders itself showing the new data. This
  *   means that in most cases one never has to write a callback function for the action methods.
@@ -214,7 +214,8 @@ function shallowClearAndCopy(src, dst) {
  *   - non-GET instance actions:  `instance.$action([parameters], [success], [error])`
  *
  *
- *   Success callback is called with (value, responseHeaders) arguments. Error callback is called
+ *   Success callback is called with (value, responseHeaders) arguments, where the value is
+ *   the populated resource instance or collection object. The error callback is called
  *   with (httpResponse) argument.
  *
  *   Class actions return empty instance (with additional properties below).

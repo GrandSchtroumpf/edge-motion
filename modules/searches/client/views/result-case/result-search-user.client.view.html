@@ -1,0 +1,14 @@
+<md-content ng-mouseover="contentHoverIn()" ng-mouseleave="contentHoverOut()" class="mainTheme result" layout="row">
+    <div flex="20">
+        <img ng-src="{{result.profileImageURL}}" class="avatar"/>
+    </div>
+    <div flex="50" layout="column">
+        <p>Logo guilds</p>
+        <p>{{result.username}}</p>
+    </div>
+    <div flex="30" layout="column">
+        <md-button class="md-raised" data-ng-click="showCard($event, category.name)">Profile</md-button>
+        <md-button class="md-raised" ng-if="invitationButton(result)" data-ng-click="inviteContact(result)">Invite</md-button>
+    </div>
+
+</md-content>

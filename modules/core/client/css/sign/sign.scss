@@ -1,0 +1,78 @@
+@import '../mainTheme';
+
+.icon-profile {
+  position : relative;
+  width : 20%;
+  margin : auto;
+}
+
+.signIn, .signUp {
+  position : relative;
+  margin : auto;
+  margin-top : 20px;
+
+  input {
+    background-color : $lightBackground;
+    border : none;
+    padding : 10px;
+    margin : 20px 0 20px 0;
+    height : 40px;
+    font-size : 20px;
+    color : $fontColor;
+  }
+  input[type='radio']{
+    width : 20px;
+    height : 20px;
+    margin : 0;
+  }
+}
+
+btn-validate, sign-in, sign-up{
+  display : inline-block;
+  width : 80px;
+  height: 80px;
+  cursor: pointer;
+
+  path{
+    transition : fill 0.2s linear;
+  }
+}
+
+btn-validate:hover, sign-in:hover, sign-up:hover{
+  path{
+    fill : $mainColor;
+  }
+
+}
+
+/*  Smartphone  */
+@media (max-width: 600px) {
+  .signIn, .signUp {
+    width : 90%;
+
+    input{
+      width : 100%;
+    }
+  }
+}
+
+/*  tablet  */
+@media (min-width: 600px) and (max-width: 900px) {
+  .signIn, .signUp {
+    width : 70%;
+    input{
+      width : 90%;
+    }
+  }
+}
+
+/*  Smartphone  */
+@media (min-width: 900px)  {
+  .signIn, .signUp {
+    width : 50%;
+
+    input{
+      width : 90%;
+    }
+  }
+}

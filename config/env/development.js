@@ -2,6 +2,7 @@
 
 module.exports = {
 	db: 'mongodb://localhost/gathering-dev',
+        //'mongodb://gathering:pass@ds029630.mongolab.com:29630/gathering_database',
 	app: {
 		title: 'Gathering - Development Environment'
 	},

@@ -1,0 +1,79 @@
+[
+      {
+        "icon": "modules/sidemenus/svg/icons/profile.JSON",
+        "title": "profile",
+        "link": "profile.resume",
+        "position":0,
+        "params":"user",
+        "category": "profile",
+        "activation":false,
+        "public":true,
+        "createdBy": "default"
+      },
+      {
+        "icon": "modules/sidemenus/svg/icons/search.JSON",
+        "title": "search",
+        "link": "search",
+        "category": "profile",
+        "position":1,
+        "activation":false,
+        "public":true,
+        "createdBy": "default"
+      },
+      {
+        "icon": "modules/sidemenus/svg/icons/message.JSON",
+        "title": "message",
+        "link": "messages.view",
+        "position":2,
+        "params":"user",
+        "category": "profile",
+        "activation":true,
+        "htmlContent": "modules/chat/views/chat.slidebar.client.view.html",
+        "public":true,
+        "createdBy": "default"
+      },
+      {
+        "icon": "modules/sidemenus/svg/icons/settings.JSON",
+        "title": "settings",
+        "link": "settings",
+        "position":3,
+        "params":"user",
+        "category": "profile",
+        "activation":false,
+        "public":true,
+        "createdBy": "default"
+      },
+
+
+
+      {
+          "icon": "modules/sidemenus/svg/icons/game.JSON",
+          "title": "Games",
+          "link": "",
+          "position":0,
+          "category": "search",
+          "activation":false,
+          "public":true,
+          "createdBy": "default"
+      },
+      {
+          "icon": "modules/sidemenus/svg/icons/default.JSON",
+          "title": "Guilds",
+          "link": "",
+          "position":1,
+          "category": "search",
+          "activation":false,
+          "public":true,
+          "createdBy": "default"
+      },
+      {
+          "icon": "modules/sidemenus/svg/icons/default.JSON",
+          "title": "Projects",
+          "link": "",
+          "position":2,
+          "category": "search",
+          "activation":false,
+          "public":true,
+          "createdBy": "default"
+      }
+]

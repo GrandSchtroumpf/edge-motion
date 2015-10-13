@@ -1,0 +1,14 @@
+.defaultStyle, .bottomSidebar chat-input input, .bottomSidebar chat-channel div {
+  background-color: #787878;
+  border: 1px solid #5e6a7a;
+  width: 200px;
+  color: #1e1e1e;
+  font-size: 15px; }
+
+.bottomSidebar {
+  position: fixed;
+  bottom: 0px; }
+  .bottomSidebar chat-input input {
+    height: 40px; }
+  .bottomSidebar chat-channel div {
+    height: 210px; }

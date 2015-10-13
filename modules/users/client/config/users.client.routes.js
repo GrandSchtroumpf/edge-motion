@@ -5,14 +5,37 @@ angular.module('users').config(['$stateProvider',
 	function ($stateProvider) {
 		// Users state routing
 		$stateProvider.
+            state('profile',{
+                abstract: true,
+                url: '/profile/:userId',
+                controller : 'ProfileController',
+                templateUrl:'modules/users/views/profile/profile-page.client.view.html',
+                resolve: {
+                    user : function(Profile, $stateParams){
+                        return Profile.get($stateParams.userId);
+                    }
+                }
+            }).
+                state('profile.resume', {
+                    url:'/resume',
+                    template: '<profile-resume></profile-resume>'
+                }).
+                state('profile.games', {
+                    url:'/games',
+                    template: '<profile-games></profile-games>'
+                }).
+
+
+                state('profile.edit', {
+                    url:'/edit',
+                    templateUrl:'modules/users/views/profile/edit-profile.client.view.html'
+                }).
+
+
 			state('settings', {
 				abstract: true,
 				url: '/settings',
 				templateUrl: 'modules/users/views/settings/settings.client.view.html'
-			}).
-			state('settings.profile', {
-				url: '/profile',
-				templateUrl: 'modules/users/views/settings/edit-profile.client.view.html'
 			}).
 			state('settings.password', {
 				url: '/password',
@@ -26,10 +49,13 @@ angular.module('users').config(['$stateProvider',
 				url: '/picture',
 				templateUrl: 'modules/users/views/settings/change-profile-picture.client.view.html'
 			}).
-			state('authentication', {
+
+
+            state('authentication', {
 				abstract: true,
 				url: '/authentication',
-				templateUrl: 'modules/users/views/authentication/authentication.client.view.html'
+				controller: 'AuthenticationController',
+				template: '<ui-view/>'
 			}).
 			state('authentication.signup', {
 				url: '/signup',
@@ -39,7 +65,10 @@ angular.module('users').config(['$stateProvider',
 				url: '/signin',
 				templateUrl: 'modules/users/views/authentication/signin.client.view.html'
 			}).
-			state('password', {
+
+
+
+            state('password', {
 				abstract: true,
 				url: '/password',
 				template: '<ui-view/>'

@@ -1,0 +1,53 @@
+<!--    userRecipient   -->
+<md-chips ng-model="message.userRecipient"
+          md-autocomplete-snap
+          md-require-match>
+
+
+    <md-autocomplete
+            md-selected-item="ctrl.selectedItem"
+            md-search-text="ctrl.searchText"
+            md-items="item in ctrl.querySearch(ctrl.searchText)"
+            md-item-text="item.displayName"
+            placeholder="To">
+
+        <!-- Text in propositions   -->
+        <span md-highlight-text="ctrl.searchText">{{item.displayName}}</span>
+    </md-autocomplete>
+    <md-chip-template>
+        <span>
+          <strong>{{$chip.displayName}}</strong>
+        </span>
+    </md-chip-template>
+</md-chips>
+
+<!--    userCopy
+<md-chips ng-models="ctrl.message.userCopy"
+          md-autocomplete-snap
+          md-require-match>
+
+
+    <md-autocomplete
+            md-selected-item="ctrl.selectedItem"
+            md-search-text="ctrl.searchText"
+            md-items="item in ctrl.querySearch(ctrl.searchText)"
+            md-item-text="item.displayName"
+            placeholder="Cc">
+
+        <span md-highlight-text="ctrl.searchText">{{item.displayName}}</span>
+    </md-autocomplete>
+</md-chips></br>
+-->
+
+<!--    Object  -->
+<md-input-container>
+    <label>Object</label>
+    <input data-ng-model="message.subject">
+</md-input-container>
+
+<textarea ng-model="message.content" ui-tinymce="ctrl.tinymceOptions">
+</textarea>
+
+<md-button data-ng-click="ctrl.create()">
+    Send
+</md-button>

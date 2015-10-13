@@ -1,0 +1,36 @@
+body.mainTheme, section.mainTheme {
+  background-color: #505050;
+  color: #1e1e1e; }
+
+md-content.mainTheme, md-dialog.mainTheme {
+  background-color: #505050;
+  color: #1e1e1e; }
+  md-content.mainTheme md-input-container.md-input-focused label, md-dialog.mainTheme md-input-container.md-input-focused label {
+    color: #1e1e1e; }
+  md-content.mainTheme label, md-dialog.mainTheme label {
+    color: #1e1e1e; }
+  md-content.mainTheme input, md-dialog.mainTheme input {
+    color: #1e1e1e; }
+
+/*  MD-TOOLBAR  */
+md-toolbar.mainTheme {
+  background-color: #323232; }
+
+/*  MD-DIALOG */
+md-dialog.mainTheme {
+  border: 1px solid #5e6a7a; }
+
+/*  MD-TABS */
+md-tabs.mainTheme md-tabs-wrapper md-pagination-wrapper {
+  background-color: #bdc0c5;
+  color: #1e1e1e; }
+
+md-tabs.mainTheme md-tabs-wrapper md-tab-item.md-active {
+  color: #11dfb1; }
+
+md-tabs.mainTheme md-tabs-wrapper md-ink-bar {
+  background: #11dfb1;
+  color: #11dfb1; }
+
+md-tabs.mainTheme md-tabs-content-wrapper md-tab-content {
+  background-color: #242626; }

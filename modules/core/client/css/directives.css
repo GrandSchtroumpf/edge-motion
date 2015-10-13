@@ -1,0 +1,29 @@
+tab-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+  align-content: center; }
+  tab-list .underline {
+    position: absolute;
+    left: 0;
+    top: 60px;
+    width: 100px;
+    height: 3px;
+    background: #11dfb1; }
+  tab-list [tab-button] {
+    position: relative;
+    width: 100px;
+    height: 60px;
+    text-align: center;
+    color: #1e1e1e;
+    font-size: 1.5em;
+    user-select: none;
+    vertical-align: middle; }
+    tab-list [tab-button] span {
+      position: absolute;
+      top: 50%; }
+  tab-list [tab-button]:hover {
+    cursor: pointer; }
+  tab-list [tab-button].active {
+    color: #11dfb1; }

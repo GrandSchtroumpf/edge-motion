@@ -1,0 +1,83 @@
+@import '../mainTheme';
+
+/*  Tablet  */
+@media(min-width : 600px) and (max-width : 900px) {
+  #wrapper {
+    #sidebar {
+      height : 100%;
+      width : 50px;
+      overflow: hidden;
+
+      sidebar-layout {
+        display : block;
+        width: 150px;
+        flex-direction : column;
+
+        sidebar-toggler {
+          height: 30px;
+          display : block;
+          margin : 10px 0 10px 0;
+        }
+
+        sidebar-button {
+          display: block;
+          width: 50px;
+          height: 50px;
+        }
+
+        sidebar-button:hover,
+        sidebar-button.active {
+          border-left: 3px solid $mainColor;
+        }
+      }
+    }
+
+    #content-page {
+      min-height : 100%;
+      width:100%;
+      padding-left: 50px;
+    }
+  }
+
+  #wrapper.toggled{
+    #sidebar {
+      width : 150px;
+    }
+
+    #content-page{
+      padding-left: 150px;
+    }
+  }
+
+  /*Search*/
+  sidebar-search{
+    .searchInput {
+      position : relative;
+      width : 100%;
+      height : 40px;
+      background-color: $lightBackground;
+      color : $fontColor;
+      border-top : 1px solid $secondColor;
+      border-bottom : 1px solid $secondColor;
+      overflow : hidden;
+
+      input {
+        display : inline-block;
+        background-color: $lightBackground;
+        padding : 10px 0 0 35px;
+        border : none;
+        font-size : 15px;
+      }
+
+      i{
+        position : relative;
+        top : -30px;
+        display : inline-block;
+        height : 40px;
+        width : 40px;
+        cursor : pointer;
+      }
+    }
+  }
+
+}

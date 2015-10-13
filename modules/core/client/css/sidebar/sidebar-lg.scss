@@ -1,0 +1,89 @@
+@import '../mainTheme';
+
+/*  Computer  */
+@media(min-width : 900px){
+  #wrapper{
+    #sidebar {
+      height : 100%;
+      width : 80px;
+      margin : 0 auto -80px;
+      overflow: hidden;
+
+      sidebar-layout {
+        display : block;
+        width : 200px;
+        flex-direction : column;
+
+      }
+
+      sidebar-toggler {
+        height : 40px;
+        display : block;
+        margin : 10px 0 10px 0;
+      }
+
+      sidebar-button{
+        display : block;
+        width : 200px;
+        height : 80px;
+
+        .icon {
+          width : 80px;
+        }
+      }
+      sidebar-button:hover,
+      sidebar-button.active{
+        border-left : 3px solid $mainColor;
+      }
+    }
+
+    #content-page {
+      padding-left : 80px;
+      min-height : 100%;
+      width:100%;
+    }
+  }
+
+  #wrapper.toggled{
+    #sidebar {
+      width : 200px;
+    }
+
+    #content-page{
+      padding-left : 200px;
+    }
+  }
+
+
+  /*Search*/
+  sidebar-search{
+    .searchInput {
+      position : relative;
+      width : 100%;
+      height : 40px;
+      background-color: $lightBackground;
+      color : $fontColor;
+      border-top : 1px solid $secondColor;
+      border-bottom : 1px solid $secondColor;
+
+      input {
+        display : inline-block;
+        background-color: $lightBackground;
+        padding : 5px 0 0 45px;
+        border : none;
+        font-size : 20px;
+      }
+
+      i{
+        position : relative;
+        top : -33px;
+        display : inline-block;
+        height : 40px;
+        width : 40px;
+        cursor : pointer;
+      }
+    }
+  }
+
+
+}

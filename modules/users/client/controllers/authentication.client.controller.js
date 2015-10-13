@@ -1,34 +1,52 @@
 'use strict';
 
-angular.module('users').controller('AuthenticationController', ['$scope', '$http', '$location', 'Authentication',
-	function($scope, $http, $location, Authentication) {
+angular.module('users').controller('AuthenticationController', ['$rootScope','$scope', '$state', '$http', '$location', 'Authentication', '$mdDialog', 'Users',
+	function($rootScope, $scope, $state, $http, $location, Authentication, $mdDialog, Users) {
 		$scope.authentication = Authentication;
+        $scope.credentials = {username : '', password:''};
+        $scope.newUser = new Users();
 
 		// If user is signed in then redirect back home
 		if ($scope.authentication.user) $location.path('/');
 
 		$scope.signup = function() {
-			$http.post('/api/auth/signup', $scope.credentials).success(function(response) {
-				// If successful we assign the response to the global user model
-				$scope.authentication.user = response;
-
+			$http.post('/api/auth/signup', $scope.newUser).success(function(response) {
+				// If successful we assign the response to the global user models
+                window.user = response;
+                $mdDialog.cancel();
 				// And redirect to the index page
-				$location.path('/');
+                $state.go('profile.resume', {userId:response._id}, {reload: true});
+                $rootScope.$emit('changeUser');
 			}).error(function(response) {
 				$scope.error = response.message;
 			});
 		};
 
 		$scope.signin = function() {
+            console.log($scope.credentials);
 			$http.post('/api/auth/signin', $scope.credentials).success(function(response) {
-				// If successful we assign the response to the global user model
-				$scope.authentication.user = response;
-
+				// If successful we assign the response to the global user models
+				window.user = response;
+                $mdDialog.cancel();
 				// And redirect to the index page
-				$location.path('/');
+                $state.go('profile.resume', {userId:response._id}, {reload: true});
+                $rootScope.$emit('changeUser');
 			}).error(function(response) {
 				$scope.error = response.message;
 			});
 		};
+
+        $scope.showSign = function(event, sign){
+            $mdDialog.show({
+                clickOutsideToClose: true,
+                templateUrl: 'modules/users/views/authentication/'+sign+'.client.view.html',
+                parent: angular.element(document.body),
+                targetEvent: event
+            });
+        };
+
+        $scope.cancel = function(){
+            $mdDialog.cancel();
+        };
 	}
 ]);

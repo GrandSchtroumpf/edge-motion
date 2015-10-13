@@ -1,0 +1,22 @@
+<div class="headContent" layout="row">
+    <div flex="30">
+        <tab-list>
+            <span tab-button md-ink-ripple data-ng-click="activation(0)" ui-sref="profile.resume" class="tab-profile active" >Resume</span>
+            <span tab-button md-ink-ripple data-ng-click="activation(1)" ui-sref="profile.games" class="tab-profile">Games</span>
+            <span tab-button md-ink-ripple data-ng-click="activation(2)" ui-sref="profile.games" class="tab-profile">Projects</span>
+        </tab-list>
+    </div>
+
+
+
+    <div flex="50" >
+        <div class="competence-content"></div>
+    </div>
+
+    <div flex="20">
+        <h2 class="name">{{user.displayName}}</h2>
+    </div>
+</div>
+
+
+

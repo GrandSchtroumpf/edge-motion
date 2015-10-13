@@ -1,0 +1,68 @@
+@import 'mainTheme';
+
+html.mainTheme{
+
+}
+
+body.mainTheme{
+  background-color: $normalBackground;
+  color : $fontColor;
+}
+
+section.mainTheme{
+  @extend body.mainTheme;
+}
+
+md-content.mainTheme{
+  background-color: $normalBackground;
+  color : $fontColor;
+  md-input-container.md-input-focused{
+    label{
+      color:$fontColor;
+    }
+  }
+  label{
+    color:$fontColor;
+  }
+
+  input{
+    color:$fontColor;
+  }
+}
+
+/*  MD-TOOLBAR  */
+md-toolbar.mainTheme{
+  background-color : $darkBackground;
+}
+
+/*  MD-DIALOG */
+md-dialog.mainTheme{
+  @extend md-content.mainTheme;
+  border : 1px solid $buttonColor;
+}
+
+
+/*  MD-TABS */
+md-tabs.mainTheme{
+  md-tabs-wrapper{
+    md-pagination-wrapper{
+      background-color: $lightMetal;
+      color : $fontColor;
+    }
+    md-tab-item.md-active{
+      color:$mainColor;
+    }
+    md-ink-bar{
+      background : $mainColor;
+      color : $mainColor;
+    }
+  }
+
+  md-tabs-content-wrapper{
+
+    md-tab-content{
+      background-color: $darkMetal;
+    }
+  }
+
+}

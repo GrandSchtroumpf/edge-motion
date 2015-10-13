@@ -1,0 +1,24 @@
+@import 'mainTheme';
+
+.defaultStyle{
+  background-color: $lightBackground;
+  border: 1px solid $buttonColor;
+  width:200px;
+  color: $fontColor;
+  font-size: 15px;
+}
+
+.bottomSidebar{
+  position:fixed;
+  bottom:0px;
+
+  chat-input input{
+    @extend .defaultStyle;
+    height:40px;
+  }
+
+  chat-channel div{
+    @extend .defaultStyle;
+    height:210px;
+  }
+}

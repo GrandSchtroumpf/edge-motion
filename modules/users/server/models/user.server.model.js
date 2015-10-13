@@ -22,6 +22,43 @@ var validateLocalStrategyPassword = function(password) {
 };
 
 /**
+ * Hash the password
+ */
+function hashPassword(clearPwd) {
+    /*jshint validthis: true */
+    if (clearPwd && clearPwd.length > 6) {
+        this.salt = crypto.randomBytes(16).toString('base64');
+        return this.hashPassword(clearPwd);
+    }
+    return '';
+}
+
+
+/**
+ * SubSchema
+ */
+var notificationSubSchema = new Schema({
+    sidemenu : {
+        type:String
+    },
+    count : {
+        type:Number,
+        default:0
+    }
+},{_id:false});
+
+var contactSubSchema = new Schema({
+    user : {
+        type:Schema.ObjectId,
+        ref:'User'
+    },
+    state : {
+        type:String,
+        default:'Waiting'
+    }
+},{_id:false});
+
+/**
  * User Schema
  */
 var UserSchema = new Schema({
@@ -41,6 +78,37 @@ var UserSchema = new Schema({
 		type: String,
 		trim: true
 	},
+
+    notifications:[notificationSubSchema],
+    sidebars:{
+        profile:[{
+            type: Schema.ObjectId,
+            ref: 'Sidemenu'
+        }],
+        search:[{
+            type: Schema.ObjectId,
+            ref: 'Sidemenu'
+        }]
+    },
+
+    chatchannels :[{
+        type:Schema.ObjectId,
+        ref:'ChatChannel'
+    }],
+    contacts :[contactSubSchema],
+    messages :{
+        sended:[{
+            type:Schema.ObjectId,
+            ref : 'Message'
+        }],
+        incoming:[{
+            type:Schema.ObjectId,
+            ref : 'Message'
+        }]
+    },
+
+
+
 	email: {
 		type: String,
 		trim: true,
@@ -57,7 +125,8 @@ var UserSchema = new Schema({
 	password: {
 		type: String,
 		default: '',
-		validate: [validateLocalStrategyPassword, 'Password should be longer']
+		validate: [validateLocalStrategyPassword, 'Password should be longer'],
+        set : hashPassword
 	},
 	salt: {
 		type: String
@@ -95,17 +164,6 @@ var UserSchema = new Schema({
   	}
 });
 
-/**
- * Hook a pre save method to hash the password
- */
-UserSchema.pre('save', function(next) {
-	if (this.password && this.password.length > 6) {
-		this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
-		this.password = this.hashPassword(this.password);
-	}
-
-	next();
-});
 
 /**
  * Create instance method for hashing a password

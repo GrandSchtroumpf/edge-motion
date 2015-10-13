@@ -252,12 +252,12 @@ angular.module('ui.bootstrap.buttons', [])
     link: function (scope, element, attrs, ctrls) {
       var buttonsCtrl = ctrls[0], ngModelCtrl = ctrls[1];
 
-      //model -> UI
+      //models -> UI
       ngModelCtrl.$render = function () {
         element.toggleClass(buttonsCtrl.activeClass, angular.equals(ngModelCtrl.$modelValue, scope.$eval(attrs.btnRadio)));
       };
 
-      //ui->model
+      //ui->models
       element.bind(buttonsCtrl.toggleEvent, function () {
         var isActive = element.hasClass(buttonsCtrl.activeClass);
 
@@ -292,12 +292,12 @@ angular.module('ui.bootstrap.buttons', [])
         return angular.isDefined(val) ? val : defaultValue;
       }
 
-      //model -> UI
+      //models -> UI
       ngModelCtrl.$render = function () {
         element.toggleClass(buttonsCtrl.activeClass, angular.equals(ngModelCtrl.$modelValue, getTrueValue()));
       };
 
-      //ui->model
+      //ui->models
       element.bind(buttonsCtrl.toggleEvent, function () {
         scope.$apply(function () {
           ngModelCtrl.$setViewValue(element.hasClass(buttonsCtrl.activeClass) ? getFalseValue() : getTrueValue());
@@ -558,7 +558,7 @@ angular.module('ui.bootstrap.carousel', [])
       </div>
     </slide>
   </carousel>
-  Interval, in milliseconds: <input type="number" ng-model="myInterval">
+  Interval, in milliseconds: <input type="number" ng-models="myInterval">
   <br />Enter a negative number to stop the interval.
 </div>
   </file>
@@ -1068,7 +1068,7 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
       if ( isValid ) {
         this.activeDate = date;
       } else {
-        $log.error('Datepicker directive: "ng-model" value must be a Date object, a number of milliseconds since 01.01.1970 or a string representing an RFC2822 or ISO 8601 date.');
+        $log.error('Datepicker directive: "ng-models" value must be a Date object, a number of milliseconds since 01.01.1970 or a string representing an RFC2822 or ISO 8601 date.');
       }
       ngModelCtrl.$setValidity('date', isValid);
     }
@@ -2512,7 +2512,7 @@ angular.module('ui.bootstrap.pagination', [])
       var paginationCtrl = ctrls[0], ngModelCtrl = ctrls[1];
 
       if (!ngModelCtrl) {
-         return; // do nothing if no ng-model
+         return; // do nothing if no ng-models
       }
 
       // Setup configuration parameters
@@ -2623,7 +2623,7 @@ angular.module('ui.bootstrap.pagination', [])
       var paginationCtrl = ctrls[0], ngModelCtrl = ctrls[1];
 
       if (!ngModelCtrl) {
-         return; // do nothing if no ng-model
+         return; // do nothing if no ng-models
       }
 
       scope.align = angular.isDefined(attrs.align) ? scope.$parent.$eval(attrs.align) : pagerConfig.align;
@@ -3880,7 +3880,7 @@ angular.module('ui.bootstrap.timepicker', [])
 
     if ( isNaN(date) ) {
       ngModelCtrl.$setValidity('time', false);
-      $log.error('Timepicker directive: "ng-model" value must be a Date object, a number of milliseconds since 01.01.1970 or a string representing an RFC2822 or ISO 8601 date.');
+      $log.error('Timepicker directive: "ng-models" value must be a Date object, a number of milliseconds since 01.01.1970 or a string representing an RFC2822 or ISO 8601 date.');
     } else {
       if ( date ) {
         selected = date;
@@ -3890,7 +3890,7 @@ angular.module('ui.bootstrap.timepicker', [])
     }
   };
 
-  // Call internally when we know that model is valid.
+  // Call internally when we know that models is valid.
   function refresh( keyboardChange ) {
     makeValid();
     ngModelCtrl.$setViewValue( new Date(selected) );
@@ -4096,7 +4096,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
       //minimal wait time after last character typed before typeahead kicks-in
       var waitTime = originalScope.$eval(attrs.typeaheadWaitMs) || 0;
 
-      //should it restrict model values to the ones selected from the popup only?
+      //should it restrict models values to the ones selected from the popup only?
       var isEditable = originalScope.$eval(attrs.typeaheadEditable) !== false;
 
       //binding to a variable that indicates if matches are being retrieved asynchronously
@@ -4113,7 +4113,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
 
       //INTERNAL VARIABLES
 
-      //model setter executed upon match selection
+      //models setter executed upon match selection
       var $setModelValue = $parse(attrs.ngModel).assign;
 
       //expressions used by typeahead
@@ -4276,7 +4276,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
         var locals = {};
 
         // The validity may be set to false via $parsers (see above) if
-        // the model is restricted to selected values. If the model
+        // the models is restricted to selected values. If the models
         // is set manually it is considered to be valid.
         if (!isEditable) {
           modelCtrl.$setValidity('editable', true);
@@ -4290,7 +4290,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
         } else {
 
           //it might happen that we don't have enough info to properly render input value
-          //we need to check for this situation and simply return model value if we can't apply custom formatting
+          //we need to check for this situation and simply return models value if we can't apply custom formatting
           locals[parserResult.itemName] = modelValue;
           candidateViewValue = parserResult.viewMapper(originalScope, locals);
           locals[parserResult.itemName] = undefined;
@@ -4804,11 +4804,11 @@ angular.module("template/timepicker/timepicker.html", []).run(["$templateCache",
     "		</tr>\n" +
     "		<tr>\n" +
     "			<td class=\"form-group\" ng-class=\"{'has-error': invalidHours}\">\n" +
-    "				<input style=\"width:50px;\" type=\"text\" ng-model=\"hours\" ng-change=\"updateHours()\" class=\"form-control text-center\" ng-readonly=\"readonlyInput\" maxlength=\"2\">\n" +
+    "				<input style=\"width:50px;\" type=\"text\" ng-models=\"hours\" ng-change=\"updateHours()\" class=\"form-control text-center\" ng-readonly=\"readonlyInput\" maxlength=\"2\">\n" +
     "			</td>\n" +
     "			<td>:</td>\n" +
     "			<td class=\"form-group\" ng-class=\"{'has-error': invalidMinutes}\">\n" +
-    "				<input style=\"width:50px;\" type=\"text\" ng-model=\"minutes\" ng-change=\"updateMinutes()\" class=\"form-control text-center\" ng-readonly=\"readonlyInput\" maxlength=\"2\">\n" +
+    "				<input style=\"width:50px;\" type=\"text\" ng-models=\"minutes\" ng-change=\"updateMinutes()\" class=\"form-control text-center\" ng-readonly=\"readonlyInput\" maxlength=\"2\">\n" +
     "			</td>\n" +
     "			<td ng-show=\"showMeridian\"><button type=\"button\" class=\"btn btn-default text-center\" ng-click=\"toggleMeridian()\">{{meridian}}</button></td>\n" +
     "		</tr>\n" +

@@ -84,7 +84,7 @@ describe('uiJq', function () {
   describe('change events', function() {
     it('should trigger an `input` event', function() {
       var bar = false;
-      var element = compile('<input ui-jq="foo" ng-model="foobar">')(scope);
+      var element = compile('<input ui-jq="foo" ng-models="foobar">')(scope);
       element.bind('input', function(){
         bar = true;
       });
@@ -102,7 +102,7 @@ describe('uiJq', function () {
     });
     it('should ignore non-form controls', function() {
       var bar = false;
-      var element = compile('<div ui-jq="foo"></div  ng-model="foobar">')(scope);
+      var element = compile('<div ui-jq="foo"></div  ng-models="foobar">')(scope);
       element.bind('input', function(){
         bar = true;
       });

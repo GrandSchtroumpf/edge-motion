@@ -1,42 +1,72 @@
-<div data-ng-controller="AuthenticationController">
-	<h3 class="col-md-12 text-center">Or sign up using your email</h3>
-	<div class="col-xs-offset-2 col-xs-8 col-md-offset-5 col-md-2">
-		<form name="userForm" data-ng-submit="signup()" class="signin form-horizontal" novalidate autocomplete="off">
-			<fieldset>
-				<div class="form-group">
-					<label for="firstName">First Name</label>
-					<input type="text" required id="firstName" name="firstName" class="form-control"
-						   data-ng-model="credentials.firstName" placeholder="First Name">
-				</div>
-				<div class="form-group">
-					<label for="lastName">Last Name</label>
-					<input type="text" id="lastName" name="lastName" class="form-control"
-						   data-ng-model="credentials.lastName" placeholder="Last Name">
-				</div>
-				<div class="form-group">
-					<label for="email">Email</label>
-					<input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email"
-						   placeholder="Email">
-				</div>
-				<div class="form-group">
-					<label for="username">Username</label>
-					<input type="text" id="username" name="username" class="form-control"
-						   data-ng-model="credentials.username" placeholder="Username">
-				</div>
-				<div class="form-group">
-					<label for="password">Password</label>
-					<input type="password" id="password" name="password" class="form-control"
-						   data-ng-model="credentials.password" placeholder="Password">
-				</div>
-				<div class="text-center form-group">
-					<button type="submit" class="btn btn-large btn-primary">Sign up</button>
-					&nbsp; or&nbsp;
-					<a data-ui-sref="authentication.signin" class="show-signup">Sign in</a>
-				</div>
-				<div data-ng-show="error" class="text-center text-danger">
-					<strong data-ng-bind="error"></strong>
-				</div>
-			</fieldset>
-		</form>
+<form name="userForm" novalidate autocomplete="off" class="signUp" layout="column">
+
+    <div layout="row" layout-align="center center">
+        <woman-choice flex="40"></woman-choice>
+        <input type="radio" flex="10" data-ng-model="newUser.gender" ng-value="'female'"></input>
+        <input type="radio" flex="10" data-ng-model="newUser.gender" ng-value="'male'"></input>
+        <man-choice flex="40"></man-choice>
+    </div>
+
+    <div layout="row" layout-sm="column" layout-align="space-around center">
+        <input type="text" required placeholder="First Name" name="firstName" data-ng-model="newUser.firstName" flex="40" flex-sm="100">
+        <input type="text" placeholder="Last Name" name="lastName" data-ng-model="newUser.lastName" flex="40" flex-sm="100">
+    </div><br/>
+
+    <div layout="column" layout-align="center center">
+        <input type="email" placeholder="email" name="email" data-ng-model="newUser.email">
+        <input type="text" placeholder="username" name="username" data-ng-model="newUser.username">
+        <input type="password" placeholder="password" name="password" data-ng-model="newUser.password">
+    </div>
+
+	<div layout="row" layout-align="center center">
+        <sign-in ui-sref="authentication.signin"></sign-in>
+        <btn-validate data-ng-click="signup()">Submit</btn-validate>
 	</div>
-</div>
+
+	<div data-ng-show="error" class="text-center text-danger">
+		<strong data-ng-bind="error"></strong>
+	</div>
+
+</form>
+
+<!--
+	<form name="userForm" novalidate autocomplete="off" class="signUp">
+
+			<md-input-container flex="50">
+				<label for="firstName">First Name</label>
+				<input type="text" required id="firstName" name="firstName" data-ng-model="credentials.firstName">
+            </md-input-container>
+            <md-input-container flex="50">
+				<label for="lastName">Last Name</label>
+				<input type="text" id="lastName" name="lastName" data-ng-model="credentials.lastName">
+			</md-input-container>
+
+
+
+			<md-input-container>
+				<label for="email">Email</label>
+				<input type="email" id="email" name="email" data-ng-model="credentials.email">
+			</md-input-container>
+			<md-input-container>
+				<label for="username">Username</label>
+				<input type="text" id="username" name="username" data-ng-model="credentials.username">
+			</md-input-container>
+			<md-input-container>
+				<label for="password">Password</label>
+				<input type="password" id="password" name="password" data-ng-model="credentials.password">
+			</md-input-container>
+
+            <md-button class="md-raised md-primary" ui-sref="authentication.signup">Sign up</md-button>
+            &nbsp; or&nbsp;
+            <md-input-container layout="row">
+                <md-button ui-sref="authentication.signin">Sign in</md-button>
+            </md-input-container>
+
+            <div data-ng-show="error" class="text-center text-danger">
+                <strong data-ng-bind="error"></strong>
+            </div>
+
+
+		</form>
+
+-->

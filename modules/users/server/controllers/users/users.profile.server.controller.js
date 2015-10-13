@@ -93,5 +93,21 @@ exports.changeProfilePicture = function (req, res) {
  * Send User
  */
 exports.me = function (req, res) {
+    console.log('depuis user.profile.server.controller' + req);
 	res.json(req.user || null);
+};
+
+/*
+    List of users
+ */
+exports.list = function(req, res){
+    User.find()
+        .select('username profileImageURL')
+        .populate('').exec(function(err, users){
+        if(err){
+            console.log(err);
+        }else{
+            res.jsonp(users);
+        }
+    });
 };

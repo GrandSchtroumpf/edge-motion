@@ -21,10 +21,10 @@ describe('uiRoute', function () {
     scope.$apply();
   }
 
-  describe('model is null', function() {
+  describe('models is null', function() {
     runTests();
   });
-  describe('model is set', function() {
+  describe('models is set', function() {
     runTests('pizza');
   });
 
@@ -32,7 +32,7 @@ describe('uiRoute', function () {
     var modelProp = routeModel || '$uiRoute', elm = angular.noop;
     function compileRoute(template) {
       elm = angular.element(template);
-      if (routeModel){ elm.attr('ng-model', routeModel);}
+      if (routeModel){ elm.attr('ng-models', routeModel);}
       return $compile(elm[0])(scope);
     }
 
@@ -40,7 +40,7 @@ describe('uiRoute', function () {
       it('should use the uiRoute property', function(){
         compileRoute('<div ui-route="/foo">');
       });
-      it('should update model on $observe', function(){
+      it('should update models on $observe', function(){
         setPath('/bar');
         scope.$apply('foobar = "foo"');
         compileRoute('<div ui-route="/{{foobar}}">');
@@ -64,7 +64,7 @@ describe('uiRoute', function () {
         compileRoute('<a ng-href="/foo" ui-route>');
         expect(elm.scope()[modelProp]).toBe(true);
       });
-      it('should update model on $observe', function(){
+      it('should update models on $observe', function(){
         setPath('/bar');
         scope.$apply('foobar = "foo"');
         compileRoute('<a ng-href="/{{foobar}}" ui-route>');
@@ -91,7 +91,7 @@ describe('uiRoute', function () {
       }).toThrow();
     });
 
-    it('should update model on route change', function(){
+    it('should update models on route change', function(){
       setPath('/bar');
       compileRoute('<div ui-route="/foo">');
       expect(elm.scope()[modelProp]).toBeFalsy();
@@ -102,7 +102,7 @@ describe('uiRoute', function () {
     });
 
 
-    it('should update model on state change', function(){
+    it('should update models on state change', function(){
       setPathWithStateChange('/bar');
       compileRoute('<div ui-route="/foo">');
       expect(elm.scope()[modelProp]).toBeFalsy();

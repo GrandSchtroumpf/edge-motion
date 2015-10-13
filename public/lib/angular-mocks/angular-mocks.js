@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.4.1
+ * @license AngularJS v1.4.2
  * (c) 2010-2015 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -431,7 +431,7 @@ angular.mock.$LogProvider = function() {
  * @param {number} delay Number of milliseconds between each function call.
  * @param {number=} [count=0] Number of times to repeat. If not set, or 0, will repeat
  *   indefinitely.
- * @param {boolean=} [invokeApply=true] If set to `false` skips model dirty checking, otherwise
+ * @param {boolean=} [invokeApply=true] If set to `false` skips models dirty checking, otherwise
  *   will invoke `fn` within the {@link ng.$rootScope.Scope#$apply $apply} block.
  * @param {...*=} Pass additional parameters to the executed function.
  * @returns {promise} A promise which will be notified on each iteration.

@@ -1,0 +1,27 @@
+[
+    {
+      "icon": "modules/sidemenus/svg/icons/home.JSON",
+      "title": "home",
+      "link": "home",
+      "position":0,
+      "activation":false,
+      "category": ""
+    },
+    {
+    "icon": "modules/sidemenus/svg/icons/search.JSON",
+    "title": "search",
+    "link": "search",
+    "position":1,
+    "activation":false,
+    "category": ""
+    },
+    {
+    "icon": "modules/sidemenus/svg/icons/default.JSON",
+    "title": "",
+    "link": "",
+    "position":2,
+    "activation":false,
+    "category": ""
+    }
+]
+

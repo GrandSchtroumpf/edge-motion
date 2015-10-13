@@ -5,10 +5,12 @@
  */
 var _ = require('lodash'),
 	path = require('path'),
+	async = require('async'),
 	errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
 	mongoose = require('mongoose'),
 	passport = require('passport'),
-	User = mongoose.model('User');
+	User = mongoose.model('User'),
+	Sidemenu = mongoose.model('Sidemenu');
 
 /**
  * Signup
@@ -25,26 +27,40 @@ exports.signup = function(req, res) {
 	user.provider = 'local';
 	user.displayName = user.firstName + ' ' + user.lastName;
 
-	// Then save the user 
-	user.save(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			// Remove sensitive data before login
-			user.password = undefined;
-			user.salt = undefined;
 
-			req.login(user, function(err) {
-				if (err) {
-					res.status(400).send(err);
-				} else {
-					res.json(user);
-				}
-			});
-		}
-	});
+    //Sidebars
+    Sidemenu.createUserSidebar(function(sidebars){
+        user.sidebars = sidebars;
+        save();
+    });
+
+
+
+    function save(){
+        // Then save the user
+        user.save(function(err) {
+            if (err) {
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(err)
+                });
+            } else {
+                // Remove sensitive data before login
+                user.password = undefined;
+                user.salt = undefined;
+
+                req.login(user, function(err) {
+                    if (err) {
+                        res.status(400).send(err);
+                    } else {
+                        User.findOne(user).populate('sidebar').exec(function(err, user){
+                            res.json(user);
+                        });
+                    }
+                });
+            }
+        });
+    }
+
 };
 
 /**
@@ -62,8 +78,13 @@ exports.signin = function(req, res, next) {
 			req.login(user, function(err) {
 				if (err) {
 					res.status(400).send(err);
+                    console.log(err);
 				} else {
-					res.json(user);
+                    User.findById(user._id).populate('sidebar').exec(function(err, user){
+                        res.json(user);
+                    });
+
+
 				}
 			});
 		}
@@ -75,7 +96,7 @@ exports.signin = function(req, res, next) {
  */
 exports.signout = function(req, res) {
 	req.logout();
-	res.redirect('/');
+	res.jsonp(req.user);
 };
 
 /**

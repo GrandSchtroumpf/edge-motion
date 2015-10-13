@@ -1,0 +1,9 @@
+<section class="mainTheme resultContent" layout="row"  layout-align="space-around center">
+    <!-- CategorySelected is defined directly in the route file -->
+    <md-list class="resultWrapper" data-ng-repeat="category in categorySelected" layout="column" flex="{{flexSize}}" layout-align="space-around center">
+        <search-result class="result" category="{{category.name}}" ng-repeat="result in category.results"></search-result>
+    </md-list>
+
+</section>
+
+

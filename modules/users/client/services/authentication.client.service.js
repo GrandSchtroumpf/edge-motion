@@ -2,7 +2,17 @@
 
 // Authentication service for user variables
 angular.module('users').factory('Authentication', [
+    function(){
+        var _this = this;
+        return {
+            changeUser : function(){
+                this.user = window.user;
+            },
+            user : window.user
+        };
+    }
 
+    /*
 	function() {
 		var _this = this;
 
@@ -12,4 +22,5 @@ angular.module('users').factory('Authentication', [
 
 		return _this._data;
 	}
+	*/
 ]);

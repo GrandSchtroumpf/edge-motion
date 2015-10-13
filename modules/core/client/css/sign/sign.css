@@ -1,0 +1,53 @@
+.icon-profile {
+  position: relative;
+  width: 20%;
+  margin: auto; }
+
+.signIn, .signUp {
+  position: relative;
+  margin: auto;
+  margin-top: 20px; }
+  .signIn input, .signUp input {
+    background-color: #787878;
+    border: none;
+    padding: 10px;
+    margin: 20px 0 20px 0;
+    height: 40px;
+    font-size: 20px;
+    color: #1e1e1e; }
+  .signIn input[type='radio'], .signUp input[type='radio'] {
+    width: 20px;
+    height: 20px;
+    margin: 0; }
+
+btn-validate, sign-in, sign-up {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  cursor: pointer; }
+  btn-validate path, sign-in path, sign-up path {
+    transition: fill 0.2s linear; }
+
+btn-validate:hover path, sign-in:hover path, sign-up:hover path {
+  fill: #11dfb1; }
+
+/*  Smartphone  */
+@media (max-width: 600px) {
+  .signIn, .signUp {
+    width: 90%; }
+    .signIn input, .signUp input {
+      width: 100%; } }
+
+/*  tablet  */
+@media (min-width: 600px) and (max-width: 900px) {
+  .signIn, .signUp {
+    width: 70%; }
+    .signIn input, .signUp input {
+      width: 90%; } }
+
+/*  Smartphone  */
+@media (min-width: 900px) {
+  .signIn, .signUp {
+    width: 50%; }
+    .signIn input, .signUp input {
+      width: 90%; } }
