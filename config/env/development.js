@@ -4,7 +4,7 @@ module.exports = {
 	db: 'mongodb://localhost/gathering-dev',
         //'mongodb://gathering:pass@ds029630.mongolab.com:29630/gathering_database',
 	app: {
-		title: 'Gathering - Development Environment'
+		title: 'Edge Motion - Development Environment'
 	},
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || 'APP_ID',

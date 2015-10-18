@@ -1,20 +1,18 @@
-@import 'mainTheme';
+@import '../_mainTheme';
 
 //SEARCH ENGINE
 search-engine{
   transition : all 300ms;
-  //background-color: $normalBackground;
-  //@include box-shadow(0px, 0px, 30px, 0px, $normalBackground);
+  background-color: $lightBackground;
   position :fixed;
-  transform : translate(0,200px);
+    top : 0;
   width : 100%;
   z-index : 10;
 
-  input.mainTheme{
+  input{
     transition : box-shadow 300ms;
     background-color: rgba($lightBackground,0.2);
     border : 3px solid $lightBackground;
-    @include border-radius(30px);
     color : black;
     font-size : 20px;
     height : 50px;
@@ -22,17 +20,13 @@ search-engine{
     padding : 0 20px;
   }
 
-  input.mainTheme:hover, input.mainTheme:focus{
+  input:hover, input:focus{
     @include box-shadow(0px, 0px, 10px, 0px, $normalBackground);
   }
 
   search-category{
     width:60%;
   }
-}
-
-search-engine.focused {
-  transform : translate(0, 100px);
 }
 
 

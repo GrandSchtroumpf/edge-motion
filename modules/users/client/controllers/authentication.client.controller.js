@@ -13,10 +13,9 @@ angular.module('users').controller('AuthenticationController', ['$rootScope','$s
 			$http.post('/api/auth/signup', $scope.newUser).success(function(response) {
 				// If successful we assign the response to the global user models
                 window.user = response;
-                $mdDialog.cancel();
 				// And redirect to the index page
                 $state.go('profile.resume', {userId:response._id}, {reload: true});
-                $rootScope.$emit('changeUser');
+                $rootScope.$emit('signed');
 			}).error(function(response) {
 				$scope.error = response.message;
 			});
@@ -27,26 +26,13 @@ angular.module('users').controller('AuthenticationController', ['$rootScope','$s
 			$http.post('/api/auth/signin', $scope.credentials).success(function(response) {
 				// If successful we assign the response to the global user models
 				window.user = response;
-                $mdDialog.cancel();
 				// And redirect to the index page
                 $state.go('profile.resume', {userId:response._id}, {reload: true});
-                $rootScope.$emit('changeUser');
+                $rootScope.$emit('signed');
 			}).error(function(response) {
 				$scope.error = response.message;
 			});
 		};
 
-        $scope.showSign = function(event, sign){
-            $mdDialog.show({
-                clickOutsideToClose: true,
-                templateUrl: 'modules/users/views/authentication/'+sign+'.client.view.html',
-                parent: angular.element(document.body),
-                targetEvent: event
-            });
-        };
-
-        $scope.cancel = function(){
-            $mdDialog.cancel();
-        };
 	}
 ]);

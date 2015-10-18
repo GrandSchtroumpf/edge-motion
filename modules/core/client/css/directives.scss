@@ -41,3 +41,14 @@ tab-list{
 
 }
 
+md-switch {
+  font-size : 20px;
+  color : $lightFondColor;
+  margin-top: 30px;
+}
+md-switch.md-checked .md-bar {
+  background-color: rgba($mainColor,0.5);
+}
+md-switch.md-checked .md-thumb, {
+  background-color: $mainColor;
+}

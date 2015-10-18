@@ -1,13 +1,22 @@
 'use strict';
 
-angular.module('searches').directive('searchEngine', ['$window',
-	function($window) {
+angular.module('searches').directive('searchEngine', ['$window','$stateParams',
+	function($window, $stateParams) {
 		return {
-			template: '<input class="mainTheme" placeholder="Search">'+
-                        '<search-category></search-category>',
+			templateUrl: 'modules/searches/views/search-engine.client.view.html',
 			restrict: 'E',
+            controller : function($scope, $element){
+                $scope.categorySelected = [];
+            },
 			link: function postLink(scope, element, attrs) {
+
+                console.log($stateParams);
+
+                scope.search = function(filter){
+                    console.log(filter);
+                };
                 /*global TweenMax*/
+                /*
                 angular.element(element[0].children[0]).on('focus', function(){
                     angular.element(element[0]).addClass('focused');
                     setTimeout(function(){
@@ -15,6 +24,7 @@ angular.module('searches').directive('searchEngine', ['$window',
                     }, 150);
 
                 });
+
 
                 //check if click is inside the box (look only for y position because element.[0].width === 100%
                 angular.element($window).on('click', function(event){
@@ -26,6 +36,8 @@ angular.module('searches').directive('searchEngine', ['$window',
                         });
                     }
                 });
+                */
+
 			}
 		};
 	}

@@ -5,6 +5,9 @@ angular.module('searches').directive('searchPageResult', [
 		return {
 			templateUrl: 'modules/searches/views/view-result.client.view.html',
 			restrict: 'E',
+            controller : function($scope, $element){
+
+            },
 			link: function postLink(scope, element, attrs) {
                 scope.colors = {
                     buttonColor : '#5e6a7a',
@@ -13,11 +16,13 @@ angular.module('searches').directive('searchPageResult', [
                     darkBackground : '#1e1e1f',
                     lightBackground : '#515152'
                 };
+
+                /*
                 scope.$on('removeCategory', function(){
                     scope.flexSize = 100/(scope.categorySelected.length);
                 });
                 scope.flexSize = 100/(scope.categorySelected.length);
-
+                */
 			}
 		};
 	}

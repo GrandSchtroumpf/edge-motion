@@ -17,6 +17,7 @@ angular.module('sidebars').directive('sidebarButton', [
                         var className = document.getElementById('wrapper').className;
                         if(className === 'toggled'){
                             document.getElementById('wrapper').className = '';
+                            scope.$parent.showSidebar = 'main';                 //return to main mode
                         } else{
                             document.getElementById('wrapper').className = 'toggled';
                         }

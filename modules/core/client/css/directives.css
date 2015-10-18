@@ -27,3 +27,14 @@ tab-list {
     cursor: pointer; }
   tab-list [tab-button].active {
     color: #11dfb1; }
+
+md-switch {
+  font-size: 20px;
+  color: #969696;
+  margin-top: 30px; }
+
+md-switch.md-checked .md-bar {
+  background-color: rgba(17, 223, 177, 0.5); }
+
+md-switch.md-checked .md-thumb {
+  background-color: #11dfb1; }

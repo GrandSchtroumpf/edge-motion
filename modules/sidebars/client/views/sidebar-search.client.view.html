@@ -1,7 +1,24 @@
-<sidebar-toggler></sidebar-toggler>
-<div class="searchInput">
-    <input>
-    <i data-ng-include="'modules/sidebars/icons/search.html'"></i>
-</div>
+<sidebar-toggler ng-click="changeSidebar('main')"></sidebar-toggler>
+<form ng-submit="doSearch(filter)">
+    <div class="searchInput">
+        <input ng-model="filter.keyword">
+        <i data-ng-include="'modules/sidebars/icons/search.html'" ng-click="doSearch(filter)"></i>
+    </div>
+
+    <div hide-sm>
+        <md-switch ng-model="filter.category.school" aria-label="Switch 1">
+            School
+        </md-switch>
+        <md-switch ng-model="filter.category.user" aria-label="Switch 2">
+            User
+        </md-switch>
+        <md-switch ng-model="filter.category.game" aria-label="Switch 3">
+            Game
+        </md-switch>
+    </div>
+
+</form>
+
+
 
 

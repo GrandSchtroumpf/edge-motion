@@ -9,12 +9,7 @@ angular.module('sidebars').directive('sidebarToggler', [
 
                 element.bind('click', function(){
                     //return to main sidebar
-                    if(scope.showSidebar !== 'main'){
-                        scope.changeSidebar('main');
-                        document.getElementById('wrapper').className = '';
-                    } else {
-                        document.getElementById('wrapper').className = '';
-                    }
+                    document.getElementById('wrapper').className = '';
                 });
 			}
 		};

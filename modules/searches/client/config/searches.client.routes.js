@@ -7,14 +7,12 @@ angular.module('searches').config(['$stateProvider',
 		$stateProvider.
 		    state('search', {
 			    url: '/search',
-			    template:   '<search-engine layout="column" layout-align="start center"></search-engine>'+
-                            '<ui-view></ui-view>',
-                controller : function($scope){
-                    $scope.categorySelected = [];
-                }
+			    template:  '<search-engine></search-engine><ui-view></ui-view>',
+
             })
                 .state('search.result', {
-                    url:'/:category/:position/:search',
+                    //url:'/:keyword/:category/:position/:search',
+                    url:'/:keyword?category',
                     template:'<search-page-result></search-page-result>',
                     resolve : {
                         newCategorySelected: ['$stateParams', 'Search', function($stateParams, Search) {
@@ -28,6 +26,7 @@ angular.module('searches').config(['$stateProvider',
                         }]
                     },
                     controller : function($scope, newCategorySelected){
+                        /*
                         var categorySup = $scope.categorySelected.filter(function(cat){return cat.position>newCategorySelected.position;});
                         if(categorySup.length > 0){
                             var positions = categorySup.map(function(cat){return cat.position;});
@@ -37,6 +36,7 @@ angular.module('searches').config(['$stateProvider',
                         }else{
                             $scope.categorySelected.push(newCategorySelected);
                         }
+                        */
                     }
                 });
 
