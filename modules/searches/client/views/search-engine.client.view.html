@@ -1,3 +1,14 @@
-<form ng-submit="search()">
+<form ng-submit="search(filter)" layout="row">
     <input class="mainTheme" ng-model="filter.keyword" placeholder="Search">
+    <div hide-sm layout="row">
+        <md-switch ng-model="filter.category.user" aria-label="Switch 1">
+            User
+        </md-switch>
+        <md-switch ng-model="filter.category.school" aria-label="Switch 2">
+            School
+        </md-switch>
+        <md-switch ng-model="filter.category.game" aria-label="Switch 3">
+            Game
+        </md-switch>
+    </div>
 </form>

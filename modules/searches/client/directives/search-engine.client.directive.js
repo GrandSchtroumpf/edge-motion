@@ -1,19 +1,14 @@
 'use strict';
 
-angular.module('searches').directive('searchEngine', ['$window','$stateParams',
-	function($window, $stateParams) {
+angular.module('searches').directive('searchEngine', ['$window','$state',
+	function($window, $state) {
 		return {
 			templateUrl: 'modules/searches/views/search-engine.client.view.html',
 			restrict: 'E',
-            controller : function($scope, $element){
-                $scope.categorySelected = [];
-            },
 			link: function postLink(scope, element, attrs) {
 
-                console.log($stateParams);
-
                 scope.search = function(filter){
-                    console.log(filter);
+                    $state.go('search.result', {search : filter}, {reload : true});
                 };
                 /*global TweenMax*/
                 /*

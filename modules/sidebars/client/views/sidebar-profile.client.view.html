@@ -1,6 +1,6 @@
 <sidebar-toggler ng-click="changeSidebar('main')"></sidebar-toggler>
-<sidebar-button icon="'resume'"></sidebar-button>
-<sidebar-button icon="'contact'"></sidebar-button>
-<sidebar-button icon="'message'"></sidebar-button>
-<sidebar-button icon="'game'"></sidebar-button>
-<sidebar-button icon="'reward'"></sidebar-button>
+<sidebar-button icon="'resume'" titre="Resume" ui-sref="profile.resume({userId: Authenticaton.user._id})"></sidebar-button>
+<sidebar-button icon="'contact'" titre="Contacts" ui-sref="profile.contacts({userId: Authenticaton.user._id})"></sidebar-button>
+<sidebar-button icon="'message'" titre="Mails" ui-sref="messages.view"></sidebar-button>
+<sidebar-button icon="'game'" titre="Games" ui-sref="profile.games({userId: Authenticaton.user._id})"></sidebar-button>
+<sidebar-button icon="'reward'" titre="Rewards"></sidebar-button>

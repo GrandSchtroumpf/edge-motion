@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('sidebars').directive('sidebarButton', [
-	function() {
+angular.module('sidebars').directive('sidebarButton', ['$state',
+	function($state) {
 		return {
-            scope : {icon : '=', showSidebarName : '=', toggler : '='},
+            scope : {icon : '=', showSidebarName : '=', toggler : '=', titre :'@'},
 			restrict: 'E',
 			link: function postLink(scope, element, attrs) {
 
@@ -18,10 +18,10 @@ angular.module('sidebars').directive('sidebarButton', [
                         if(className === 'toggled'){
                             document.getElementById('wrapper').className = '';
                             scope.$parent.showSidebar = 'main';                 //return to main mode
-                        } else{
-                            document.getElementById('wrapper').className = 'toggled';
+                        }else {
+                                document.getElementById('wrapper').className = 'toggled';
+                            }
                         }
-                    }
 
 
                     //activate CSS class
@@ -33,7 +33,7 @@ angular.module('sidebars').directive('sidebarButton', [
 
                 });
 			},
-            template : '<div class="icon" data-ng-include="getIcon()"><p>Titre</p>'
+            template : '<div layout="row"><div class="icon" data-ng-include="getIcon()"></div><p>{{titre}}</p></div>'
 
 		};
 	}

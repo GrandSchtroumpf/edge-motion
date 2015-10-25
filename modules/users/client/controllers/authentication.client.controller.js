@@ -22,7 +22,6 @@ angular.module('users').controller('AuthenticationController', ['$rootScope','$s
 		};
 
 		$scope.signin = function() {
-            console.log($scope.credentials);
 			$http.post('/api/auth/signin', $scope.credentials).success(function(response) {
 				// If successful we assign the response to the global user models
 				window.user = response;

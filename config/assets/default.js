@@ -53,7 +53,8 @@ module.exports = {
 			'modules/core/client/app/init.js',
 			'modules/*/client/*.js',
 			'modules/*/client/**/*.js',
-			'modules/*/client/***/**/*.js'
+			'modules/*/client/***/**/*.js',
+			'modules/*/client/****/***/**/*.js'
 		],
 		views: ['modules/*/client/views/**/*.html']
 	},

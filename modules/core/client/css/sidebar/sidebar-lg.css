@@ -18,10 +18,17 @@
       width: 200px;
       height: 80px; }
       #wrapper #sidebar sidebar-button .icon {
-        width: 80px; }
+        min-width: 80px; }
+      #wrapper #sidebar sidebar-button p {
+        color: #969696;
+        font-size: 20px;
+        padding: 20px; }
     #wrapper #sidebar sidebar-button:hover,
     #wrapper #sidebar sidebar-button.active {
       border-left: 3px solid #11dfb1; }
+      #wrapper #sidebar sidebar-button:hover p,
+      #wrapper #sidebar sidebar-button.active p {
+        color: #11dfb1; }
   #wrapper #content-page {
     padding-left: 80px;
     min-height: 100%;
@@ -51,4 +58,6 @@
       display: inline-block;
       height: 40px;
       width: 40px;
-      cursor: pointer; } }
+      cursor: pointer; }
+  sidebar-search md-switch {
+    margin-top: 30px; } }

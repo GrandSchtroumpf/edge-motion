@@ -3,7 +3,7 @@
 angular.module('users').directive('profileResume', ['$rootScope',
 	function($rootScope) {
 		return {
-            templateUrl:'modules/users/views/profile/profile-resume.client.view.html',
+            templateUrl:'modules/users/views/profile/profile-resume/profile-resume.client.view.html',
 			restrict: 'E',
 			link: function postLink(scope, element, attrs) {
                 /*global TweenMax*/

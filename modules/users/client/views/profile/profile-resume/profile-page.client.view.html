@@ -1,0 +1,12 @@
+<profile-page>
+    <profile-head></profile-head>
+
+    <profile-content ui-view></profile-content>
+
+
+    <div class="profile-footer" layout="row" data-ng-if="authentication.user._id === user._id">
+        <svg-icon flex="50" icon="'eye'" data-ng-click="viewMode()"></svg-icon>
+        <svg-icon flex="50" icon="'edit'" data-ng-click="editMode()"></svg-icon>
+    </div>
+</profile-page>
+

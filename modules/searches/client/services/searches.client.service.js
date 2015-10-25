@@ -4,6 +4,18 @@
 angular.module('searches').factory('Search', ['$http','$q',
 	function($http, $q) {
 		return {
+
+            doSearch: function (search) {
+                var defer = $q.defer();
+                $http.get('/api/search/doSearch', {params: search})
+                    .success(function(results){
+                        defer.resolve(results);
+                    })
+                    .error(function(err){
+                        defer.reject();
+                    });
+                return defer.promise;
+            },
             getGuilds : function(search){
                 var defer = $q.defer();
                 $http.get('/api/search/guilds', {params : search})

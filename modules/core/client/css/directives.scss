@@ -44,11 +44,48 @@ tab-list{
 md-switch {
   font-size : 20px;
   color : $lightFondColor;
-  margin-top: 30px;
 }
 md-switch.md-checked .md-bar {
   background-color: rgba($mainColor,0.5);
 }
 md-switch.md-checked .md-thumb, {
   background-color: $mainColor;
+}
+
+
+svg-icon{
+   display : block;
+   height : 100%;
+   cursor : pointer;
+   div{
+     height : 100%;
+   }
+   svg {
+     display: block;
+     margin : auto;
+     height : 100%;
+     path{
+       fill : $fontColor;
+     }
+     polygon{
+       fill : $fontColor;
+     }
+     rect{
+       fill : $fontColor;
+     }
+   }
+ }
+
+svg-icon:hover{
+  svg {
+    path{
+      fill : $mainColor;
+    }
+    polygon{
+      fill : $mainColor;
+    }
+    rect{
+      fill : $mainColor;
+    }
+  }
 }

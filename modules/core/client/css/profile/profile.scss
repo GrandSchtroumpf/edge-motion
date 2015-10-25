@@ -1,4 +1,4 @@
-@import 'mainTheme';
+@import '../mainTheme';
 
 profile-page{
   height:100%;
@@ -10,24 +10,20 @@ profile-page{
       top:0;
     background-color: rgba($lightMetal,0.5);
     color:$darkMetal;
-    height: 10%;
+    height: 100px;
     width: 100%;
 
-    .headContent{
-      border-bottom: solid 3px $darkMetal;
+    profile-avatar{
+      img{
+        height : 100px;
+      }
     }
 
-    [tab-button]{
-      color: $darkMetal;
-    }
-    [tab-button].active{
-      color:$mainColor;
-    }
   }
 
   profile-content{
     position: fixed;
-      top:10%;
+      top:120px;
     height:80%;
     width:100%;
 
@@ -36,6 +32,12 @@ profile-page{
       position: absolute;
       width:100%;
       height: 100%;
+
+      profile-avatar{
+        img{
+          height : 80%;
+        }
+      }
 
       .profile-competencies{
         height:100%;
@@ -96,14 +98,19 @@ profile-page{
     }
   }
 
-  profile-footer{
+  .profile-footer{
     position: fixed;
-      top:90%;
+      top:calc(100% - 60px);
     background-color: $lightMetal;
-    height:10%;
+    height:60px;
     width:100%;
     opacity : 0.3;
-    border-top : solid 3px $fontColor;
+
+    svg-icon:hover{
+      border-top : solid 3px $mainColor;
+      @include box-shadow(0px, -5px, 10px, -2px, $mainColor);
+
+    }
   }
 }
 

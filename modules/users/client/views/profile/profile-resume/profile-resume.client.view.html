@@ -1,4 +1,6 @@
 <div data-ng-if="contentMode === 'viewMode'" layout="row">
+    <profile-avatar flex="30" image="{{user.profileImageURL}}"></profile-avatar>
+
     <div class="profile-competencies" flex="20" layout="column" layout-align="center start">
         <ul>
             <li competence-name>Competence one</li>
@@ -8,16 +10,13 @@
         </ul>
     </div>
 
-    <div flex="60" class="profile-competencies-content" layout="column" layout-align="space-around center">
+    <div flex="50" class="profile-competencies-content" layout="column" layout-align="space-around center">
         <ul>
             <li>Competence example 1</li>
             <li>Competence example 2</li>
         </ul>
     </div>
 
-    <div flex="20">
-        <profile-avatar image="{{user.profileImageURL}}"></profile-avatar>
-    </div>
 
 </div>
 

@@ -9,7 +9,7 @@ angular.module('users').config(['$stateProvider',
                 abstract: true,
                 url: '/profile/:userId',
                 controller : 'ProfileController',
-                templateUrl:'modules/users/views/profile/profile-page.client.view.html',
+                templateUrl:'modules/users/views/profile/profile-resume/profile-page.client.view.html',
                 resolve: {
                     user : function(Profile, $stateParams){
                         return Profile.get($stateParams.userId);
@@ -20,16 +20,19 @@ angular.module('users').config(['$stateProvider',
                     url:'/resume',
                     template: '<profile-resume></profile-resume>'
                 }).
+                state('profile.resume-edit', {
+                    url:'/resume-edit',
+                    template: '<profile-resume-edit></profile-resume-edit>'
+                }).
                 state('profile.games', {
                     url:'/games',
                     template: '<profile-games></profile-games>'
                 }).
+				state('profile.contacts', {
+					url : '/contacts',
+					template : '<profile-contacts></profile-contacts>'
+				}).
 
-
-                state('profile.edit', {
-                    url:'/edit',
-                    templateUrl:'modules/users/views/profile/edit-profile.client.view.html'
-                }).
 
 
 			state('settings', {

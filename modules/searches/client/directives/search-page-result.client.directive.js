@@ -6,7 +6,6 @@ angular.module('searches').directive('searchPageResult', [
 			templateUrl: 'modules/searches/views/view-result.client.view.html',
 			restrict: 'E',
             controller : function($scope, $element){
-
             },
 			link: function postLink(scope, element, attrs) {
                 scope.colors = {
@@ -17,12 +16,11 @@ angular.module('searches').directive('searchPageResult', [
                     lightBackground : '#515152'
                 };
 
-                /*
                 scope.$on('removeCategory', function(){
-                    scope.flexSize = 100/(scope.categorySelected.length);
+                    scope.flexSize = 100/(scope.searchResults.length);
                 });
-                scope.flexSize = 100/(scope.categorySelected.length);
-                */
+                scope.flexSize = 100/(scope.searchResults.length);
+
 			}
 		};
 	}

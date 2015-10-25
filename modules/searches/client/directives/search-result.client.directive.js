@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('searches').directive('searchResult', ['$rootScope', '$mdDialog', 'Authentication','Users','Sidebar',
-	function($rootScope, $mdDialog, Authentication, Users, Sidebar) {
+angular.module('searches').directive('searchResult', ['$rootScope', '$mdDialog', 'Authentication','$http',
+	function($rootScope, $mdDialog, Authentication, $http) {
 		return {
 			restrict: 'E',
 			link: function postLink(scope, element, attrs) {
@@ -63,24 +63,21 @@ angular.module('searches').directive('searchResult', ['$rootScope', '$mdDialog',
                     });
                 };
 
-                scope.invitationButton = function(user){
-                    if(Authentication.user && user._id !== Authentication.user._id && Authentication.user.contacts.indexOf(user._id) === -1){
-                        return true;
-                    }else{
-                        return false;
-                    }
-                };
+                //if not connected or same user or already in contact
+                if(!Authentication || Authentication.user._id === scope.result._id || Authentication.user.contacts.map(function(element){return element.user;}).indexOf(scope.result._id) !== -1){
+                    scope.invitationButton = false;
+                }else{
+                    scope.invitationButton = true;
+                }
 
-                scope.inviteContact= function(user){
-                    var indiceMenu = Object.keys(Authentication.user.sidebars.profile.map(function(menu){return menu.title;})).indexOf('profile');
-                    Sidebar.addNotification(user._id, Authentication.user.sidebars.profile[indiceMenu]);
-
-                    Authentication.user.contacts.push({
-                        user : user._id,
-                        status : 'waiting'
-                    });
-                    var newUser = new Users(Authentication.user);
-                    newUser.$update();
+                /*
+                    ADD CONTACT
+                 */
+                scope.inviteContact= function(contactId){
+                    $http.post('/api/contacts', {userId : Authentication.user._id, contactId : contactId})
+                        .then(function(err, success){
+                            if(success){scope.invitationButton = false;}
+                        });
                 };
 
 

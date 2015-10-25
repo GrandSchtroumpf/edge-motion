@@ -12,10 +12,10 @@ search-engine{
   input{
     transition : box-shadow 300ms;
     background-color: rgba($lightBackground,0.2);
-    border : 3px solid $lightBackground;
+    border : none;
     color : black;
     font-size : 20px;
-    height : 50px;
+    height : 60px;
     width : 60%;
     padding : 0 20px;
   }
@@ -45,6 +45,7 @@ search-result{
     height:100px;
     margin : 20px 0;
     padding : 10px;
+    background-color: $lightFondColor;
 
     img.avatar{
       height:100%

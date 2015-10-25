@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('sidebars').directive('sidebarLayout', ['Authentication','$rootScope',
-	function(Authentication, $rootScope) {
+angular.module('sidebars').directive('sidebarLayout', ['Authentication','$rootScope','$http','$state',
+	function(Authentication, $rootScope, $http, $state) {
 		return {
 			restrict: 'E',
             controller : function($scope, $element){
@@ -11,9 +11,13 @@ angular.module('sidebars').directive('sidebarLayout', ['Authentication','$rootSc
                 }else{
                     $scope.isAuthenticated = false;
                 }
+                $scope.Authenticaton = Authentication;
 
                 $rootScope.$on('signed', function(event){
                     $scope.isAuthenticated = true;
+                });
+                $rootScope.$on('signout', function(event){
+                    $scope.isAuthenticated = false;
                 });
 
 
@@ -25,6 +29,21 @@ angular.module('sidebars').directive('sidebarLayout', ['Authentication','$rootSc
                 scope.showSidebar = 'main';
                 scope.changeSidebar = function(sidebarName){
                     scope.showSidebar = sidebarName;
+                };
+
+                scope.signout = function(){
+                    $http.get('/api/auth/signout');
+                    $rootScope.$emit('signout');
+                    $state.go('authentication.signin');
+                };
+
+                //Only for profile
+                scope.profileToggled = function(){
+                    if((scope.showSidebar !== 'profile' &&  document.getElementById('wrapper').className !== 'toggled') || (scope.showSidebar === 'profile')) {
+                        return true;
+                    }else{
+                        return false;
+                    }
                 };
 			}
 		};

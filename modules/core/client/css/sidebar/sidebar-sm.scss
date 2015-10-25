@@ -43,9 +43,16 @@
     }
   }
 
+  #wrapper.toggled{
+    #sidebar {
+      height : 120px;
+    }
+  }
 
   /*Search*/
   sidebar-search{
+    display : inline-block;
+
     .searchInput {
       display : inline-block;
       position : absolute;

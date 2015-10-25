@@ -1,23 +1,42 @@
-<sidebar-toggler ng-click="changeSidebar('main')"></sidebar-toggler>
-<form ng-submit="doSearch(filter)">
-    <div class="searchInput">
-        <input ng-model="filter.keyword">
-        <i data-ng-include="'modules/sidebars/icons/search.html'" ng-click="doSearch(filter)"></i>
+
+    <form ng-submit="doSearch(filter)" >
+
+    <div sm-layout="row">
+        <sidebar-toggler ng-click="changeSidebar('main')"></sidebar-toggler>
+        <div class="searchInput">
+            <input ng-model="filter.keyword">
+            <i data-ng-include="'modules/sidebars/icons/search.html'" ng-click="doSearch(filter)"></i>
+        </div>
     </div>
 
     <div hide-sm>
-        <md-switch ng-model="filter.category.school" aria-label="Switch 1">
-            School
-        </md-switch>
-        <md-switch ng-model="filter.category.user" aria-label="Switch 2">
+        <md-switch ng-model="filter.category.user" aria-label="Switch 1">
             User
+        </md-switch>
+        <md-switch ng-model="filter.category.school" aria-label="Switch 2">
+            School
         </md-switch>
         <md-switch ng-model="filter.category.game" aria-label="Switch 3">
             Game
         </md-switch>
     </div>
 
-</form>
+    <div hide-gt-sm layout="row">
+        <md-switch flex="30" ng-model="filter.category.user" aria-label="Switch 1">
+            User
+        </md-switch>
+        <md-switch flex="30" ng-model="filter.category.school" aria-label="Switch 2">
+            School
+        </md-switch>
+        <md-switch flex="30" ng-model="filter.category.game" aria-label="Switch 3">
+            Game
+        </md-switch>
+    </div>
+
+    </form>
+
+
+
 
 
 

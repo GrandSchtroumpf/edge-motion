@@ -6,6 +6,7 @@
 var _ = require('lodash'),
 	fs = require('fs'),
 	path = require('path'),
+    async = require('async'),
 	errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
 	mongoose = require('mongoose'),
 	passport = require('passport'),
@@ -90,11 +91,42 @@ exports.changeProfilePicture = function (req, res) {
 };
 
 /**
+  *  Update multiple users
+ */
+exports.updateMulti = function(req, res) {
+    var users = req.body;
+
+    async.each(users, function (user, callback) {
+        User.findById(user._id).exec(function (err, userToUpdate) {
+            // Merge existing user
+            _.merge(userToUpdate, user);
+            userToUpdate.updated = Date.now();
+            userToUpdate.save(function (err) {
+                if (err) {
+                    callback(err);
+                    return res.status(400).send();
+                } else {
+                    res.status(200).send();
+                }
+            });
+        });
+    });
+};
+
+/**
  * Send User
  */
 exports.me = function (req, res) {
     console.log('depuis user.profile.server.controller' + req);
 	res.json(req.user || null);
+};
+
+/**
+ * Show the current Profile
+ */
+exports.read = function(req, res) {
+	//FindOne is called in user.authorization.server.controller.js
+	res.jsonp(req.profile);
 };
 
 /*

@@ -8,10 +8,10 @@ search-engine {
   search-engine input {
     transition: box-shadow 300ms;
     background-color: rgba(120, 120, 120, 0.2);
-    border: 3px solid #787878;
+    border: none;
     color: black;
     font-size: 20px;
-    height: 50px;
+    height: 60px;
     width: 60%;
     padding: 0 20px; }
   search-engine input:hover, search-engine input:focus {
@@ -34,6 +34,7 @@ search-result {
     width: 80%;
     height: 100px;
     margin: 20px 0;
-    padding: 10px; }
+    padding: 10px;
+    background-color: #969696; }
     search-result md-content img.avatar {
       height: 100%; }

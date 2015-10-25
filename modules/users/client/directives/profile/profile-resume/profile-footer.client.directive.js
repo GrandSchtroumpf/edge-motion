@@ -3,7 +3,7 @@
 angular.module('users').directive('profileFooter', ['$rootScope','$state',
 	function($rootScope, $state) {
 		return {
-            templateUrl:'modules/users/views/profile/profile-footer.client.view.html',
+            templateUrl:'modules/users/views/profile/profile-resume/profile-footer.client.view.html',
             restrict: 'E',
 			link: function postLink(scope, element, attrs) {
 

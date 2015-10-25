@@ -8,7 +8,7 @@ var passport = require('passport');
 module.exports = function(app) {
 	// User Routes
 	var users = require('../controllers/users.server.controller');
-    var profile = require('../controllers/profile.server.controller');
+	var contacts = require('../controllers/contacts.server.controller');
 
 	// Setting up the users profile api
 	app.route('/api/users/me').get(users.me);
@@ -21,9 +21,15 @@ module.exports = function(app) {
 
     //Get profile logic
     app.route('/api/profile')
-        .put(profile.updateMulti);
+        .put(users.updateMulti);
     app.route('/api/profile/:userId').all()
-        .get(profile.read);
+        .get(users.read);
+
+    //Manage contact
+    app.route('/api/contacts')
+        .get(contacts.list)
+        .post(contacts.addContacts)
+        .put(contacts.acceptContact);
 
 	// Finish by binding the user middleware
 	app.param('userId', users.userByID);
