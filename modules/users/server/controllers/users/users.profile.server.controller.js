@@ -10,6 +10,7 @@ var _ = require('lodash'),
 	errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
 	mongoose = require('mongoose'),
 	passport = require('passport'),
+    School = mongoose.model('School'),
 	User = mongoose.model('User');
 
 /**
@@ -23,26 +24,15 @@ exports.update = function (req, res) {
 	delete req.body.roles;
 
 	if (user) {
-		// Merge existing user
-		user = _.extend(user, req.body);
-		user.updated = Date.now();
-		user.displayName = user.firstName + ' ' + user.lastName;
-
-		user.save(function (err) {
-			if (err) {
-				return res.status(400).send({
-					message: errorHandler.getErrorMessage(err)
-				});
-			} else {
-				req.login(user, function (err) {
-					if (err) {
-						res.status(400).send(err);
-					} else {
-						res.json(user);
-					}
-				});
-			}
-		});
+        user.updateThisUser(req.body, function(user){
+            req.login(user, function (err) {
+                if (err) {
+                    res.status(400).send(err);
+                } else {
+                    res.json(user);
+                }
+            });
+        });
 	} else {
 		res.status(400).send({
 			message: 'User is not signed in'
@@ -51,38 +41,15 @@ exports.update = function (req, res) {
 };
 
 /**
- * Update profile picture
+ * Function : Update profile picture
+ * Input : req.query = {avatar : avatar._id}
  */
 exports.changeProfilePicture = function (req, res) {
 	var user = req.user;
 	var message = null;
 
 	if (user) {
-		fs.writeFile('./modules/users/client/img/profile/uploads/' + req.files.file.name, req.files.file.buffer, function (uploadError) {
-			if (uploadError) {
-				return res.status(400).send({
-					message: 'Error occurred while uploading profile picture'
-				});
-			} else {
-				user.profileImageURL = 'modules/users/img/profile/uploads/' + req.files.file.name;
-
-				user.save(function (saveError) {
-					if (saveError) {
-						return res.status(400).send({
-							message: errorHandler.getErrorMessage(saveError)
-						});
-					} else {
-						req.login(user, function (err) {
-							if (err) {
-								res.status(400).send(err);
-							} else {
-								res.json(user);
-							}
-						});
-					}
-				});
-			}
-		});
+		user.changeAvatar(req.query.avatar);
 	} else {
 		res.status(400).send({
 			message: 'User is not signed in'
@@ -124,22 +91,94 @@ exports.me = function (req, res) {
 /**
  * Show the current Profile
  */
-exports.read = function(req, res) {
+exports.getUser = function(req, res) {
 	//FindOne is called in user.authorization.server.controller.js
 	res.jsonp(req.profile);
 };
 
-/*
-    List of users
+/**
+ *  Function : Get multiple user by
+ *  Input :
  */
-exports.list = function(req, res){
-    User.find()
-        .select('username profileImageURL')
-        .populate('').exec(function(err, users){
+exports.getUsersBy = function(req, res){
+    var keys = req.query.map(function(e){return Object.keys(e);});
+    async.parallel([
+        function(callback){
+            if(keys.indexOf('competencies') !== -1){
+                User.getUsersByCompetencies(req.query.competencies, function(result){
+                    return callback(result);
+                });
+            }
+        },
+        function(callback){
+            if(keys.indexOf('games') !== -1){
+                User.getUsersByGames(req.query.games, function(result){
+                    return callback(result);
+                });
+            }
+        },
+        function(callback){
+            if(keys.indexOf('schools') !== -1){
+                User.getUsersBySchools(req.query.schools, function(result){
+                    return callback(result);
+                });
+            }
+        },
+        function(callback){
+            if(keys.indexOf('school') !== -1){
+                User.getSimilarUsers(req.query.game, function(result){
+                    return callback(result);
+                });
+            }
+        }
+    ], function(err, result){
         if(err){
-            console.log(err);
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
         }else{
-            res.jsonp(users);
+            res.jsonp(result);
         }
     });
+};
+
+
+/**
+ *  Function : Ask the school to be Student or professor
+ *  Input : req.query = {student : boolean, professor : boolean, school : schoolId}
+ */
+exports.requestToSchool = function(req, res){
+    if(req.query.student){
+        School.findById(req.query.school).exec(function(err, school){
+            if(err){
+                console.log(err);
+            }else{
+                school.studentRequest.push(req.user._id);
+                school.save(function(err){
+                    if(err){
+                        console.log(err);
+                    }else{
+                        res.status(400);
+                    }
+                });
+            }
+        });
+    }else if(req.query.professor){
+        School.findById(req.query.school).exec(function(err, school){
+            if(err){
+                console.log(err);
+            }else{
+                school.professorRequest.push(req.user._id);
+                school.save(function(err){
+                    if(err){
+                        console.log(err);
+                    }else{
+                        res.status(400);
+                    }
+                });
+            }
+        });
+    }else{
+        res.status(200);
+    }
 };

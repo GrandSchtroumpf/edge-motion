@@ -4,8 +4,10 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-	Schema = mongoose.Schema,
-	crypto = require('crypto');
+    _ = require('lodash'),
+    crypto = require('crypto'),
+	Schema = mongoose.Schema;
+
 
 /**
  * A Validation function for local strategy properties
@@ -37,15 +39,6 @@ function hashPassword(clearPwd) {
 /**
  * SubSchema
  */
-var notificationSubSchema = new Schema({
-    sidemenu : {
-        type:String
-    },
-    count : {
-        type:Number,
-        default:0
-    }
-},{_id:false});
 
 var contactSubSchema = new Schema({
     user : {
@@ -55,8 +48,30 @@ var contactSubSchema = new Schema({
     state : {
         type:String,
         default:'Waiting'
+    },
+    friend : {
+        type: Boolean,
+        default : false
     }
 },{_id:false});
+
+var messageManagerSubSchema = new Schema({
+    Message : {
+        type : Schema.ObjectId,
+        ref : 'Message'
+    },
+    isViewed : {
+        type : Boolean,
+        default: false
+    },
+    importanceLevel : {
+        type : Number,
+        default : 0
+    }
+},{_id:false});
+
+
+
 
 /**
  * User Schema
@@ -78,92 +93,153 @@ var UserSchema = new Schema({
 		type: String,
 		trim: true
 	},
+    email: {
+        type: String,
+        trim: true,
+        default: '',
+        validate: [validateLocalStrategyProperty, 'Please fill in your email'],
+        match: [/.+\@.+\..+/, 'Please fill a valid email address']
+    },
 
-    notifications:[notificationSubSchema],
-    sidebars:{
-        profile:[{
-            type: Schema.ObjectId,
-            ref: 'Sidemenu'
+    password: {
+        type: String,
+        default: '',
+        validate: [validateLocalStrategyPassword, 'Password should be longer'],
+        set : hashPassword
+    },
+    salt: {
+        type: String
+    },
+
+    provider: {
+        type: String,
+        required: 'Provider is required'
+    },
+    providerData: {},
+    additionalProvidersData: {},
+    roles: {
+        type: [{
+            type: String,
+            enum: ['user', 'admin']
         }],
-        search:[{
-            type: Schema.ObjectId,
-            ref: 'Sidemenu'
-        }]
+        default: ['user']
+    },
+    updated: {
+        type: Date
+    },
+    created: {
+        type: Date,
+        default: Date.now
+    },
+    /* For reset password */
+    resetPasswordToken: {
+        type: String
+    },
+    resetPasswordExpires: {
+        type: Date
     },
 
     chatchannels :[{
         type:Schema.ObjectId,
         ref:'ChatChannel'
     }],
-    contacts :[contactSubSchema],
-    messages :{
-        sended:[{
-            type:Schema.ObjectId,
-            ref : 'Message'
+
+    players : [{
+        type : Schema.ObjectId,
+        ref : 'Player'
+    }],
+    schools : [{
+        type : Schema.ObjectId,
+        ref : 'School'
+    }],
+
+    profile : {
+        username: {
+            type: String,
+            unique: 'testing error message',
+            required: 'Please fill in a username',
+            trim: true
+        },
+        gender:{
+            type : String,
+            required: 'Please choose a gender'
+        },
+        competencies : [{
+            type : Schema.ObjectId,
+            ref: 'Competency'
         }],
-        incoming:[{
-            type:Schema.ObjectId,
-            ref : 'Message'
-        }]
+        avatar: {
+            type: Schema.ObjectId,
+            ref : 'Avatar'
+        },
+        level :{
+            type : Number
+        },
+        experience : {
+            type : Number
+        }
     },
 
+    contacts :[contactSubSchema],
+    messagesManager : [messageManagerSubSchema]
 
 
-	email: {
-		type: String,
-		trim: true,
-		default: '',
-		validate: [validateLocalStrategyProperty, 'Please fill in your email'],
-		match: [/.+\@.+\..+/, 'Please fill a valid email address']
-	},
-	username: {
-		type: String,
-		unique: 'testing error message',
-		required: 'Please fill in a username',
-		trim: true
-	},
-	password: {
-		type: String,
-		default: '',
-		validate: [validateLocalStrategyPassword, 'Password should be longer'],
-        set : hashPassword
-	},
-	salt: {
-		type: String
-	},
-	profileImageURL: {
-		type: String,
-		default: 'modules/users/img/profile/default.png'
-	},
-	provider: {
-		type: String,
-		required: 'Provider is required'
-	},
-	providerData: {},
-	additionalProvidersData: {},
-	roles: {
-		type: [{
-			type: String,
-			enum: ['user', 'admin']
-		}],
-		default: ['user']
-	},
-	updated: {
-		type: Date
-	},
-	created: {
-		type: Date,
-		default: Date.now
-	},
-	/* For reset password */
-	resetPasswordToken: {
-		type: String
-	},
-  	resetPasswordExpires: {
-  		type: Date
-  	}
+
+
 });
 
+
+/**
+ * Function : update this user
+ * Input : user content
+ * Output : updated User
+ */
+UserSchema.methods.updateThisUser = function(user, callback){
+    var self = this;
+    self = _.extend(self , user);
+    self.updated = Date.now();
+    self.displayName = user.firstName + ' ' + user.lastName;
+
+    self.save(function(err, user){
+        if(err) {
+            console.log(err);
+        }else{
+            callback(user);
+        }
+    });
+};
+
+/**
+ * Function : change the avatar of the user and update
+ * Input : Avatar Id
+ * Output : none
+ */
+UserSchema.methods.changeAvatar = function(avatarId){
+    this.profile.avatar = avatarId;
+    this.updated = Date.now();
+    this.save();
+};
+
+/**
+ *   Function : add a player / message to the user and update
+ *   Input : one player
+ *   Output : none
+ */
+UserSchema.methods.addPlayer = function(playerId){
+    this.players.push(playerId);
+    this.updated = Date.now();
+    this.save();
+};
+UserSchema.methods.addMessage = function(messageId){
+    var messageManager = {
+        message : messageId,
+        isViewed : false,
+        importantanceLevel : 0
+    };
+    this.messagesManager.push(messageManager);
+    this.updated = Date.now();
+    this.save();
+};
 
 /**
  * Create instance method for hashing a password
@@ -205,4 +281,46 @@ UserSchema.statics.findUniqueUsername = function(username, suffix, callback) {
 	});
 };
 
+/**
+ *   Function : get users that have at least one of the competencies / schools / player
+ *   Input :  Array of competencies / of schools / of player.user_id
+ *   Output : array of user
+ */
+UserSchema.methods.getUsersByCompetencies = function(competenciesId, callback){
+    return this.model('User').find({ competencies : {$in : competenciesId}})
+        .select('profile')
+        .exec(callback);
+};
+
+
+UserSchema.methods.getUsersByGames = function(gamesId, callback){
+    return this.model('User').find({games : {$in : gamesId}})
+        .select('profile')
+        .exec(callback);
+};
+
+
+UserSchema.methods.getUsersBySchools = function(schoolId, callback){
+    return this.model('User').find({ schools : {$in : schoolId}})
+        .select('profile')
+        .exec(callback);
+};
+
+/**
+ *   Function : get users that have similar competencies or games that the input user
+ *   Input : one user
+ *   Output : array of users
+ */
+UserSchema.methods.getSimilarUsers = function(user, callback){
+    return this.model('School').find({
+        $or : [{
+            competencies: {$in: user.competencies},
+            games: {$in: user.games}
+        }]
+    })
+        .select('profile')
+        .exec(callback);
+};
+
 mongoose.model('User', UserSchema);
+

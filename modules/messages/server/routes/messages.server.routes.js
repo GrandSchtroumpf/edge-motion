@@ -6,13 +6,12 @@ module.exports = function(app) {
 
 	// Messages Routes
 	app.route('/api/messages').all()
-		.get(messages.list).all(messagesPolicy.isAllowed)
-		.post(messages.create);
+		.get(messages.getMyMessages).all(messagesPolicy.isAllowed)
+		.post(messages.createMessage);
 
 	app.route('/api/messages/:messageId').all(messagesPolicy.isAllowed)
-		.get(messages.read)
-		.put(messages.update)
-		.delete(messages.delete);
+		.get(messages.getMessage)
+		.delete(messages.deleteMessage);
 
 	// Finish by binding the Message middleware
 	app.param('messageId', messages.messageByID);

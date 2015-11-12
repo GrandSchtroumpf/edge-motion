@@ -28,11 +28,6 @@ var MessageSchema = new Schema({
         required: 'Please fill Message userRecipient',
         trim: true
     }],
-    userCopy : [{
-        type: Schema.ObjectId,
-        ref: 'User',
-        trim: true
-    }],
     subject: {
         type: String,
         default: ''
@@ -40,10 +35,6 @@ var MessageSchema = new Schema({
     content: {
         type: String,
         default: ''
-    },
-    viewed: {
-        type: Boolean,
-        default: false
     }
 });
 

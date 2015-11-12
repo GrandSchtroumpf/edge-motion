@@ -6,13 +6,12 @@ module.exports = function(app) {
 
 	// Sidebars Routes
 	app.route('/api/sidebars').all()
-		.get(sidebars.list).all(sidebarsPolicy.isAllowed)
-		.post(sidebars.create);
+		.post(sidebars.createSidebar);
 
 	app.route('/api/sidebars/:sidebarId').all(sidebarsPolicy.isAllowed)
-		.get(sidebars.read)
-		.put(sidebars.update)
-		.delete(sidebars.delete);
+		.get(sidebars.getSidebar)
+		.put(sidebars.updateSidebar)
+		.delete(sidebars.deleteSidebar);
 
 	// Finish by binding the Sidebar middleware
 	app.param('sidebarId', sidebars.sidebarByID);

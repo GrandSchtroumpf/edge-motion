@@ -14,6 +14,13 @@ angular.module('users').config(['$stateProvider',
                     user : function(Profile, $stateParams){
                         return Profile.get($stateParams.userId);
                     }
+                    /*,
+					contacts : function(Authentication, $http){
+                        return $http({method :'GET', url : 'api/contacts', params : {userId : Authentication.user._id}}).then(function(result){
+                            return(result.data);
+                        });
+					}
+                    */
                 }
             }).
                 state('profile.resume', {
@@ -32,6 +39,10 @@ angular.module('users').config(['$stateProvider',
 					url : '/contacts',
 					template : '<profile-contacts></profile-contacts>'
 				}).
+                state('profile.contacts-edit', {
+                    url : '/contacts-edit',
+                    template : '<profile-contacts-edit></profile-contacts-edit>'
+                }).
 
 
 

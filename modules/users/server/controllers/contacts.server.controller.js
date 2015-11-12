@@ -47,7 +47,15 @@ function removeContactFromUser(contactId, userId){
  *  Get list of contacts
  */
 exports.list = function(req, res){
-
+    var userId = req.query.userId;
+    User.findOne({_id: userId}).populate('contacts.user', '_id displayName username').exec(function(err, user){
+        if(err){
+            console.log(err);
+        }else{
+            var contacts = user.contacts.map(function(element){return element.user;});
+            res.jsonp(contacts);
+        }
+    });
 };
 
 

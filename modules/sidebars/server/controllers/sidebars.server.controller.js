@@ -12,7 +12,7 @@ var _ = require('lodash'),
 /**
  * Create a Sidebar
  */
-exports.create = function(req, res) {
+exports.createSidebar = function(req, res) {
 	var sidebar = new Sidebar(req.body);
 	sidebar.user = req.user;
 
@@ -30,14 +30,14 @@ exports.create = function(req, res) {
 /**
  * Show the current Sidebar
  */
-exports.read = function(req, res) {
+exports.getSidebar = function(req, res) {
 	res.jsonp(req.sidebar);
 };
 
 /**
  * Update a Sidebar
  */
-exports.update = function(req, res) {
+exports.updateSidebar = function(req, res) {
 	var sidebar = req.sidebar ;
 
 	sidebar = _.extend(sidebar , req.body);
@@ -56,7 +56,7 @@ exports.update = function(req, res) {
 /**
  * Delete an Sidebar
  */
-exports.delete = function(req, res) {
+exports.deleteSidebar = function(req, res) {
 	var sidebar = req.sidebar ;
 
 	sidebar.remove(function(err) {
@@ -66,20 +66,6 @@ exports.delete = function(req, res) {
 			});
 		} else {
 			res.jsonp(sidebar);
-		}
-	});
-};
-
-/**
- * List of Sidebars
- */
-exports.list = function(req, res) { Sidebar.find().sort('-created').populate('user', 'displayName').exec(function(err, sidebars) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(sidebars);
 		}
 	});
 };

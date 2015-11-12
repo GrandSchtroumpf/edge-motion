@@ -45,6 +45,7 @@ angular.module('sidebars').directive('sidebarLayout', ['Authentication','$rootSc
                         return false;
                     }
                 };
+
 			}
 		};
 	}

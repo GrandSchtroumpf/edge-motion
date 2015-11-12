@@ -13,6 +13,7 @@ angular.module('users').controller('AuthenticationController', ['$rootScope','$s
 			$http.post('/api/auth/signup', $scope.newUser).success(function(response) {
 				// If successful we assign the response to the global user models
                 window.user = response;
+				Authentication.changeUser();
 				// And redirect to the index page
                 $state.go('profile.resume', {userId:response._id}, {reload: true});
                 $rootScope.$emit('signed');
@@ -25,6 +26,7 @@ angular.module('users').controller('AuthenticationController', ['$rootScope','$s
 			$http.post('/api/auth/signin', $scope.credentials).success(function(response) {
 				// If successful we assign the response to the global user models
 				window.user = response;
+				Authentication.changeUser();
 				// And redirect to the index page
                 $state.go('profile.resume', {userId:response._id}, {reload: true});
                 $rootScope.$emit('signed');

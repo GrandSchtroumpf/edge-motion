@@ -7,6 +7,7 @@ angular.module('users').directive('profilePage', ['Authentication','$state',
 			link: function postLink(scope, element, attrs) {
 
 				scope.Authentication = Authentication;
+                console.log(scope.Authentication);
 
                 scope.editMode = function(){
                     var currentName = $state.current.name;

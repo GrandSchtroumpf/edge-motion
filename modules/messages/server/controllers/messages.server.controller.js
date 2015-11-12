@@ -6,6 +6,7 @@
 var _ = require('lodash'),
 	path = require('path'),
 	mongoose = require('mongoose'),
+    async = require('async'),
 	Message = mongoose.model('Message'),
 	User = mongoose.model('User'),
 	errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
@@ -13,16 +14,28 @@ var _ = require('lodash'),
 /**
  * Create a Message
  */
-exports.create = function(req, res) {
+exports.createMessage = function(req, res) {
 	var message = new Message(req.body);
 
-	message.save(function(err) {
+	message.save(function(err, message) {
 		if (err) {
             console.log(err);
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
+            var messageUsers = message.userSender.concat(message.userRecipient);
+			//Add message to Reciepients and sender
+            async.each(messageUsers, function(userId){
+                User.findById(userId).exec(function(err, user){
+                    if(err){
+                        console.log(err);
+                    }else{
+                        user.addMessage(message._id);
+                    }
+                });
+            });
+
 			res.jsonp(message);
 		}
 	});
@@ -31,33 +44,14 @@ exports.create = function(req, res) {
 /**
  * Show the current Message
  */
-exports.read = function(req, res) {
+exports.getMessage = function(req, res) {
 	res.jsonp(req.message);
-};
-
-/**
- * Update a Message
- */
-exports.update = function(req, res) {
-	var message = req.message ;
-
-	message = _.extend(message , req.body);
-
-	message.save(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(message);
-		}
-	});
 };
 
 /**
  * Delete an Message
  */
-exports.delete = function(req, res) {
+exports.deleteMessage = function(req, res) {
 	var message = req.message ;
 
 	message.remove(function(err) {
@@ -74,9 +68,9 @@ exports.delete = function(req, res) {
 /**
  * List of Messages
  */
-exports.list = function(req, res) {
+exports.getMyMessages = function(req, res) {
     Message.find({
-        $or:[{userCopy : req.user._id}, {userRecipient : req.user._id}, {userSender : req.user._id}]
+        $or:[{userRecipient : req.user._id}, {userSender : req.user._id}]
     }).populate('userRecipient userCopy userSender', 'displayName')
         .exec(function(err, messages){
         if(err){

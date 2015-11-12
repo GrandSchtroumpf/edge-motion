@@ -14,7 +14,7 @@ module.exports = function(app) {
 	app.route('/api/users/me').get(users.me);
 	app.route('/api/users')
         .put(users.update)
-        .get(users.list);
+        .get(users.getUsersBy);
 	app.route('/api/users/accounts').delete(users.removeOAuthProvider);
 	app.route('/api/users/password').post(users.changePassword);
 	app.route('/api/users/picture').post(users.changeProfilePicture);
@@ -23,7 +23,7 @@ module.exports = function(app) {
     app.route('/api/profile')
         .put(users.updateMulti);
     app.route('/api/profile/:userId').all()
-        .get(users.read);
+        .get(users.getUser);
 
     //Manage contact
     app.route('/api/contacts')
