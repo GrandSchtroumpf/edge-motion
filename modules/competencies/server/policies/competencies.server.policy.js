@@ -49,7 +49,7 @@ exports.isAllowed = function(req, res, next) {
 	var roles = (req.user) ? req.user.roles : ['guest'];
 
 	// If an competency is being processed and the current user created it then allow any manipulation
-	if (req.competency && req.user && req.competency.user.id === req.user.id) {
+	if (req.competency && req.user && req.user.roles.indexOf('admin')!== -1) {
 		return next();
 	}
 

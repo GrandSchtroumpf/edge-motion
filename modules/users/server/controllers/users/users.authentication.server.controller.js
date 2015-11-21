@@ -10,6 +10,7 @@ var _ = require('lodash'),
 	mongoose = require('mongoose'),
 	passport = require('passport'),
 	User = mongoose.model('User'),
+    Avatar = mongoose.model('Avatar'),
 	Sidemenu = mongoose.model('Sidemenu');
 
 /**
@@ -17,7 +18,7 @@ var _ = require('lodash'),
  */
 exports.signup = function(req, res) {
 	// For security measurement we remove the roles from the req.body object
-	delete req.body.roles;
+	//delete req.body.roles;
 
 	// Init Variables
 	var user = new User(req.body);
@@ -26,6 +27,25 @@ exports.signup = function(req, res) {
 	// Add missing user fields
 	user.provider = 'local';
 	user.displayName = user.firstName + ' ' + user.lastName;
+
+    //Add picture
+    if(user.profile.gender === 'F'){
+        Avatar.findOne({$and : [{level : 0}, {gender : 'F'}, {name : 'default'}]}, function(err, avatar){
+            if(err){
+                console.log(err);
+            }else{
+                user.profile.avatar = avatar._id;
+            }
+        });
+    } else if(user.profile.gender === 'M'){
+        Avatar.findOne({$and : [{level : 0}, {gender : 'M'}, {name : 'default'}]}, function(err, avatar){
+            if(err){
+                console.log(err);
+            }else{
+                user.profile.avatar = avatar._id;
+            }
+        });
+    }
 
 
     //Sidebars

@@ -26,12 +26,24 @@ var AvatarSchema = new Schema({
 	}],
 	level : {
 		type : Number,
-		default : 0
+		default : 0,
+		required : 'Please fill level'
+	},
+	gender : {
+		type : String,
+		required : 'Please fill gender'
 	},
     link : {
         type : String,
         default : 'modules/avatars/img/F/0/default.jpg'
-    }
+    },
+	use : {
+		type : {
+			type : String,
+			enum : ['profile', 'player']
+		},
+		default : ['profile', 'player']
+	}
 });
 
 mongoose.model('Avatar', AvatarSchema);

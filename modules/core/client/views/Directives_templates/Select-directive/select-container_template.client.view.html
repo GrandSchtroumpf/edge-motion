@@ -1,0 +1,17 @@
+<div layout="column" tabindex="0"  ng-blur="onFocus = false" ng-class="{'dropDown' : onFocus}" class="select-container">
+    <div class="search" layout="row" >
+        <ul class="result-list">
+            <li ng-repeat="result in results">
+                <select-result></select-result>
+            </li>
+        </ul>
+
+        <input ng-focus="addFocus()" type="text"/>
+    </div>
+
+    <div class="select-content" layout="row" data-ng-show="onFocus">
+        <ul ng-transclude>
+            <!-- Ici select-option -->
+        </ul>
+    </div>
+</div>

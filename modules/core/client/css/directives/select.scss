@@ -1,0 +1,63 @@
+@import '../mainTheme';
+
+.select-container{
+  display : block;
+  width: 90%;
+  min-height : 30px;
+  border : 2px solid black;
+  background-color : $lightFondColor;
+
+  .search {
+    display : block;
+    width : 100%;
+
+    .result-list{
+      list-style: none;
+      display : inline-block;
+
+      li{
+        display : inline-block;
+        margin : 3px;
+
+        select-result{
+          padding : 5px;
+        }
+      }
+
+
+    }
+    input{
+      display: inline-block;
+      min-width : 30%;
+      border : none;
+      background-color : $lightFondColor;
+    }
+    input:focus{
+      outline-width: 0; //disable chrome blue outline
+    }
+  }
+}
+
+.select-container.dropDown {
+  max-height: 150px;
+
+  .select-content{
+    max-height : 120px;
+    overflow : auto;
+
+    ul{
+      padding : 10px;
+      width : 100%;
+      list-style: none;
+
+      li{
+        width : 100%;
+        display : block;
+
+      }
+      li:hover {
+        background-color: $darkBackground;
+      }
+    }
+  }
+}

@@ -74,7 +74,7 @@ exports.deleteAvatar = function(req, res) {
  * List of Avatars
  */
 exports.getAvatarBy = function(req, res) {
-	Avatar.find().sort('-created').populate('user', 'displayName').exec(function(err, avatars) {
+	Avatar.find().sort('-created').exec(function(err, avatars) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -88,7 +88,7 @@ exports.getAvatarBy = function(req, res) {
 /**
  * Avatar middleware
  */
-exports.avatarByID = function(req, res, next, id) { Avatar.findById(id).populate('user', 'displayName').exec(function(err, avatar) {
+exports.avatarByID = function(req, res, next, id) {	Avatar.findById(id).exec(function(err, avatar) {
 		if (err) return next(err);
 		if (! avatar) return next(new Error('Failed to load Avatar ' + id));
 		req.avatar = avatar ;

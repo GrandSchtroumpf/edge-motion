@@ -21,6 +21,10 @@ var PlayerSchema = new Schema({
 		type : Schema.ObjectId,
 		ref : 'Game'
 	},
+    avatar : {
+        type : Schema.ObjectId,
+        ref : 'Avatar'
+    },
 	competencies : [{
 		type : Schema.ObjectId,
 		ref : 'Competency'

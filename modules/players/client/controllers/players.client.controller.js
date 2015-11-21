@@ -1,9 +1,22 @@
 'use strict';
 
 // Players controller
-angular.module('players').controller('PlayersController', ['$scope', '$stateParams', '$location', 'Authentication', 'Players',
-	function($scope, $stateParams, $location, Authentication, Players ) {
+angular.module('players').controller('PlayersController', ['$scope', '$stateParams', '$location', 'Authentication', 'Players','avatars','competencies','games',
+	function($scope, $stateParams, $location, Authentication, Players, avatars, competencies, games ) {
 		$scope.authentication = Authentication;
+        $scope.avatars = avatars;
+        $scope.competencies = competencies;
+        $scope.games = games;
+
+        $scope.playerTemplate = {
+            game : '',
+            avatars : []
+        };
+
+        //Add avatar to the template
+        $scope.addAvatar = function(avatar){
+            $scope.playerTemplate.avatars.push(avatar._id);
+        };
 
 		// Create new Player
 		$scope.create = function() {
@@ -21,6 +34,10 @@ angular.module('players').controller('PlayersController', ['$scope', '$statePara
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
+		};
+
+		$scope.createTemplate = function(){
+			console.log('bob');
 		};
 
 		// Remove existing Player
@@ -48,11 +65,6 @@ angular.module('players').controller('PlayersController', ['$scope', '$statePara
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
-		};
-
-		// Find a list of Players
-		$scope.find = function() {
-			$scope.players = Players.query();
 		};
 
 		// Find existing Player

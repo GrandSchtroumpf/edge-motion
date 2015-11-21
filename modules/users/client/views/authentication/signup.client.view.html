@@ -2,20 +2,26 @@
 
     <div layout="row" layout-align="center center">
         <woman-choice flex="40"></woman-choice>
-        <input type="radio" flex="10" data-ng-model="newUser.gender" ng-value="'female'"></input>
-        <input type="radio" flex="10" data-ng-model="newUser.gender" ng-value="'male'"></input>
+        <input type="radio" flex="10" data-ng-model="newUser.profile.gender" ng-value="'female'"/>
+        <input type="radio" flex="10" data-ng-model="newUser.profile.gender" ng-value="'male'"/>
         <man-choice flex="40"></man-choice>
     </div>
 
     <div layout="row" layout-sm="column" layout-align="space-around center">
-        <input type="text" required placeholder="First Name" name="firstName" data-ng-model="newUser.firstName" flex="40" flex-sm="100">
-        <input type="text" placeholder="Last Name" name="lastName" data-ng-model="newUser.lastName" flex="40" flex-sm="100">
+        <input type="text" required placeholder="First Name" name="firstName" data-ng-model="newUser.firstName" flex="40" flex-sm="100"/>
+        <input type="text" placeholder="Last Name" name="lastName" data-ng-model="newUser.lastName" flex="40" flex-sm="100"/>
     </div><br/>
 
     <div layout="column" layout-align="center center">
-        <input type="email" placeholder="email" name="email" data-ng-model="newUser.email">
-        <input type="text" placeholder="username" name="username" data-ng-model="newUser.username">
-        <input type="password" placeholder="password" name="password" data-ng-model="newUser.password">
+        <input type="email" placeholder="email" name="email" data-ng-model="newUser.email"/>
+        <input type="text" placeholder="username" name="username" data-ng-model="newUser.profile.username"/>
+        <input type="password" placeholder="password" name="password" data-ng-model="newUser.password"/>
+    </div>
+
+    <div layout="row" layout-align="space-around center">
+        <span><input type="checkbox" checklist-model="newUser.roles" checklist-value="'user'"/><h4>User</h4></span>
+        <span><input type="checkbox" checklist-model="newUser.roles" checklist-value="'professor'"/><h4>Professor</h4></span>
+        <span><input type="checkbox" checklist-model="newUser.roles" checklist-value="'admin'"/><h4>Admin</h4></span>
     </div>
 
 	<div layout="row" layout-align="center center">

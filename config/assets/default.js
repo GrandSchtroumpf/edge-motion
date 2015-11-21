@@ -19,6 +19,7 @@ module.exports = {
 				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
 				'public/lib/angular-file-upload/angular-file-upload.js',
+				'public/lib/checklist-model/checklist-model.js',
 
                 'public/lib/snap.svg/dist/snap.svg.js',
                 'public/lib/gsap/src/uncompressed/plugins/SnapPlugin.js',

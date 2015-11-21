@@ -22,10 +22,19 @@ exports.invokeRolesPolicies = function() {
 			permissions: '*'
 		}]
 	}, {
-		roles: ['user'],
+		roles: ['professor'],
 		allows: [{
 			resources: '/api/players',
 			permissions: ['get', 'post']
+		}, {
+			resources: '/api/players/:playerId',
+			permissions: ['get']
+		}]
+	},{
+		roles: ['user'],
+		allows: [{
+			resources: '/api/players',
+			permissions: ['get']
 		}, {
 			resources: '/api/players/:playerId',
 			permissions: ['get']

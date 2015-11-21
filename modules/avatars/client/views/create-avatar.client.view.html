@@ -1,23 +1,28 @@
-<section data-ng-controller="AvatarsController">
+<section>
     <div class="page-header">
         <h1>New Avatar</h1>
     </div>
-    <div class="col-md-12">
-        <form class="form-horizontal" data-ng-submit="create()" novalidate>
-            <fieldset>
-                <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Name" required>
-                    </div>
+    <form layout="row" layout-align="center center" data-ng-submit="create()" novalidate>
+        <fieldset flex="20">
+            <div layout="column">
+                <input flex="60" type="text" data-ng-model="name" placeholder="Name" required><br/>
+                <input flex="60" type="number" min="0" max="10" data-ng-model="level" placeholder="Level"><br/>
+                <div>
+                    M : <input type="radio" name="gender" data-ng-model="gender" value="M"/>
+                    F : <input type="radio" name="gender" data-ng-model="gender" value="F"/>
                 </div>
-                <div class="form-group">
-                    <input type="submit" class="btn btn-default">
+                <div flex="60" layout="row" layout-align="space-around center">
+                    <span><input type="checkbox" checklist-model="use" checklist-value="'profile'"/><h4>Profile</h4></span>
+                    <span><input type="checkbox" checklist-model="use" checklist-value="'player'"/><h4>Player</h4></span>
                 </div>
-				<div data-ng-show="error" class="text-danger">
-					<strong data-ng-bind="error"></strong>
-				</div>
-            </fieldset>
-        </form>
-    </div>
+
+            </div>
+            <div>
+                <input type="submit" class="btn btn-default">
+            </div>
+            <div data-ng-show="error" class="text-danger">
+			    <strong data-ng-bind="error"></strong>
+			</div>
+        </fieldset>
+    </form>
 </section>

@@ -25,7 +25,7 @@ exports.invokeRolesPolicies = function() {
 		roles: ['user'],
 		allows: [{
 			resources: '/api/avatars',
-			permissions: ['get', 'post']
+			permissions: ['get']
 		}, {
 			resources: '/api/avatars/:avatarId',
 			permissions: ['get']
@@ -48,8 +48,8 @@ exports.invokeRolesPolicies = function() {
 exports.isAllowed = function(req, res, next) {
 	var roles = (req.user) ? req.user.roles : ['guest'];
 
-	// If an avatar is being processed and the current user created it then allow any manipulation
-	if (req.avatar && req.user && req.avatar.user.id === req.user.id) {
+	// If admin
+	if (req.avatar && req.user && req.user.roles.indexOf('admin')!== -1) {
 		return next();
 	}
 

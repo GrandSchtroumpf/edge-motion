@@ -1,64 +1,44 @@
 'use strict';
 
 // Avatars controller
-angular.module('avatars').controller('AvatarsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Avatars',
-	function($scope, $stateParams, $location, Authentication, Avatars ) {
+angular.module('avatars').controller('AvatarsController', ['$scope', '$state', 'Authentication', 'Avatars', 'avatars',
+	function($scope, $state, Authentication, Avatars, avatars ) {
 		$scope.authentication = Authentication;
 
 		// Create new Avatar
 		$scope.create = function() {
 			// Create new Avatar object
 			var avatar = new Avatars ({
-				name: this.name
+				name: this.name,
+                gender : this.gender,
+                level : this.level,
+                link : 'modules/avatars/img/'+this.gender+'/'+this.level+'/'+this.name+'.jpg',
+				use : this.use
 			});
 
 			// Redirect after save
 			avatar.$save(function(response) {
-				$location.path('avatars/' + response._id);
+				$state.go('thisAvatar.view', {avatarId : response._id});
 
 				// Clear form fields
 				$scope.name = '';
+				$scope.level = 0;
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
 		};
 
-		// Remove existing Avatar
-		$scope.remove = function( avatar ) {
-			if ( avatar ) { avatar.$remove();
 
-				for (var i in $scope.avatars ) {
-					if ($scope.avatars [i] === avatar ) {
-						$scope.avatars.splice(i, 1);
-					}
-				}
-			} else {
-				$scope.avatar.$remove(function() {
-					$location.path('avatars');
-				});
-			}
-		};
 
-		// Update existing Avatar
-		$scope.update = function() {
-			var avatar = $scope.avatar ;
-
-			avatar.$update(function() {
-				$location.path('avatars/' + avatar._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
-
-		// Find a list of Avatars
-		$scope.find = function() {
-			$scope.avatars = Avatars.query();
-		};
+		// Find a list of Avatarsm
+        $scope.avatarsFemale = avatars.filter(function(item){return item.gender === 'F';});
+		$scope.avatarsMale = avatars.filter(function(item){return item.gender === 'M';});
 
 		// Find existing Avatar
 		$scope.findOne = function() {
-			$scope.avatar = Avatars.get({ 
-				avatarId: $stateParams.avatarId
+            console.log($state.params.avatarId);
+			$scope.avatar= Avatars.get({
+				avatarId: $state.params.avatarId
 			});
 		};
 	}

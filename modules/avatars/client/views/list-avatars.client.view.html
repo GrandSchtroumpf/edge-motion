@@ -1,16 +1,31 @@
-<section data-ng-controller="AvatarsController" data-ng-init="find()">
-    <div class="page-header">
-        <h1>Avatars</h1>
-    </div>
-    <div class="list-group">
-        <a data-ng-repeat="avatar in avatars" data-ng-href="/#!/avatars/{{avatar._id}}" class="list-group-item">
+<div class="page-header">
+    <h1>Avatars</h1>
+</div>
+
+<section layout="row">
+    <div flex="50">
+        <!-- Female avatars-->
+        <a data-ng-repeat="avatar in avatarsFemale" ui-sref="thisAvatar.view({avatarId : avatar._id})">
+            <img  src="{{avatar.link}}"/>
 			<small class="list-group-item-text">
 				Posted on
 				<span data-ng-bind="avatar.created | date:'medium'"></span>
 				by
 				<span data-ng-bind="avatar.user.displayName"></span>
 			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="avatar.name"></h4>
+        </a>
+    </div>
+
+    <div flex="50">
+        <!-- Male avatars-->
+        <a data-ng-repeat="avatar in avatarsMale" ui-sref="thisAvatar.view({avatarId : avatar._id})">
+            <img  src="{{avatar.link}}"/>
+            <small class="list-group-item-text">
+                Posted on
+                <span data-ng-bind="avatar.created | date:'medium'"></span>
+                by
+                <span data-ng-bind="avatar.user.displayName"></span>
+            </small>
         </a>
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!avatars.$resolved || avatars.length">
