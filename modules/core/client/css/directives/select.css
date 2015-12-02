@@ -34,6 +34,7 @@
       list-style: none; }
       .select-container.dropDown .select-content ul li {
         width: 100%;
-        display: block; }
+        display: block;
+        cursor: pointer; }
       .select-container.dropDown .select-content ul li:hover {
         background-color: #323232; }

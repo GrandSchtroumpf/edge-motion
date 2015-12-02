@@ -10,8 +10,10 @@
     </div>
 
     <div class="select-content" layout="row" data-ng-show="onFocus">
-        <ul ng-transclude>
-            <!-- Ici select-option -->
+        <ul >
+            <li ng-repeat="data in datas" ng-transclude>
+                <!-- Ici select-option -->
+            </li>
         </ul>
     </div>
 </div>
