@@ -24,40 +24,39 @@ exports.signup = function(req, res) {
 	var user = new User(req.body);
 	var message = null;
 
-	// Add missing user fields
-	user.provider = 'local';
-	user.displayName = user.firstName + ' ' + user.lastName;
+    async.parallel([
+        // Add missing user fields
+        function(callback){
+            user.provider = 'local';
+            user.displayName = user.firstName + ' ' + user.lastName;
+            callback();
+        },
 
-    //Add picture
-    if(user.profile.gender === 'F'){
-        Avatar.findOne({$and : [{level : 0}, {gender : 'F'}, {name : 'default'}]}, function(err, avatar){
-            if(err){
-                console.log(err);
-            }else{
-                user.profile.avatar = avatar._id;
+        //Add picture
+        function(callback){
+            if(user.profile.gender === 'female'){
+                Avatar.findOne({$and : [{level : 0}, {gender : 'F'}, {name : 'default'}]}, function(err, avatar){
+                    if(err){
+                        console.log(err);
+                    }else{
+                        user.profile.avatar = avatar._id;
+                        callback();
+                    }
+                });
+            } else if(user.profile.gender === 'male'){
+                Avatar.findOne({$and : [{level : 0}, {gender : 'M'}, {name : 'default'}]}, function(err, avatar){
+                    if(err){
+                        console.log(err);
+                    }else{
+                        user.profile.avatar = avatar._id;
+                        callback();
+                    }
+                });
             }
-        });
-    } else if(user.profile.gender === 'M'){
-        Avatar.findOne({$and : [{level : 0}, {gender : 'M'}, {name : 'default'}]}, function(err, avatar){
-            if(err){
-                console.log(err);
-            }else{
-                user.profile.avatar = avatar._id;
-            }
-        });
-    }
+        }
 
-
-    //Sidebars
-    Sidemenu.createUserSidebar(function(sidebars){
-        user.sidebars = sidebars;
-        save();
-    });
-
-
-
-    function save(){
-        // Then save the user
+        //Then save
+    ], function(err, result){
         user.save(function(err) {
             if (err) {
                 return res.status(400).send({
@@ -79,7 +78,8 @@ exports.signup = function(req, res) {
                 });
             }
         });
-    }
+    });
+
 
 };
 
@@ -117,6 +117,13 @@ exports.signin = function(req, res, next) {
 exports.signout = function(req, res) {
 	req.logout();
 	res.jsonp(req.user);
+};
+
+/**
+ * Check is connected
+ */
+exports.isConnected = function(req, res){
+    res.jsonp(req.user);
 };
 
 /**

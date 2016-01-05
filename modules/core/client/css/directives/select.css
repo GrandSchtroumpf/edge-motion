@@ -8,8 +8,8 @@
     display: block;
     width: 100%; }
     .select-container .search .result-list {
-      list-style: none;
-      display: inline-block; }
+      display: inline-block;
+      list-style: none; }
       .select-container .search .result-list li {
         display: inline-block;
         margin: 3px; }

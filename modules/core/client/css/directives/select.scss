@@ -12,8 +12,8 @@
     width : 100%;
 
     .result-list{
-      list-style: none;
       display : inline-block;
+      list-style: none;
 
       li{
         display : inline-block;
@@ -23,9 +23,8 @@
           padding : 5px;
         }
       }
-
-
     }
+
     input{
       display: inline-block;
       min-width : 30%;

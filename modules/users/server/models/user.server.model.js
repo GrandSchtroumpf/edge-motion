@@ -49,9 +49,9 @@ var contactSubSchema = new Schema({
         type:String,
         default:'Waiting'
     },
-    friend : {
-        type: Boolean,
-        default : false
+    group : {
+        type: String,
+        default : 'default'
     }
 },{_id:false});
 
@@ -267,7 +267,7 @@ UserSchema.statics.findUniqueUsername = function(username, suffix, callback) {
 	var possibleUsername = username + (suffix || '');
 
 	_this.findOne({
-		username: possibleUsername
+		'profile.username': possibleUsername
 	}, function(err, user) {
 		if (!err) {
 			if (!user) {

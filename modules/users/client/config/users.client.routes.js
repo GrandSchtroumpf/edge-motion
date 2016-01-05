@@ -11,9 +11,8 @@ angular.module('users').config(['$stateProvider',
                 controller : 'ProfileController',
                 templateUrl:'modules/users/views/profile/profile-resume/profile-page.client.view.html',
                 resolve: {
-                    user : function(Profile, $stateParams){
-                        return Profile.get($stateParams.userId);
-                    }
+                    user : function(Profile, $stateParams){return Profile.get($stateParams.userId);}
+
                     /*,
 					contacts : function(Authentication, $http){
                         return $http({method :'GET', url : 'api/contacts', params : {userId : Authentication.user._id}}).then(function(result){

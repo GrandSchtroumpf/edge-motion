@@ -24,11 +24,12 @@
 
       sidebar-button{
         display : block;
-        width : 200px;
         height : 80px;
+        width : 200px;
+
 
         .icon {
-          min-width : 80px;
+          width : 80px;
         }
         p{
           color : $lightFondColor;

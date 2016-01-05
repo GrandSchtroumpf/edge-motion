@@ -4,17 +4,16 @@ angular.module('core').directive('selectContainer', [
 	function() {
 		return {
 			templateUrl: 'modules/core//views/Directives_templates/Select-directive/select-container_template.client.view.html',
+            scope : {data : '='},
 			restrict: 'E',
-			transclude : true,
+			transclude : {
+                'result' : 'testResult',
+                'option' : 'testOption'
+            },
 			link: function postLink(scope, element, attrs, ctrl, transclude) {
 				scope.onFocus = false;
 
-                scope.results = [];
-				scope.datas = [
-                    {name : 'bob'},
-                    {name : 'Jean'},
-                    {name : 'Yo'}
-                ];
+                scope.results = ['Yooo'];
 
                 //Add the event focus to the main div for it to accept the blur
 				scope.addFocus = function(){
@@ -22,10 +21,11 @@ angular.module('core').directive('selectContainer', [
                     scope.onFocus = true;
                 };
 
-
                 transclude(scope, function(clone, scope) {
                     element.append(clone);
                 });
+
+                console.log(scope.data);
 			}
 		};
 	}

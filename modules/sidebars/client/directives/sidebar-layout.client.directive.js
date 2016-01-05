@@ -32,9 +32,15 @@ angular.module('sidebars').directive('sidebarLayout', ['Authentication','$rootSc
                 };
 
                 scope.signout = function(){
-                    $http.get('/api/auth/signout');
-                    $rootScope.$emit('signout');
-                    $state.go('authentication.signin');
+                    $http.get('/api/auth/signout').then(function(success, err){
+                        if(err){
+                            console.log(err);
+                        }else{
+                            $rootScope.$emit('signout');
+                            $state.go('authentication.signin');
+                        }
+                    });
+
                 };
 
                 //Only for profile

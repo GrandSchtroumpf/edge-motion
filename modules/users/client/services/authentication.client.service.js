@@ -2,11 +2,17 @@
 
 // Authentication service for user variables
 angular.module('users').factory('Authentication', [
-    function(){
+    function($http){
         var _this = this;
         return {
             changeUser : function(){
                 this.user = window.user;
+            },
+            isConnected : function(){
+                var promise = $http.get('/api/auth/isConnected').then(function (response) {
+                    return response.data;
+                });
+                return promise;
             },
             user : window.user
         };

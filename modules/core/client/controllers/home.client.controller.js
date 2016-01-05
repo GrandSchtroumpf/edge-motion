@@ -14,5 +14,8 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
             });
         };
 
+        $scope.bob = ['Jean', 'Bob'];
+
+
 	}
 ]);

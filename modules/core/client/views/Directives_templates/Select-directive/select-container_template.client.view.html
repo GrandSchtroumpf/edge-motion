@@ -1,19 +1,8 @@
 <div layout="column" tabindex="0"  ng-blur="onFocus = false" ng-class="{'dropDown' : onFocus}" class="select-container">
     <div class="search" layout="row" >
-        <ul class="result-list">
-            <li ng-repeat="result in results">
-                <select-result></select-result>
-            </li>
-        </ul>
-
+        <div class="result-list" ng-transclude="result"></div>
         <input ng-focus="addFocus()" type="text"/>
     </div>
 
-    <div class="select-content" layout="row" data-ng-show="onFocus">
-        <ul >
-            <li ng-repeat="data in datas" ng-transclude>
-                <!-- Ici select-option -->
-            </li>
-        </ul>
-    </div>
+    <div class="select-content" data-ng-show="onFocus" ng-transclude="option"></div>
 </div>
