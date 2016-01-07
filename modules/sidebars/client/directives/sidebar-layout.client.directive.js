@@ -43,6 +43,15 @@ angular.module('sidebars').directive('sidebarLayout', ['Authentication','$rootSc
 
                 };
 
+                //for every toggled
+                scope.sidebarToggled = function(){
+                    if((document.getElementById('wrapper').className !== 'toggled')) {
+                        return true;
+                    }else{
+                        return false;
+                    }
+                };
+
                 //Only for profile
                 scope.profileToggled = function(){
                     if((scope.showSidebar !== 'profile' &&  document.getElementById('wrapper').className !== 'toggled') || (scope.showSidebar === 'profile')) {
