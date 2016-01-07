@@ -64,16 +64,13 @@ angular.module('searches').directive('searchResult', ['$rootScope', '$mdDialog',
                     });
                 };
 
-                //if not connected or same user or already in contact
-                if(!Authentication || Authentication.user._id === scope.result._id || Authentication.user.contacts.map(function(element){return element.user;}).indexOf(scope.result._id) !== -1){
-                    scope.invitationButton = false;
-                }else{
-                    scope.invitationButton = true;
-                }
 
                 /*
-                    ADD CONTACT
+                 ADD CONTACT
                  */
+                //if not connected or same user or already in contact
+                scope.invitationButton = !Authentication || Authentication.user._id === scope.result._id || Authentication.user.contacts.map(function(element){return element.user;}).indexOf(scope.result._id) !== -1;
+
                 scope.inviteContact= function(contactId){
                     $http.post('/api/contacts', {userId : Authentication.user._id, contactId : contactId})
                         .then(function(err, success){
@@ -81,6 +78,20 @@ angular.module('searches').directive('searchResult', ['$rootScope', '$mdDialog',
                         });
                 };
 
+                /*
+                    INTEGRATE SCHOOL
+                 */
+                scope.integrationButton = Authentication.user.schools.indexOf(scope.result._id) === -1;
+
+                scope.integrateSchool = function(){
+                    $http.post('/api/schools/'+scope.result._id+'/studentManagement', {userId : Authentication.user._id}).then(function(result, err){
+                        if(err){
+                            console.log(err);
+                        }else{
+                            scope.integrationButton = false;
+                        }
+                    });
+                };
 
 
                 //Literner on scroll to check if a result is above search

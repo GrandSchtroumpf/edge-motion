@@ -1,21 +1,13 @@
-<section data-ng-controller="SchoolsController" data-ng-init="findOne()">
-	<div class="page-header">
-		<h1 data-ng-bind="school.name"></h1>
-	</div>
-	<div class="pull-right" data-ng-show="authentication.user._id == school.user._id">
-		<a class="btn btn-primary" href="/#!/schools/{{school._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
-		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
-		</a>
-	</div>
-	<small>
-		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="school.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="school.user.displayName"></span>
-		</em>
-	</small>
+<section>
+	<form layout="row" layout-align="space-around center">
+		<div layout="column">
+			<img src="{{school.icon}}"/>
+		</div>
+
+		<div flex="60" layout="column">
+			<h2>{{school.name}}</h2>
+			<p>{{school.description}}</p>
+		</div>
+	</form>
+
 </section>

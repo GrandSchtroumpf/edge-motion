@@ -1,0 +1,12 @@
+<section layout="column">
+    <div layout="row" class="headerButtons">
+        <svg-icon flex="50" icon="'eye'" ui-sref="thisSchool.view({schoolId: school._id})"></svg-icon>
+        <svg-icon flex="50" icon="'edit'" ui-sref="thisSchool.edit({schoolId: school._id})"></svg-icon>
+    </div>
+
+    <div class="section-page">
+        <ui-view></ui-view>
+    </div>
+
+</section>
+

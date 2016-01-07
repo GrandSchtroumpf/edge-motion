@@ -9,7 +9,6 @@ angular.module('competencies').controller('CompetenciesController', ['$scope', '
 
 		// Create new Competency
 		$scope.create = function() {
-            console.log('bob');
 			// Create new Competency object
 			var competency = new Competencies ({
 				name: this.name,

@@ -17,6 +17,7 @@ angular.module('searches').config(['$stateProvider',
                         searchResults: ['$stateParams', 'Search', function($stateParams, Search) {
                             if($stateParams.search){
                                 return Search.doSearch($stateParams.search).then(function(response){
+                                    console.log(response);
                                     return response;
                                 });
                             } else{

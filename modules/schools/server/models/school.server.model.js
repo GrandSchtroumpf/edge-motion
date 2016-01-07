@@ -19,8 +19,11 @@ var SchoolSchema = new Schema({
 	},
 	icon :{
 		type : String,
-		default : 'modules/schools/icons/default-school.svg-icon.html'
+		default : 'modules/schools/icons/default.png'
 	},
+    description : {
+        type : String
+    },
     competencies : [{
         type : Schema.ObjectId,
         ref : 'Competency'

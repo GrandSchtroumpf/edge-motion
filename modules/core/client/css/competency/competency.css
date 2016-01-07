@@ -40,7 +40,7 @@ ui-view {
       position: fixed;
       top: 0;
       width: inherit;
-      height: 100px;
+      height: 60px;
       z-index: 5; }
       ui-view section .headerCompetency input {
         border: none;

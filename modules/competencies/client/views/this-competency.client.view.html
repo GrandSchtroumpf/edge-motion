@@ -1,7 +1,7 @@
 <section layout="column">
     <div layout="row" class="headerButtons">
-        <div flex="50" ui-sref="thisCompetency.view({competencyId: competency._id})">View</div>
-        <div flex="50" ui-sref="thisCompetency.edit({competencyId: competency._id})">Edit</div>
+        <svg-icon flex="50" icon="'eye'" ui-sref="thisCompetency.view({competencyId: competency._id})"></svg-icon>
+        <svg-icon flex="50" icon="'edit'" ui-sref="thisCompetency.edit({competencyId: competency._id})"></svg-icon>
     </div>
     <div class="section-page">
         <ui-view></ui-view>

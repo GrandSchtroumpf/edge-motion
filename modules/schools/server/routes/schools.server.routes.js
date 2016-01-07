@@ -14,8 +14,12 @@ module.exports = function(app) {
 		.put(schools.updateSchool)
 		.delete(schools.deleteSchool);
 
+	app.route('/api/schools/:schoolId/pageAuthorisation')
+		.get(schools.schoolPageAuthorization);
+
 	app.route('/api/schools/:schoolId/studentManagement').all(schoolsPolicy.isAllowed)
-		.put(schools.studentManagement);
+		.post(schools.addStudent)
+		.put(schools.manageStudent);
 
 	// Finish by binding the School middleware
 	app.param('schoolId', schools.schoolByID);

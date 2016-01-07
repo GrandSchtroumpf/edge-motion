@@ -1,19 +1,26 @@
-<section data-ng-controller="SchoolsController" data-ng-init="find()">
-    <div class="page-header">
-        <h1>Schools</h1>
+<section>
+    <div class="headerSchools" layout="row">
+        <form flex="40" ng-submit="search(filter)">
+            <input ng-model="filter.keyword" placeholder="Search">
+        </form>
+        <svg-icon ng-if="roleAuthorised" icon="'plus'" ui-sref="schools.create"></svg-icon>
+
     </div>
-    <div class="list-group">
-        <a data-ng-repeat="school in schools" data-ng-href="/#!/schools/{{school._id}}" class="list-group-item">
-			<small class="list-group-item-text">
-				Posted on
-				<span data-ng-bind="school.created | date:'medium'"></span>
-				by
-				<span data-ng-bind="school.user.displayName"></span>
-			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="school.name"></h4>
+
+    <div class="listSchools">
+        <a data-ng-repeat="school in schools" ui-sref="thisSchool.view({schoolId: school._id})">
+
+            <div class="cardSchool" layout="row">
+                <img class="iconSchool" src="{{school.icon}}"/>
+                <div flex="30" class="descriptionCompetency" layout="column">
+                    <h2>{{school.name}}</h2>
+                    <p>Description</p>
+                </div>
+                <div>
+                    <h3>List of competencies</h3>
+                </div>
+            </div>
+
         </a>
-    </div>
-    <div class="alert alert-warning text-center" data-ng-hide="!schools.$resolved || schools.length">
-    	No Schools yet, why don't you <a href="/#!/schools/create">create one</a>?
     </div>
 </section>

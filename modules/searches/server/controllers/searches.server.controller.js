@@ -8,6 +8,8 @@ var _ = require('lodash'),
 	mongoose = require('mongoose'),
     async = require('async'),
     User = mongoose.model('User'),
+    School = mongoose.model('School'),
+    Game = mongoose.model('Game'),
     Project = mongoose.model('Project'),
 	errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
@@ -23,11 +25,23 @@ function searchUsers(keyword, callback){
 }
 
 function searchSchools(keyword, callback){
-    callback(['bob']);
+    School.find({}).exec(function(err, schools){
+        if(err){
+            console.log(err);
+        }else{
+            callback(schools);
+        }
+    });
 }
 
 function searchGames(keyword, callback){
-    callback(['bob']);
+    Game.find({}).exec(function(err, games){
+        if(err){
+            console.log(err);
+        }else{
+            callback(games);
+        }
+    });
 }
 
 exports.doSearch = function(req, res){
@@ -90,9 +104,6 @@ exports.doSearch = function(req, res){
     });
 };
 
-exports.getGuilds = function(req, res){
-    res.send();
-};
 
 exports.getUsers = function(req, res){
     User.find({}).select('username profileImageURL').exec(function(err, users){

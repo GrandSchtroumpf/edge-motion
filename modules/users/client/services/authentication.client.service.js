@@ -8,12 +8,21 @@ angular.module('users').factory('Authentication', [
             changeUser : function(){
                 this.user = window.user;
             },
+
             isConnected : function(){
                 var promise = $http.get('/api/auth/isConnected').then(function (response) {
                     return response.data;
                 });
                 return promise;
             },
+
+            getRoles : function(){
+                var promise = $http.get('/api/auth/getRoles').then(function (response) {
+                    return response.data;
+                });
+                return promise;
+            },
+
             user : window.user
         };
     }

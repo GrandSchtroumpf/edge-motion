@@ -1,3 +1,13 @@
-<md-content>
-    <p>Hello you</p>
+<md-content ng-mouseover="contentHoverIn()" ng-mouseleave="contentHoverOut()" class="result" layout="row">
+    <div flex="20">
+        <img ng-src="{{result.icon}}" class="avatar"/>
+    </div>
+    <div flex="50" layout="column">
+        <p>{{result.name}}</p>
+    </div>
+    <div flex="30" layout="column">
+        <md-button class="md-raised" ui-sref="thisSchool.view({schoolId : result._id})">View</md-button>
+        <md-button class="md-raised" ng-if="integrationButton" data-ng-click="integrateSchool()">Integrate</md-button>
+    </div>
+
 </md-content>

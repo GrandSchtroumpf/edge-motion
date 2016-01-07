@@ -1,14 +1,62 @@
 @import '../mainTheme';
 
-a, a:hover {
-  text-decoration: none;
+
+/**
+* LIST
+*/
+ui-view {
+  width : inherit;
+
+  section {
+    width : inherit;
+
+    .headerSchools {
+      position : fixed;
+      top: 0;
+      width : inherit;
+      height : 60px;
+      z-index : 5;
+
+      input {
+        border : none;
+        height : 45px;
+        width : 60%;
+        background-color: $lightBackground;
+        color : $fontColor;
+        font-size: 20px;
+      }
+    }
+
+    .listSchools{
+      position : relative;
+      top : 120px;
+      z-index : 1;
+
+      .cardSchool{
+        margin : 30px;
+        width : inherit;
+        background-color: $lightBackground;
+        color : $fontColor;
+
+        .iconSchool {
+          width : 100px;
+          height : 100px;
+          margin : 10px;
+        }
+
+        .descriptionSchool {
+          margin : 20px;
+        }
+
+      }
+    }
+  }
 }
 
 /**
 * CREATE and EDIT
 */
-
-.formCompetency{
+.formSchool{
   input{
     width : 60%;
     margin : 10px auto;
@@ -39,57 +87,3 @@ a, a:hover {
     border-bottom : solid 3px $mainColor;
   }
 }
-
-/**
-* LIST
-*/
-ui-view {
-  width : inherit;
-
-  section {
-    width : inherit;
-
-    .headerCompetency {
-      position : fixed;
-        top: 0;
-      width : inherit;
-      height : 60px;
-      z-index : 5;
-
-      input {
-        border : none;
-        height : 45px;
-        width : 60%;
-        background-color: $lightBackground;
-        color : $fontColor;
-        font-size: 20px;
-      }
-    }
-
-    .listCompetency{
-      position : relative;
-      top : 120px;
-      z-index : 1;
-
-      .cardCompetency{
-        margin : 30px;
-        width : inherit;
-        background-color: $lightBackground;
-        color : $fontColor;
-
-        .iconCompetency {
-          width : 100px;
-          height : 100px;
-          margin : 10px;
-        }
-
-        .descriptionCompetency {
-          margin : 20px;
-        }
-
-      }
-    }
-  }
-}
-
-

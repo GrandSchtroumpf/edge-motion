@@ -72,57 +72,86 @@ exports.deleteSchool = function(req, res) {
 };
 
 /**
+ * List of Schools
+ */
+exports.list = function(req, res) { School.find().sort('-created').exec(function(err, schools) {
+    if (err) {
+        return res.status(400).send({
+            message: errorHandler.getErrorMessage(err)
+        });
+    } else {
+        res.jsonp(schools);
+    }
+});
+};
+
+/**
  * Function : get schools by
- * Input : req.query = {name: , competencies : [], games : [], students : [], school : }
+ * Input : req.query = {name: , competencies : [], games : [], students : [], school : } or no req.query for all schools
  * Output : Array of schools
  */
 exports.getSchoolsBy = function(req, res) {
-    var keys = req.query.map(function(e){return Object.keys(e);});
-    async.parallel([
-        function(callback) {
-            if(keys.indexOf('name') !== -1){
-                School.getSchoolsByName(req.query.name, function(result){
-                    return callback(result);
+    //If there is no req.query get all schools
+    if(req.query.length !== {}){
+        School.find().sort('-created').exec(function(err, schools) {
+            if (err) {
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(err)
                 });
+            } else {
+                res.jsonp(schools);
             }
-        },
-        function(callback){
-            if(keys.indexOf('competencies') !== -1){
-                School.getSchoolsByCompetencies(req.query.competencies, function(result){
-                    return callback(result);
+        });
+     //If there is a req.query get schools by
+    }else{
+        var keys = req.query.map(function(e){return Object.keys(e);});
+        async.parallel([
+            function(callback) {
+                if(keys.indexOf('name') !== -1){
+                    School.getSchoolsByName(req.query.name, function(result){
+                        return callback(result);
+                    });
+                }
+            },
+            function(callback){
+                if(keys.indexOf('competencies') !== -1){
+                    School.getSchoolsByCompetencies(req.query.competencies, function(result){
+                        return callback(result);
+                    });
+                }
+            },
+            function(callback){
+                if(keys.indexOf('games') !== -1){
+                    School.getSchoolsByGames(req.query.games, function(result){
+                        return callback(result);
+                    });
+                }
+            },
+            function(callback){
+                if(keys.indexOf('students') !== -1){
+                    School.getSchoolsByStudents(req.query.users, function(result){
+                        return callback(result);
+                    });
+                }
+            },
+            function(callback){
+                if(keys.indexOf('school') !== -1){
+                    School.getSimilarSchools(req.query.game, function(result){
+                        return callback(result);
+                    });
+                }
+            }
+        ], function(err, result){
+           if(err){
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(err)
                 });
+            }else{
+                res.jsonp(result);
             }
-        },
-        function(callback){
-            if(keys.indexOf('games') !== -1){
-                School.getSchoolsByGames(req.query.games, function(result){
-                    return callback(result);
-                });
-            }
-        },
-        function(callback){
-            if(keys.indexOf('students') !== -1){
-                School.getSchoolsByStudents(req.query.users, function(result){
-                    return callback(result);
-                });
-            }
-        },
-        function(callback){
-            if(keys.indexOf('school') !== -1){
-                School.getSimilarSchools(req.query.game, function(result){
-                    return callback(result);
-                });
-            }
-        }
-    ], function(err, result){
-        if(err){
-            return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
-            });
-        }else{
-            res.jsonp(result);
-        }
-    });
+        });
+    }
+
 };
 
 
@@ -130,7 +159,7 @@ exports.getSchoolsBy = function(req, res) {
  * Function : Accept or decline student request
  * Input : req.query -> {accepted : boolean, student : user._id]
  */
-exports.studentManagement = function(req, res){
+exports.manageStudent = function(req, res){
 	if(req.query.accepted){
 		req.school.acceptStudent(req.query.student);
 	} else {
@@ -138,13 +167,36 @@ exports.studentManagement = function(req, res){
     }
 };
 
+exports.addStudent = function(req, res){
+    req.school.studentRequest.push(req.body.userId);
+    req.school.updateThisSchool(req.school, function(result){
+        res.jsonp(result);
+    });
+
+};
+
 /**
  * School middleware
  */
-exports.schoolByID = function(req, res, next, id) { School.findById(id).populate('user', 'displayName').exec(function(err, school) {
+exports.schoolByID = function(req, res, next, id) {
+    School.findById(id).exec(function(err, school) {
 		if (err) return next(err);
 		if (! school) return next(new Error('Failed to load School ' + id));
 		req.school = school ;
 		next();
 	});
+};
+
+
+/**
+ *  Authorization
+ */
+exports.schoolPageAuthorization = function(req, res, next, id){
+    //If the user is admin or a professor from the school
+    console.log(id);
+    if(req.user.roles.indexOf('admin') || (req.user.roles === 'professor' && req.user.school.indexOf(id) !== -1)){
+        res.jsonp(true);
+    }else{
+        res.jsonp(false);
+    }
 };

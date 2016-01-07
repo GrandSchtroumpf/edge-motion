@@ -11,3 +11,19 @@ angular.module('schools').factory('Schools', ['$resource',
 		});
 	}
 ]);
+
+angular.module('schools').factory('SchoolService', ['$http','$state',
+	function($http, $state){
+		return {
+			checkAuthorisation : function(schoolId){
+                var promise = $http.get('/api/schools/'+schoolId+'/pageAuthorisation').then(function (response) {
+                    return response.data;
+                });
+                if(promise){
+                    return true;
+                }else {
+                    $state.go('/schools');
+                }
+			}
+		};
+}]);
