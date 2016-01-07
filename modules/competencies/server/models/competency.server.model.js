@@ -17,6 +17,10 @@ var CompetencySchema = new Schema({
 		required: 'Please fill Competency name',
 		trim: true
 	},
+    icon : {
+        type : String,
+        default : 'modules/competencies/icons/default.png'
+    },
 	level : [{
 		type : Number,
         required : 'Please select a level'

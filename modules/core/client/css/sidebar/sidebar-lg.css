@@ -33,6 +33,9 @@
     padding-left: 80px;
     min-height: 100%;
     width: 100%; }
+  #wrapper #index-wrapper {
+    width: inherit;
+    min-height: 100%; }
   #wrapper.toggled #sidebar {
     width: 200px; }
   #wrapper.toggled #content-page {

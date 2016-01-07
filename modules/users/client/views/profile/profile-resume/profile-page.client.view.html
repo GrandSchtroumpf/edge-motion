@@ -1,12 +1,12 @@
-<profile-page>
-    <profile-head></profile-head>
+<section class="profile-page" layout="column">
+    <!-- <profile-card flex="10"></profile-card> -->
 
-    <profile-content ui-view></profile-content>
-
-
-    <div class="profile-footer" layout="row" data-ng-if="authentication.user._id === user._id">
+    <div class="profile-header" layout="row" data-ng-if="authentication.user._id === user._id">
         <svg-icon flex="50" icon="'eye'" data-ng-click="viewMode()"></svg-icon>
         <svg-icon flex="50" icon="'edit'" data-ng-click="editMode()"></svg-icon>
     </div>
-</profile-page>
+    <profile-content ui-view></profile-content>
+
+
+</section>
 

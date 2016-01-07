@@ -1,16 +1,20 @@
 <section>
-    <form layout="row" layout-align="center center" data-ng-submit="update()" novalidate>
-        <fieldset>
-            <div>
-                <input type="text" data-ng-model="name" required/>
-                <input type="Number" data-ng-model="level" required/>
-            </div>
-            <div>
-                <input type="submit" class="btn btn-default"/>
-            </div>
+
+    <form class="formCompetency" layout="row" layout-align="space-around center" data-ng-submit="update()" novalidate>
+        <fieldset flex="40" layout="column">
+            <img src="{{competency.icon}}"/>
+            <label>Changer Icon</label>
+            <input type="file" data-ng-model="icon"/>
+        </fieldset>
+
+        <fieldset flex="60" layout="column" >
+            <input type="text" data-ng-model="name" placeholder="Name" required/>
+            <input type="Number" data-ng-model="level" min="0" max="10" placeholder="Level" required/>
+            <input type="submit" class="btn btn-default">
             <div data-ng-show="error" class="text-danger">
                 <strong data-ng-bind="error"></strong>
             </div>
         </fieldset>
     </form>
+
 </section>

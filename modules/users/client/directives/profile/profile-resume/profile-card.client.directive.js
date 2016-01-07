@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('users').directive('profileHead', ['$rootScope',
+angular.module('users').directive('profileCard', ['$rootScope',
 	function($rootScope) {
 		return {
-            templateUrl:'modules/users/views/profile/profile-resume/profile-head.client.view.html',
+            templateUrl:'modules/users/views/profile/profile-resume/profile-card.client.view.html',
 			restrict: 'E',
 			link: function postLink(scope, element, attrs) {
 				/*global TweenMax*/

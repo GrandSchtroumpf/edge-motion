@@ -1,10 +1,25 @@
 <section>
-    <div class="page-header">
-        <h1>Competencies</h1>
+    <div class="headerCompetency" layout="row">
+        <form flex="100" ng-submit="search(filter)">
+            <input ng-model="filter.keyword" placeholder="Search">
+        </form>
     </div>
-    <div class="list-group">
+
+    <div class="listCompetency">
         <a data-ng-repeat="competency in competencies" ui-sref="thisCompetency.view({competencyId: competency._id})">
-			<h4>{{competency.name}}</h4>
+
+            <div class="cardCompetency" layout="row">
+                <img class="iconCompetency" src="{{competency.icon}}"/>
+                <div flex="30" class="descriptionCompetency" layout="column">
+                    <h2>{{competency.name}}</h2>
+                    <p>Level : {{competency.level}}</p>
+                    <p>Description</p>
+                </div>
+                <div>
+                    <h3>Logo of schools</h3>
+                </div>
+            </div>
+
         </a>
     </div>
 </section>

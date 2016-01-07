@@ -1,22 +1,28 @@
-<div data-ng-if="contentMode === 'viewMode'" layout="row">
-    <profile-avatar flex="30" image="{{user.profileImageURL}}"></profile-avatar>
+<section layout="row" layout-align="center center">
+    <div flex="100" layout="column">
+        <div data-ng-if="contentMode === 'viewMode'" layout="row">
+            <profile-avatar flex="15" image="{{user.profile.avatar.link}}"></profile-avatar>
 
-    <div class="profile-competencies" flex="20" layout="column" layout-align="center start">
-        <ul>
-            <li competence-name>Competence one</li>
-            <li competence-name>Competence two</li>
-            <li competence-name>Competence three</li>
-            <li competence-name>Competence four</li>
-        </ul>
+            <div class="profile-competencies" flex="35" layout="column" layout-align="center start">
+                <ul>
+                    <li>Competence one</li>
+                    <li>Competence two</li>
+                    <li>Competence three</li>
+                    <li>Competence four</li>
+                </ul>
+            </div>
+
+            <div flex="45" class="profile-competencies-content">
+                <h2>{{competencySelected.title}}</h2>
+                <p>{{competencySelected.content}}</p>
+            </div>
+        </div>
+
+        <div layout="row" layout-align="center center">
+            <svg-icon flex="20" icon="'competency'"></svg-icon>
+        </div>
     </div>
 
-    <div flex="50" class="profile-competencies-content" layout="column" layout-align="space-around center">
-        <ul>
-            <li>Competence example 1</li>
-            <li>Competence example 2</li>
-        </ul>
-    </div>
+</section>
 
-
-</div>
 

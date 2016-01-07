@@ -1,9 +1,9 @@
-<div layout="column">
-    <div layout="row" class="header-page">
-        <button flex="50" ui-sref="thisCompetency.view({competencyId: competency._id})">View</button>
-        <button flex="50" ui-sref="thisCompetency.edit({competencyId: competency._id})">Edit</button>
+<section layout="column">
+    <div layout="row" class="headerButtons">
+        <div flex="50" ui-sref="thisCompetency.view({competencyId: competency._id})">View</div>
+        <div flex="50" ui-sref="thisCompetency.edit({competencyId: competency._id})">Edit</div>
     </div>
     <div class="section-page">
         <ui-view></ui-view>
     </div>
-</div>
+</section>

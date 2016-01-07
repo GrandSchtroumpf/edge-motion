@@ -13,7 +13,7 @@ var _ = require('lodash'),
 
 //Function researches
 function searchUsers(keyword, callback){
-    User.find({}).select('username profileImageURL').exec(function(err, users){
+    User.find({}).select('profile').populate('profile.avatar').exec(function(err, users){
         if(err){
             console.log(err);
         }else{

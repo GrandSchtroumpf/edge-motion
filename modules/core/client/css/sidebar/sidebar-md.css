@@ -31,15 +31,20 @@
           color: #11dfb1; }
   #wrapper #content-page {
     min-height: 100%;
-    width: 100%;
+    width: calc(100% - 50px);
     padding-left: 50px; }
+    #wrapper #content-page #index-wrapper {
+      width: inherit; }
+      #wrapper #content-page #index-wrapper section {
+        width: inherit; }
   #wrapper.toggled #sidebar {
     width: 150px; }
     #wrapper.toggled #sidebar sidebar-button:hover,
     #wrapper.toggled #sidebar sidebar-button.active {
       background-color: #787878; }
   #wrapper.toggled #content-page {
-    padding-left: 150px; }
+    padding-left: 150px;
+    width: calc(100% - 150px); }
   /*Search*/
   sidebar-search .searchInput {
     position: relative;

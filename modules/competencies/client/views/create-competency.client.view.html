@@ -1,19 +1,20 @@
 <section>
-    <div class="page-header">
-        <h1>New Competency</h1>
-    </div>
-    <form layout="row" layout-align="center center" data-ng-submit="create()" novalidate>
-        <fieldset flex="20">
-            <div>
-                <input type="text" data-ng-model="name" placeholder="Name" required>
-                <input type="Number" data-ng-model="level" min="0" max="10" placeholder="Level" required>
+
+    <form class="formCompetency" layout="row" layout-align="space-around center" data-ng-submit="create()" novalidate>
+        <fieldset flex="40" layout="column">
+            <img src="{{competency.icon}}"/>
+            <label>Changer Icon</label>
+            <input type="file" data-ng-model="icon"/>
+        </fieldset>
+
+        <fieldset flex="60" layout="column" >
+            <input type="text" data-ng-model="name" placeholder="Name" required/>
+            <input type="Number" data-ng-model="level" min="0" max="10" placeholder="Level" required/>
+            <input type="submit" class="btn btn-default">
+            <div data-ng-show="error" class="text-danger">
+                <strong data-ng-bind="error"></strong>
             </div>
-            <div>
-                <input type="submit" class="btn btn-default">
-            </div>
-        	<div data-ng-show="error" class="text-danger">
-				<strong data-ng-bind="error"></strong>
-			</div>
         </fieldset>
     </form>
+
 </section>

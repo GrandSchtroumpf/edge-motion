@@ -13,7 +13,7 @@ body {
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease; }
   #wrapper #sidebar sidebar-layout {
-    container: flex; }
+    display: flex; }
     #wrapper #sidebar sidebar-layout sidebar-toggler {
       cursor: pointer; }
       #wrapper #sidebar sidebar-layout sidebar-toggler path {

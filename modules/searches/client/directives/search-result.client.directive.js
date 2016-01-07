@@ -9,6 +9,7 @@ angular.module('searches').directive('searchResult', ['$rootScope', '$mdDialog',
                     return 'modules/searches/views/result-case/result-search-'+element[0].getAttribute('category')+'.client.view.html';
                 };
 
+
                 /*global TimelineMax*/
                 /*global TweenMax*/
                 /*global Power2*/

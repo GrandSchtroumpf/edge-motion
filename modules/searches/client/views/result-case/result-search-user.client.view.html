@@ -1,10 +1,9 @@
 <md-content ng-mouseover="contentHoverIn()" ng-mouseleave="contentHoverOut()" class="result" layout="row">
     <div flex="20">
-        <img ng-src="{{result.profileImageURL}}" class="avatar"/>
+        <img ng-src="{{result.profile.avatar.link}}" class="avatar"/>
     </div>
     <div flex="50" layout="column">
-        <p>Logo guilds</p>
-        <p>{{result.username}}</p>
+        <p>{{result.profile.username}}</p>
     </div>
     <div flex="30" layout="column">
         <md-button class="md-raised" data-ng-click="showCard($event, searchResult.category)">Profile</md-button>

@@ -1,0 +1,66 @@
+a, a:hover {
+  text-decoration: none; }
+
+/**
+* CREATE and EDIT
+*/
+.formCompetency input {
+  width: 60%;
+  margin: 10px auto;
+  background-color: #787878;
+  height: 40px;
+  font-size: 20px;
+  color: #1e1e1e;
+  border: none; }
+
+.formCompetency img {
+  margin: auto; }
+
+.headerButtons {
+  height: 60px;
+  margin-bottom: 40px;
+  width: inherit; }
+  .headerButtons div {
+    cursor: pointer;
+    text-align: center;
+    font-size: 25px;
+    color: #1e1e1e;
+    background-color: #5e6a7a; }
+  .headerButtons div:hover {
+    border-bottom: solid 3px #11dfb1; }
+
+/**
+* LIST
+*/
+ui-view {
+  width: inherit; }
+  ui-view section {
+    width: inherit; }
+    ui-view section .headerCompetency {
+      position: fixed;
+      top: 0;
+      width: inherit;
+      height: 100px;
+      z-index: 5; }
+      ui-view section .headerCompetency input {
+        border: none;
+        height: 45px;
+        width: 60%;
+        background-color: #787878;
+        color: #1e1e1e;
+        font-size: 20px; }
+    ui-view section .listCompetency {
+      position: relative;
+      top: 120px;
+      z-index: 1; }
+      ui-view section .listCompetency .cardCompetency {
+        margin: 30px;
+        width: inherit;
+        background-color: #787878;
+        color: #1e1e1e; }
+        ui-view section .listCompetency .cardCompetency .iconCompetency {
+          width: 100px;
+          height: 100px;
+          margin: 10px; }
+        ui-view section .listCompetency .cardCompetency .descriptionCompetency {
+          margin: 20px; }

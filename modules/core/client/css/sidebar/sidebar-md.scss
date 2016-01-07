@@ -47,8 +47,16 @@
 
     #content-page {
       min-height : 100%;
-      width:100%;
+      width: calc(100% - 50px);
       padding-left: 50px;
+
+      #index-wrapper{
+        width : inherit;
+
+        section{
+          width : inherit;
+        }
+      }
     }
   }
 
@@ -64,6 +72,7 @@
 
     #content-page{
       padding-left: 150px;
+      width : calc(100% - 150px);
     }
   }
 

@@ -27,6 +27,10 @@ angular.module('competencies').controller('CompetenciesController', ['$scope', '
 			});
 		};
 
+		$scope.filter = {
+			keyword:''
+		};
+
 
 
 	}

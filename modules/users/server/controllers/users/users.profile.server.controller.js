@@ -91,7 +91,7 @@ exports.me = function (req, res) {
 /**
  * Show the current Profile
  */
-exports.getUser = function(req, res) {
+exports.getUserProfile = function(req, res) {
 	//FindOne is called in user.authorization.server.controller.js
 	res.jsonp(req.profile);
 };

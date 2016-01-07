@@ -3,6 +3,7 @@
 /*  Computer  */
 @media(min-width : 900px){
   #wrapper{
+
     #sidebar {
       height : 100%;
       width : 80px;
@@ -50,7 +51,12 @@
     #content-page {
       padding-left : 80px;
       min-height : 100%;
-      width:100%;
+      width : 100%;
+    }
+
+    #index-wrapper {
+      width : inherit;
+      min-height: 100%;
     }
   }
 

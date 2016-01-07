@@ -23,7 +23,7 @@ module.exports = function(app) {
     app.route('/api/profile')
         .put(users.updateMulti);
     app.route('/api/profile/:userId').all()
-        .get(users.getUser);
+        .get(users.getUserProfile);
 
     //Manage contact
     app.route('/api/contacts')

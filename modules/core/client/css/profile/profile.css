@@ -1,103 +1,66 @@
-profile-page {
-  height: 100%;
+.profile-page .profile-header {
+  background-color: #787878;
+  height: 60px;
+  margin-bottom: 20px; }
+  .profile-page .profile-header svg-icon:hover {
+    border-bottom: solid 3px #11dfb1;
+    -webkit-box-shadow: 0px -5px 10px -2px #11dfb1;
+    -o-box-shadow: 0px -5px 10px -2px #11dfb1;
+    -ms-box-shadow: 0px -5px 10px -2px #11dfb1;
+    -moz-box-shadow: 0px -5px 10px -2px #11dfb1;
+    box-shadow: 0px -5px 10px -2px #11dfb1; }
+
+.profile-page profile-content profile-resume {
+  margin-top: 20px;
+  width: 100%; }
+  .profile-page profile-content profile-resume profile-avatar img {
+    height: 100%; }
+  .profile-page profile-content profile-resume .profile-competencies {
+    height: 100%;
+    vertical-align: middle; }
+    .profile-page profile-content profile-resume .profile-competencies ul {
+      padding: 0;
+      list-style: none;
+      width: 90%; }
+      .profile-page profile-content profile-resume .profile-competencies ul li {
+        padding: 5px;
+        cursor: pointer;
+        margin: 5px 0 5px 0;
+        background-color: #787878; }
+  .profile-page profile-content profile-resume .profile-competencies-content {
+    background-color: #787878;
+    min-height: 70%;
+    max-height: 100%; }
+  .profile-page profile-content profile-resume profile-avatar img {
+    padding: 10px;
+    -webkit-box-shadow: 2px 2px 7px 0 #323232;
+    -o-box-shadow: 2px 2px 7px 0 #323232;
+    -ms-box-shadow: 2px 2px 7px 0 #323232;
+    -moz-box-shadow: 2px 2px 7px 0 #323232;
+    box-shadow: 2px 2px 7px 0 #323232;
+    margin-left: 20px; }
+
+.profile-page profile-content profile-resume-edit input {
   width: 100%;
-  background-color: #f1f1f1; }
-  profile-page profile-head {
-    position: fixed;
-    top: 0;
-    background-color: rgba(189, 192, 197, 0.5);
-    color: #242626;
-    height: 100px;
-    width: 100%; }
-    profile-page profile-head profile-avatar img {
-      height: 100px; }
-  profile-page profile-content {
-    position: fixed;
-    top: 120px;
-    height: 80%;
-    width: 100%; }
-    profile-page profile-content profile-resume {
-      position: absolute;
-      width: 100%;
-      height: 100%; }
-      profile-page profile-content profile-resume profile-avatar img {
-        height: 80%; }
-      profile-page profile-content profile-resume .profile-competencies {
-        height: 100%;
-        vertical-align: middle; }
-        profile-page profile-content profile-resume .profile-competencies ul {
-          padding: 0;
-          list-style: none;
-          width: 100%; }
-        profile-page profile-content profile-resume .profile-competencies li {
-          border-top: solid 1px #bdc0c5;
-          border-bottom: solid 1px #bdc0c5;
-          height: 30px;
-          padding-left: 30px;
-          font-size: 1.3em;
-          text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; }
-        profile-page profile-content profile-resume .profile-competencies li:hover {
-          cursor: pointer; }
-      profile-page profile-content profile-resume .profile-competencies-content ul {
-        padding: 0;
-        list-style: none;
-        width: 100%; }
-      profile-page profile-content profile-resume .profile-competencies-content li {
-        background-color: #787878;
-        display: block;
-        width: 80%;
-        height: 60px;
-        margin: 20px auto;
-        padding: 10px;
-        -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
-        -ms-border-radius: 10px;
-        border-radius: 10px;
-        -webkit-box-shadow: inset 0px 0px 15px 0px white;
-        -o-box-shadow: inset 0px 0px 15px 0px white;
-        -ms-box-shadow: inset 0px 0px 15px 0px white;
-        -moz-box-shadow: inset 0px 0px 15px 0px white;
-        box-shadow: inset 0px 0px 15px 0px white; }
-      profile-page profile-content profile-resume profile-avatar img {
-        padding: 10px;
-        -webkit-box-shadow: 2px 2px 7px 0 #323232;
-        -o-box-shadow: 2px 2px 7px 0 #323232;
-        -ms-box-shadow: 2px 2px 7px 0 #323232;
-        -moz-box-shadow: 2px 2px 7px 0 #323232;
-        box-shadow: 2px 2px 7px 0 #323232;
-        margin: 20px; }
-    profile-page profile-content profile-resume-edit input {
-      width: 100%;
-      height: 50px;
-      border: none;
-      background-color: #787878;
-      margin-top: 40px;
-      font-size: 20px;
-      padding: 10px;
-      transition: all 0.2s linear; }
-    profile-page profile-content profile-resume-edit input:hover, profile-page profile-content profile-resume-edit input:focus {
-      transform: scale(1.01);
-      -webkit-box-shadow: 0 0 10px 5px #323232;
-      -o-box-shadow: 0 0 10px 5px #323232;
-      -ms-box-shadow: 0 0 10px 5px #323232;
-      -moz-box-shadow: 0 0 10px 5px #323232;
-      box-shadow: 0 0 10px 5px #323232; }
-    profile-page profile-content profile-resume-edit svg-icon {
-      height: 80px;
-      margin-top: 50px; }
-    profile-page profile-content profile-games {
-      height: 80%; }
-  profile-page .profile-footer {
-    position: fixed;
-    top: calc(100% - 60px);
-    background-color: #bdc0c5;
-    height: 60px;
-    width: 100%;
-    opacity: 0.3; }
-    profile-page .profile-footer svg-icon:hover {
-      border-top: solid 3px #11dfb1;
-      -webkit-box-shadow: 0px -5px 10px -2px #11dfb1;
-      -o-box-shadow: 0px -5px 10px -2px #11dfb1;
-      -ms-box-shadow: 0px -5px 10px -2px #11dfb1;
-      -moz-box-shadow: 0px -5px 10px -2px #11dfb1;
-      box-shadow: 0px -5px 10px -2px #11dfb1; }
+  height: 50px;
+  border: none;
+  background-color: #787878;
+  margin-top: 40px;
+  font-size: 20px;
+  padding: 10px;
+  transition: all 0.2s linear; }
+
+.profile-page profile-content profile-resume-edit input:hover, .profile-page profile-content profile-resume-edit input:focus {
+  transform: scale(1.01);
+  -webkit-box-shadow: 0 0 10px 5px #323232;
+  -o-box-shadow: 0 0 10px 5px #323232;
+  -ms-box-shadow: 0 0 10px 5px #323232;
+  -moz-box-shadow: 0 0 10px 5px #323232;
+  box-shadow: 0 0 10px 5px #323232; }
+
+.profile-page profile-content profile-resume-edit svg-icon {
+  height: 80px;
+  margin-top: 50px; }
+
+.profile-page profile-content profile-games {
+  height: 80%; }

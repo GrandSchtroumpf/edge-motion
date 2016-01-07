@@ -1,4 +1,13 @@
 <section>
-	<h1>{{competency.name}}</h1>
+	<form layout="row" layout-align="space-around center">
+		<div layout="column">
+			<img src="{{competency.icon}}"/>
+		</div>
+
+		<div flex="60" layout="column">
+			<h2>{{competency.name}}</h2>
+			<h2>Level : {{competency.level}}</h2>
+		</div>
+	</form>
 
 </section>

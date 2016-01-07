@@ -21,5 +21,18 @@ angular.module('users').controller('ProfileController', ['$scope', '$http', '$st
                 $scope.submitted = true;
             }
         };
+
+        $scope.Authentication = Authentication;
+
+        $scope.editMode = function(){
+            var currentName = $state.current.name;
+            $state.go(currentName+'-edit');
+        };
+
+        $scope.viewMode = function(){
+            var currentName = $state.current.name;
+            var newName = currentName.replace('-edit','');
+            $state.go(newName);
+        };
     }
 ]);

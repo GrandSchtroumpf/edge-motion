@@ -1,41 +1,29 @@
 @import '../mainTheme';
 
-profile-page{
-  height:100%;
-  width:100%;
-  background-color: #f1f1f1;  //To be changed by an image
+.profile-page{
 
-  profile-head{
-    position: fixed;
-      top:0;
-    background-color: rgba($lightMetal,0.5);
-    color:$darkMetal;
-    height: 100px;
-    width: 100%;
+  .profile-header{
+    background-color: $lightBackground;
+    height:60px;
+    margin-bottom : 20px;
 
-    profile-avatar{
-      img{
-        height : 100px;
-      }
+
+    svg-icon:hover{
+      border-bottom : solid 3px $mainColor;
+      @include box-shadow(0px, -5px, 10px, -2px, $mainColor);
+
     }
-
   }
 
   profile-content{
-    position: fixed;
-      top:120px;
-    height:80%;
-    width:100%;
-
 
     profile-resume{
-      position: absolute;
+      margin-top : 20px;
       width:100%;
-      height: 100%;
 
       profile-avatar{
         img{
-          height : 80%;
+          height : 100%;
         }
       }
 
@@ -46,42 +34,22 @@ profile-page{
         ul{
           padding:0;
           list-style:none;
+          width:90%;
 
-          width:100%;
-        }
+          li{
+            padding : 5px;
+            cursor : pointer;
+            margin : 5px 0 5px 0;
+            background-color: $lightBackground;
 
-        li{
-          border-top : solid 1px $lightMetal;
-          border-bottom : solid 1px $lightMetal;
-          height:30px;
-          padding-left : 30px;
-          //@include linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0.5), rgba(0,0,0,0));
-          font-size:1.3em;
-          text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-        }
-
-        li:hover{
-          cursor:pointer;
-          //@include linear-gradient(to right, rgba($mainColor,0.5), rgba($mainColor,0.2), rgba($mainColor,0));
+          }
         }
       }
 
       .profile-competencies-content{
-        ul{
-          padding:0;
-          list-style: none;
-          width:100%;
-        }
-        li{
-          background-color: $lightBackground;
-          display: block;
-          width:80%;
-          height : 60px;
-          margin:20px auto;
-          padding:10px;
-          @include border-radius(10px);
-          @include box-shadow-inset(0px, 0px, 15px, 0px, white);
-        }
+        background-color: $lightBackground;
+        min-height : 70%;
+        max-height : 100%;
       }
 
 
@@ -89,7 +57,7 @@ profile-page{
       profile-avatar img{
         padding : 10px;
         @include box-shadow(2px, 2px, 7px, 0, $darkBackground);
-        margin:20px;
+        margin-left:20px;
       }
     }
 
@@ -120,20 +88,7 @@ profile-page{
     }
   }
 
-  .profile-footer{
-    position: fixed;
-      top:calc(100% - 60px);
-    background-color: $lightMetal;
-    height:60px;
-    width:100%;
-    opacity : 0.3;
 
-    svg-icon:hover{
-      border-top : solid 3px $mainColor;
-      @include box-shadow(0px, -5px, 10px, -2px, $mainColor);
-
-    }
-  }
 }
 
 
