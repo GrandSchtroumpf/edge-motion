@@ -42,7 +42,7 @@ angular.module('searches').factory('Search', ['$http','$q',
             },
             getGames : function(search){
                 var defer = $q.defer();
-                $http.get('/api/search/games', {params : search})
+                $http.get('/api/search/game', {params : search})
                     .success(function(games){
                         defer.resolve(games);
                     })

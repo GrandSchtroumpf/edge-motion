@@ -25,7 +25,7 @@ exports.invokeRolesPolicies = function() {
 		roles: ['user'],
 		allows: [{
 			resources: '/api/games',
-			permissions: ['get', 'post']
+			permissions: ['get']
 		}, {
 			resources: '/api/games/:gameId',
 			permissions: ['get']
@@ -47,11 +47,6 @@ exports.invokeRolesPolicies = function() {
  */
 exports.isAllowed = function(req, res, next) {
 	var roles = (req.user) ? req.user.roles : ['guest'];
-
-	// If an game is being processed and the current user created it then allow any manipulation
-	if (req.game && req.user && req.game.user.id === req.user.id) {
-		return next();
-	}
 
 	// Check for user roles
 	acl.areAnyRolesAllowed(roles, req.route.path, req.method.toLowerCase(), function(err, isAllowed) {

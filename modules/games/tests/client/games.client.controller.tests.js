@@ -60,7 +60,7 @@
 			var sampleGames = [sampleGame];
 
 			// Set GET response
-			$httpBackend.expectGET('api/games').respond(sampleGames);
+			$httpBackend.expectGET('api/game').respond(sampleGames);
 
 			// Run controller functionality
 			scope.find();
@@ -106,7 +106,7 @@
 			scope.name = 'New Game';
 
 			// Set POST response
-			$httpBackend.expectPOST('api/games', sampleGamePostData).respond(sampleGameResponse);
+			$httpBackend.expectPOST('api/game', sampleGamePostData).respond(sampleGameResponse);
 
 			// Run controller functionality
 			scope.create();
@@ -116,7 +116,7 @@
 			expect(scope.name).toEqual('');
 
 			// Test URL redirection after the Game was created
-			expect($location.path()).toBe('/games/' + sampleGameResponse._id);
+			expect($location.path()).toBe('/game/' + sampleGameResponse._id);
 		}));
 
 		it('$scope.update() should update a valid Game', inject(function(Games) {
@@ -137,7 +137,7 @@
 			$httpBackend.flush();
 
 			// Test URL location to new object
-			expect($location.path()).toBe('/games/' + sampleGamePutData._id);
+			expect($location.path()).toBe('/game/' + sampleGamePutData._id);
 		}));
 
 		it('$scope.remove() should send a DELETE request with a valid gameId and remove the Game from the scope', inject(function(Games) {

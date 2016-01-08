@@ -307,7 +307,7 @@ UserSchema.methods.getUsersBySchools = function(schoolId, callback){
 };
 
 /**
- *   Function : get users that have similar competencies or games that the input user
+ *   Function : get users that have similar competencies or game that the input user
  *   Input : one user
  *   Output : array of users
  */

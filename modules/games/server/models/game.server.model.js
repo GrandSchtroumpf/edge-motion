@@ -19,7 +19,7 @@ var GameSchema = new Schema({
 	},
     icon : {
         type : String,
-        default : 'modules/games/icons/game.svg-icon.html'
+        default : 'modules/games/icons/default.png'
     },
 	created: {
 		type: Date,
@@ -122,9 +122,9 @@ GameSchema.methods.getGamesByUser = function(usersId, callback){
 };
 
 /**
- *   Function : get games that have similar competencies or school that the input game
+ *   Function : get game that have similar competencies or school that the input game
  *   Input : one game
- *   Output : array of games
+ *   Output : array of game
  */
 GameSchema.methods.getSimilarGames = function(game, callback){
     return this.model('Game').find({

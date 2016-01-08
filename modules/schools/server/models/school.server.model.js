@@ -127,7 +127,7 @@ SchoolSchema.methods.getSchoolsByStudents = function(studentsId, callback){
 /**
  *   Function : get schools that have similar competencies or game that the input school
  *   Input : one game
- *   Output : array of games
+ *   Output : array of game
  */
 SchoolSchema.methods.getSimilarSchools = function(school, callback){
     return this.model('School').find({

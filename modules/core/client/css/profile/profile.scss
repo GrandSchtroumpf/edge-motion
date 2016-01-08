@@ -62,7 +62,7 @@
     }
 
     profile-resume-edit{
-      input {
+      .inputProfile {
         width : 100%;
         height : 50px;
         border : none;
@@ -72,7 +72,7 @@
         padding : 10px;
         transition: all 0.2s linear;
       }
-      input:hover, input:focus {
+      .inputProfile:hover, .inputProfile:focus {
         transform : scale(1.01);
         @include box-shadow(0, 0, 10px, 5px, $darkBackground);
       }

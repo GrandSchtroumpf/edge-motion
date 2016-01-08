@@ -6,6 +6,6 @@ module.exports = function(app) {
 
     app.route('/api/search/doSearch').get(search.doSearch);
     app.route('/api/search/users').get(search.getUsers);
-    app.route('/api/search/games').get(search.getGames);
+    app.route('/api/search/game').get(search.getGames);
     app.route('/api/search/projects').get(search.getProjects);
 };

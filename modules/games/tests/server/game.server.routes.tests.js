@@ -65,7 +65,7 @@ describe('Game CRUD tests', function() {
 				var userId = user.id;
 
 				// Save a new Game
-				agent.post('/api/games')
+				agent.post('/api/game')
 					.send(game)
 					.expect(200)
 					.end(function(gameSaveErr, gameSaveRes) {
@@ -73,7 +73,7 @@ describe('Game CRUD tests', function() {
 						if (gameSaveErr) done(gameSaveErr);
 
 						// Get a list of Games
-						agent.get('/api/games')
+						agent.get('/api/game')
 							.end(function(gamesGetErr, gamesGetRes) {
 								// Handle Game save error
 								if (gamesGetErr) done(gamesGetErr);
@@ -93,7 +93,7 @@ describe('Game CRUD tests', function() {
 	});
 
 	it('should not be able to save Game instance if not logged in', function(done) {
-		agent.post('/api/games')
+		agent.post('/api/game')
 			.send(game)
 			.expect(403)
 			.end(function(gameSaveErr, gameSaveRes) {
@@ -117,7 +117,7 @@ describe('Game CRUD tests', function() {
 				var userId = user.id;
 
 				// Save a new Game
-				agent.post('/api/games')
+				agent.post('/api/game')
 					.send(game)
 					.expect(400)
 					.end(function(gameSaveErr, gameSaveRes) {
@@ -142,7 +142,7 @@ describe('Game CRUD tests', function() {
 				var userId = user.id;
 
 				// Save a new Game
-				agent.post('/api/games')
+				agent.post('/api/game')
 					.send(game)
 					.expect(200)
 					.end(function(gameSaveErr, gameSaveRes) {
@@ -153,7 +153,7 @@ describe('Game CRUD tests', function() {
 						game.name = 'WHY YOU GOTTA BE SO MEAN?';
 
 						// Update existing Game
-						agent.put('/api/games/' + gameSaveRes.body._id)
+						agent.put('/api/game/' + gameSaveRes.body._id)
 							.send(game)
 							.expect(200)
 							.end(function(gameUpdateErr, gameUpdateRes) {
@@ -178,7 +178,7 @@ describe('Game CRUD tests', function() {
 		// Save the Game
 		gameObj.save(function() {
 			// Request Games
-			request(app).get('/api/games')
+			request(app).get('/api/game')
 				.end(function(req, res) {
 					// Set assertion
 					res.body.should.be.an.Array.with.lengthOf(1);
@@ -197,7 +197,7 @@ describe('Game CRUD tests', function() {
 
 		// Save the Game
 		gameObj.save(function() {
-			request(app).get('/api/games/' + gameObj._id)
+			request(app).get('/api/game/' + gameObj._id)
 				.end(function(req, res) {
 					// Set assertion
 					res.body.should.be.an.Object.with.property('name', game.name);
@@ -220,7 +220,7 @@ describe('Game CRUD tests', function() {
 				var userId = user.id;
 
 				// Save a new Game
-				agent.post('/api/games')
+				agent.post('/api/game')
 					.send(game)
 					.expect(200)
 					.end(function(gameSaveErr, gameSaveRes) {
@@ -228,7 +228,7 @@ describe('Game CRUD tests', function() {
 						if (gameSaveErr) done(gameSaveErr);
 
 						// Delete existing Game
-						agent.delete('/api/games/' + gameSaveRes.body._id)
+						agent.delete('/api/game/' + gameSaveRes.body._id)
 							.send(game)
 							.expect(200)
 							.end(function(gameDeleteErr, gameDeleteRes) {
@@ -255,7 +255,7 @@ describe('Game CRUD tests', function() {
 		// Save the Game
 		gameObj.save(function() {
 			// Try deleting Game
-			request(app).delete('/api/games/' + gameObj._id)
+			request(app).delete('/api/game/' + gameObj._id)
 			.expect(403)
 			.end(function(gameDeleteErr, gameDeleteRes) {
 				// Set message assertion

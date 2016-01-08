@@ -87,7 +87,7 @@ exports.list = function(req, res) { School.find().sort('-created').exec(function
 
 /**
  * Function : get schools by
- * Input : req.query = {name: , competencies : [], games : [], students : [], school : } or no req.query for all schools
+ * Input : req.query = {name: , competencies : [], game : [], students : [], school : } or no req.query for all schools
  * Output : Array of schools
  */
 exports.getSchoolsBy = function(req, res) {

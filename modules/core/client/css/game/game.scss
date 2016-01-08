@@ -1,0 +1,89 @@
+@import '../mainTheme';
+
+
+/**
+* LIST
+*/
+ui-view {
+  width : inherit;
+
+  section {
+    width : inherit;
+
+    .headerGame {
+      position : fixed;
+      top: 0;
+      width : inherit;
+      height : 60px;
+      z-index : 5;
+
+      input {
+        border : none;
+        height : 45px;
+        width : 60%;
+        background-color: $lightBackground;
+        color : $fontColor;
+        font-size: 20px;
+      }
+    }
+
+    .listGames{
+      position : relative;
+      top : 120px;
+      z-index : 1;
+
+      .cardGame{
+        margin : 30px;
+        width : inherit;
+        background-color: $lightBackground;
+        color : $fontColor;
+
+        .iconGame {
+          width : 100px;
+          height : 100px;
+          margin : 10px;
+        }
+
+        .descriptionGame{
+          margin : 20px;
+        }
+
+      }
+    }
+  }
+}
+
+/**
+* CREATE and EDIT
+*/
+.formGame{
+  input{
+    width : 60%;
+    margin : 10px auto;
+    background-color: $lightBackground;
+    height : 40px;
+    font-size : 20px;
+    color : $fontColor;
+    border : none;
+  }
+  img {
+    margin : auto;
+  }
+}
+
+.headerButtons{
+  height: 60px;
+  margin-bottom : 40px;
+  width :inherit;
+
+  div{
+    cursor : pointer;
+    text-align: center;
+    font-size: 25px;
+    color : $fontColor;
+    background-color: $buttonColor;
+  }
+  div:hover{
+    border-bottom : solid 3px $mainColor;
+  }
+}

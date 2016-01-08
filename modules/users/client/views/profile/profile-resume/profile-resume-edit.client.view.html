@@ -5,17 +5,34 @@
     <div flex="50" layout="column" layout-align="center center" ng-switch="step">
         <div ng-switch-when="1">
             <h1>User Informations</h1>
-            <input type="text" name="firstName" data-ng-model="user.firstName" />
-            <input type="text" name="lastName" data-ng-model="user.lastName" />
-            <input type="email" name="email" data-ng-model="user.email" />
-            <input type="text" name="username" data-ng-model="user.username" />
+            <input class="inputProfile" type="text" name="firstName" data-ng-model="user.firstName" placeholder="First Name"/>
+            <input class="inputProfile" type="text" name="lastName" data-ng-model="user.lastName" placeholder="Last Name"/>
+            <input class="inputProfile" type="email" name="email" data-ng-model="user.email" placeholder="e-mail"/>
+            <input class="inputProfile" type="text" name="username" data-ng-model="user.profile.username" placeholder="username"/>
         </div>
+
         <div ng-switch-when="2">
             <h1>Competencies</h1>
-            <input type="text" data-ng-model="user.firstName" />
-            <input type="text" name="lastName" data-ng-model="user.lastName" />
-            <input type="email" name="email" data-ng-model="user.email" />
-            <input type="text" name="username" data-ng-model="user.username" />
+
+            <md-chips ng-model="user.profile.competencies" md-autocomplete-snap
+                      md-transform-chip="transformChip($chip)"
+                      md-require-match="true">
+                <md-autocomplete
+                        md-selected-item="selectedItem"
+                        md-search-text="searchText"
+                        md-items="item in querySearch(searchText)"
+                        md-item-text="item.name"
+                        placeholder="Search for competencies">
+                    <span md-highlight-text="searchText">{{item.name}}:{{item.level}}</span>
+                </md-autocomplete>
+                <md-chip-template>
+                    <span>
+                      <strong>{{$chip.name}}</strong>
+                      <em>({{$chip.level}})</em>
+                    </span>
+                </md-chip-template>
+            </md-chips>
+
         </div>
         <svg-icon icon="'save'"  data-ng-click="updateUserProfile(userForm.$valid)"></svg-icon>
     </div>

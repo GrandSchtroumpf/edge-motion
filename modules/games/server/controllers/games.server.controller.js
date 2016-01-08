@@ -20,7 +20,10 @@ exports.createGame = function(req, res) {
 	var game = new Game(req.body);
 
     //Add competencies if they don't exist
-    Competency.createIfEmpty(game.competencies);
+    if(game.competencies){
+        Competency.createIfEmpty(game.competencies);
+    }
+
 
 	game.save(function(err) {
 		if (err) {
@@ -79,55 +82,70 @@ exports.deleteGame = function(req, res) {
 /**
  * Function : get $http.params into req.query and send multiple finding methods depending on the params
  * Input : req.params is an object with name or competencies or school or user
- * Output : return games
+ * Output : return game
  */
 exports.getGamesBy = function(req, res) {
-    var keys = req.query.map(function(e){return Object.keys(e);});
-    async.parallel([
-        function(callback) {
-            if(keys.indexOf('name') !== -1){
-                Game.getGamesByName(req.query.name, function(result){
-                    return callback(result);
+    //If there is no req.query get all game
+    if(req.query.length !== {}){
+        Game.find().sort('-created').exec(function(err, games) {
+            if (err) {
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(err)
                 });
+            } else {
+                res.jsonp(games);
             }
-        },
-        function(callback){
-            if(keys.indexOf('competencies') !== -1){
-                Game.getGamesByCompetencies(req.query.competencies, function(result){
-                    return callback(result);
+        });
+        //If there is a req.query get game by
+    }else{
+        var keys = req.query.map(function(e){return Object.keys(e);});
+        async.parallel([
+            function(callback) {
+                if(keys.indexOf('name') !== -1){
+                    Game.getGamesByName(req.query.name, function(result){
+                        return callback(result);
+                    });
+                }
+            },
+            function(callback){
+                if(keys.indexOf('competencies') !== -1){
+                    Game.getGamesByCompetencies(req.query.competencies, function(result){
+                        return callback(result);
+                    });
+                }
+            },
+            function(callback){
+                if(keys.indexOf('schools') !== -1){
+                    Game.getGamesBySchool(req.query.schools, function(result){
+                        return callback(result);
+                    });
+                }
+            },
+            function(callback){
+                if(keys.indexOf('users') !== -1){
+                    Game.getGamesByUser(req.query.users, function(result){
+                        return callback(result);
+                    });
+                }
+            },
+            function(callback){
+                if(keys.indexOf('game') !== -1){
+                    Game.getSimilarGames(req.query.game, function(result){
+                        return callback(result);
+                    });
+                }
+            }
+        ], function(err, result){
+            if(err){
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(err)
                 });
+            }else{
+                res.jsonp(result);
             }
-        },
-        function(callback){
-            if(keys.indexOf('schools') !== -1){
-                Game.getGamesBySchool(req.query.schools, function(result){
-                    return callback(result);
-                });
-            }
-        },
-        function(callback){
-            if(keys.indexOf('users') !== -1){
-                Game.getGamesByUser(req.query.users, function(result){
-                    return callback(result);
-                });
-            }
-        },
-        function(callback){
-            if(keys.indexOf('game') !== -1){
-                Game.getSimilarGames(req.query.game, function(result){
-                    return callback(result);
-                });
-            }
-        }
-    ], function(err, result){
-        if(err){
-            return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
-            });
-        }else{
-            res.jsonp(result);
-        }
-    });
+        });
+    }
+
 
 };
 

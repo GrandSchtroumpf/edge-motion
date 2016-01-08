@@ -1,8 +1,10 @@
 <section>
     <div class="headerCompetency" layout="row">
-        <form flex="100" ng-submit="search(filter)">
+        <form flex="40" ng-submit="search(filter)">
             <input ng-model="filter.keyword" placeholder="Search">
         </form>
+        <svg-icon ng-if="roleAuthorised" icon="'plus'" ui-sref="competencies.create"></svg-icon>
+
     </div>
 
     <div class="listCompetency">

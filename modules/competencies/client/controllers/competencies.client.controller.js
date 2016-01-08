@@ -6,6 +6,9 @@ angular.module('competencies').controller('CompetenciesController', ['$scope', '
 		$scope.authentication = Authentication;
         $scope.competencies = competencies;
 
+		$scope.roleAuthorised = function(){
+			return Authentication.roles.indexOf('admin') !== -1;
+		};
 
 		// Create new Competency
 		$scope.create = function() {

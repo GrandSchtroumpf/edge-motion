@@ -31,7 +31,7 @@ angular.module('users').config(['$stateProvider',
                     template: '<profile-resume-edit></profile-resume-edit>'
                 }).
                 state('profile.games', {
-                    url:'/games',
+                    url:'/game',
                     template: '<profile-games></profile-games>'
                 }).
 				state('profile.contacts', {
